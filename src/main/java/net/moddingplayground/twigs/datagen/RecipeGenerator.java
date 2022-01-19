@@ -54,20 +54,35 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
                          this.family(f, this.stonecuttingVariantFactories, true);
                      });
 
-        String polishedAmethystBrick = "polished_amethyst_brick";
+        String rockyDirt = path(ROCKY_DIRT);
+        this.add(baseFolder(rockyDirt) + rockyDirt, chequer2x2(DIRT, PEBBLE, ROCKY_DIRT, 2));
+
+        String floweringAzalea = path(FLOWERING_AZALEA);
+        this.add(baseFolder(floweringAzalea) + floweringAzalea, shapeless(AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA, FLOWERING_AZALEA, 1));
+
+        String floweringAzaleaLeaves = path(FLOWERING_AZALEA_LEAVES);
+        this.add(baseFolder(floweringAzaleaLeaves) + floweringAzaleaLeaves, shapeless(AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES, 1));
+
+        String mossyBrick = pathP(MOSSY_BRICKS);
+        this.add(baseFolder(mossyBrick) + path(MOSSY_BRICKS), shapeless(VINE, BRICKS, MOSSY_BRICKS, 2));
+
+        String polishedAmethystBrick = pathP(POLISHED_AMETHYST_BRICKS);
         this.add(baseFolder(polishedAmethystBrick) + path(POLISHED_AMETHYST_BRICKS) + "from_stonecutting", stonecutting(POLISHED_AMETHYST, POLISHED_AMETHYST_BRICKS));
 
-        String twistingPBB = "twisting_polished_blackstone_brick";
-        this.add(baseFolder(twistingPBB) + twistingPBB, dualShapeless(TWISTING_VINES, POLISHED_BLACKSTONE_BRICKS, TWISTING_POLISHED_BLACKSTONE_BRICKS, 1));
+        String twistingPBB = pathP(TWISTING_POLISHED_BLACKSTONE_BRICKS);
+        this.add(baseFolder(twistingPBB) + path(TWISTING_POLISHED_BLACKSTONE_BRICKS), shapeless(TWISTING_VINES, POLISHED_BLACKSTONE_BRICKS, TWISTING_POLISHED_BLACKSTONE_BRICKS, 1));
 
-        String weepingPBB = "weeping_polished_blackstone_brick";
-        this.add(baseFolder(weepingPBB) + weepingPBB, dualShapeless(WEEPING_VINES, POLISHED_BLACKSTONE_BRICKS, WEEPING_POLISHED_BLACKSTONE_BRICKS, 1));
+        String weepingPBB = pathP(WEEPING_POLISHED_BLACKSTONE_BRICKS);
+        this.add(baseFolder(weepingPBB) + path(WEEPING_POLISHED_BLACKSTONE_BRICKS), shapeless(WEEPING_VINES, POLISHED_BLACKSTONE_BRICKS, WEEPING_POLISHED_BLACKSTONE_BRICKS, 1));
 
         String rhyolite = path(RHYOLITE);
         this.add(baseFolder(rhyolite) + rhyolite, chequer2x2(RED_SAND, QUARTZ, RHYOLITE, 2));
 
-        String rockyDirt = path(ROCKY_DIRT);
-        this.add(baseFolder(rockyDirt) + rockyDirt, chequer2x2(DIRT, PEBBLE, ROCKY_DIRT, 2));
+        String schist = path(SCHIST);
+        this.add(baseFolder(schist) + schist, chequer2x2(QUARTZ, CLAY_BALL, SCHIST, 2));
+
+        String bloodstone = path(BLOODSTONE);
+        this.add(baseFolder(bloodstone) + bloodstone, chequer2x2(QUARTZ, IRON_NUGGET, BLOODSTONE, 2));
 
         String paperLantern = path(PAPER_LANTERN);
         this.add(baseFolder(paperLantern) + paperLantern, ringSurrounding(PAPER, TORCH, PAPER_LANTERN, 2));
@@ -214,5 +229,10 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
 
     public String path(ItemConvertible item) {
         return Registry.ITEM.getId(item.asItem()).getPath();
+    }
+
+    public String pathP(ItemConvertible item) {
+        String path = path(item);
+        return path.substring(0, path.length() - 1);
     }
 }

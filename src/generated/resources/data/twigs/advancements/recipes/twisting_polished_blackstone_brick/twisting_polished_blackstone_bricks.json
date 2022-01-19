@@ -1,0 +1,47 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:twisting_polished_blackstone_brick/twisting_polished_blackstone_bricks"
+    ]
+  },
+  "criteria": {
+    "has_one": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:twisting_vines"
+            ]
+          }
+        ]
+      }
+    },
+    "has_two": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:polished_blackstone_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:twisting_polished_blackstone_brick/twisting_polished_blackstone_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_one",
+      "has_two",
+      "has_the_recipe"
+    ]
+  ]
+}

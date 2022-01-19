@@ -2,7 +2,7 @@
   "parent": "twigs:recipes/root",
   "rewards": {
     "recipes": [
-      "twigs:twisting_polished_blackstone_brick/twisting_polished_blackstone_brick"
+      "twigs:schist/schist"
     ]
   },
   "criteria": {
@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "minecraft:twisting_vines"
+              "minecraft:quartz"
             ]
           }
         ]
@@ -24,7 +24,7 @@
         "items": [
           {
             "items": [
-              "minecraft:polished_blackstone_bricks"
+              "minecraft:clay_ball"
             ]
           }
         ]
@@ -33,7 +33,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "twigs:twisting_polished_blackstone_brick/twisting_polished_blackstone_brick"
+        "recipe": "twigs:schist/schist"
       }
     }
   },

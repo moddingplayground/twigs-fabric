@@ -139,7 +139,13 @@ public abstract class AbstractRecipeGenerator extends AbstractGenerator<Identifi
                                       .criterion("has_inside", hasItem(inside));
     }
 
-    public ShapelessRecipeJsonFactory dualShapeless(ItemConvertible one, ItemConvertible two, ItemConvertible to, int count) {
+    public ShapelessRecipeJsonFactory shapeless(ItemConvertible from, ItemConvertible to, int count) {
+        return ShapelessRecipeJsonFactory.create(to, count)
+                                         .input(from)
+                                         .criterion("has_ingredient", hasItem(from));
+    }
+
+    public ShapelessRecipeJsonFactory shapeless(ItemConvertible one, ItemConvertible two, ItemConvertible to, int count) {
         return ShapelessRecipeJsonFactory.create(to, count)
                                          .input(one)
                                          .input(two)
@@ -147,10 +153,26 @@ public abstract class AbstractRecipeGenerator extends AbstractGenerator<Identifi
                                          .criterion("has_two", hasItem(two));
     }
 
-    public ShapelessRecipeJsonFactory shapeless(ItemConvertible from, ItemConvertible to, int count) {
+    public ShapelessRecipeJsonFactory shapeless(ItemConvertible one, ItemConvertible two, ItemConvertible three, ItemConvertible to, int count) {
         return ShapelessRecipeJsonFactory.create(to, count)
-                                         .input(from)
-                                         .criterion("has_ingredient", hasItem(from));
+                                         .input(one)
+                                         .input(two)
+                                         .input(three)
+                                         .criterion("has_one", hasItem(one))
+                                         .criterion("has_two", hasItem(two))
+                                         .criterion("has_three", hasItem(three));
+    }
+
+    public ShapelessRecipeJsonFactory shapeless(ItemConvertible one, ItemConvertible two, ItemConvertible three, ItemConvertible four, ItemConvertible to, int count) {
+        return ShapelessRecipeJsonFactory.create(to, count)
+                                         .input(one)
+                                         .input(two)
+                                         .input(three)
+                                         .input(four)
+                                         .criterion("has_one", hasItem(one))
+                                         .criterion("has_two", hasItem(two))
+                                         .criterion("has_three", hasItem(three))
+                                         .criterion("has_four", hasItem(four));
     }
 
     public ShapelessRecipeJsonFactory shapeless(ItemConvertible[] from, ItemConvertible to, int count) {

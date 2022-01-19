@@ -2,7 +2,7 @@
   "parent": "twigs:recipes/root",
   "rewards": {
     "recipes": [
-      "twigs:weeping_polished_blackstone_brick/weeping_polished_blackstone_brick"
+      "twigs:bloodstone/bloodstone"
     ]
   },
   "criteria": {
@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "minecraft:weeping_vines"
+              "minecraft:quartz"
             ]
           }
         ]
@@ -24,7 +24,7 @@
         "items": [
           {
             "items": [
-              "minecraft:polished_blackstone_bricks"
+              "minecraft:iron_nugget"
             ]
           }
         ]
@@ -33,7 +33,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "twigs:weeping_polished_blackstone_brick/weeping_polished_blackstone_brick"
+        "recipe": "twigs:bloodstone/bloodstone"
       }
     }
   },
