@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rhyolite_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:rhyolite"
+    }
+  },
+  "result": {
+    "item": "twigs:rhyolite_stairs",
+    "count": 4
+  }
+}

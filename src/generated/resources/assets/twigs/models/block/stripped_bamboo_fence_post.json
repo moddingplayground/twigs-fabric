@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "twigs:block/stripped_bamboo_planks"
+  }
+}

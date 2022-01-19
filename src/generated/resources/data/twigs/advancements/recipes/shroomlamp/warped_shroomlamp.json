@@ -1,0 +1,47 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:shroomlamp/warped_shroomlamp"
+    ]
+  },
+  "criteria": {
+    "has_outside": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:warped_planks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_inside": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:shroomlight"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:shroomlamp/warped_shroomlamp"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_outside",
+      "has_inside",
+      "has_the_recipe"
+    ]
+  ]
+}

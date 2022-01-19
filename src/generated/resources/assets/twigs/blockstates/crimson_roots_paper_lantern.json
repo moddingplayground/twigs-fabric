@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=true": {
+      "model": "twigs:block/crimson_roots_paper_lantern_hanging"
+    },
+    "hanging=false": {
+      "model": "twigs:block/crimson_roots_paper_lantern"
+    }
+  }
+}

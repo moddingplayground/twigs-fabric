@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "polished_tuff_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:polished_tuff"
+    }
+  },
+  "result": {
+    "item": "twigs:polished_tuff_slab",
+    "count": 6
+  }
+}

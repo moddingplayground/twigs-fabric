@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "tuff_stairs",
+  "ingredient": {
+    "item": "minecraft:tuff"
+  },
+  "result": "twigs:tuff_stairs",
+  "count": 1
+}

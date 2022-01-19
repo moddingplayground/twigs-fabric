@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "copper_chiseled",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:cut_copper_slab"
+    }
+  },
+  "result": {
+    "item": "twigs:copper_pillar"
+  }
+}

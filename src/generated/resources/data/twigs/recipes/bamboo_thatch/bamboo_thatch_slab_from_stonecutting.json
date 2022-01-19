@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "bamboo_thatch_slab",
+  "ingredient": {
+    "item": "twigs:bamboo_thatch"
+  },
+  "result": "twigs:bamboo_thatch_slab",
+  "count": 2
+}

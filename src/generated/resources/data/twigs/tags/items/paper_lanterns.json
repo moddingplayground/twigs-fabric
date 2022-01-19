@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "twigs:paper_lantern",
+    "twigs:allium_paper_lantern",
+    "twigs:blue_orchid_paper_lantern",
+    "twigs:crimson_roots_paper_lantern",
+    "twigs:dandelion_paper_lantern"
+  ]
+}

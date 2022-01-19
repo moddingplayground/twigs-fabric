@@ -1,0 +1,34 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:cobblestone/cobblestone_bricks"
+    ]
+  },
+  "criteria": {
+    "has_cobblestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cobblestone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:cobblestone/cobblestone_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cobblestone",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "calcite_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:calcite"
+    }
+  },
+  "result": {
+    "item": "twigs:calcite_stairs",
+    "count": 4
+  }
+}

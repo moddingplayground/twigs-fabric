@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "polished_tuff_brick_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:polished_tuff_bricks"
+    }
+  },
+  "result": {
+    "item": "twigs:polished_tuff_brick_stairs",
+    "count": 4
+  }
+}

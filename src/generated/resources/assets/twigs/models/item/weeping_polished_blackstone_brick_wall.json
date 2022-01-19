@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "twigs:block/weeping_polished_blackstone_bricks"
+  }
+}

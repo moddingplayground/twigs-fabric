@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "calcite_slab",
+  "ingredient": {
+    "item": "minecraft:calcite"
+  },
+  "result": "twigs:calcite_slab",
+  "count": 2
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "table",
+  "pattern": [
+    "###",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:stripped_bamboo_slab"
+    },
+    "X": {
+      "item": "twigs:stripped_bamboo_fence"
+    }
+  },
+  "result": {
+    "item": "twigs:stripped_bamboo_table"
+  }
+}

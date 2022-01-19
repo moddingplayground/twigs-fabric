@@ -1,0 +1,34 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:polished_schist_brick/polished_schist_brick_stairs"
+    ]
+  },
+  "criteria": {
+    "has_polished_schist_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "twigs:polished_schist_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:polished_schist_brick/polished_schist_brick_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_schist_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

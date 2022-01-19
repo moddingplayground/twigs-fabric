@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=z": {
+      "model": "twigs:block/rhyolite",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "twigs:block/rhyolite",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "twigs:block/rhyolite"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:weeping_polished_blackstone_brick/weeping_polished_blackstone_brick_slab"
+    ]
+  },
+  "criteria": {
+    "has_weeping_polished_blackstone_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "twigs:weeping_polished_blackstone_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:weeping_polished_blackstone_brick/weeping_polished_blackstone_brick_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_weeping_polished_blackstone_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

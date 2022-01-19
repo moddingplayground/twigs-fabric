@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "tuff_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:tuff"
+    }
+  },
+  "result": {
+    "item": "twigs:tuff_wall",
+    "count": 6
+  }
+}

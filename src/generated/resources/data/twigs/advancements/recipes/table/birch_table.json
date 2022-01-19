@@ -1,0 +1,47 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:table/birch_table"
+    ]
+  },
+  "criteria": {
+    "has_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:birch_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_fence": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:birch_fence"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:table/birch_table"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_slab",
+      "has_fence",
+      "has_the_recipe"
+    ]
+  ]
+}

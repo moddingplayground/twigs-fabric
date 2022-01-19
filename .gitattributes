@@ -1,0 +1,30 @@
+# Java sources
+*.java          text diff=java  eol=crlf
+*.gradle        text diff=java  eol=crlf
+*.gradle.kts    text diff=java  eol=crlf
+
+# These files are text and should be normalized (Convert crlf => lf)
+*.css           text diff=css   eol=crlf
+*.df            text            eol=crlf
+*.htm           text diff=html  eol=crlf
+*.html          text diff=html  eol=crlf
+*.json          text diff=json  eol=crlf
+*.js            text            eol=crlf
+*.jsp           text            eol=crlf
+*.jspf          text            eol=crlf
+*.jspx          text            eol=crlf
+*.properties    text            eol=crlf
+*.tld           text            eol=crlf
+*.tag           text            eol=crlf
+*.tagx          text            eol=crlf
+*.xml           text            eol=crlf
+
+# These files are binary and should be left untouched
+# (binary is a macro for -text -diff)
+*.class         binary
+*.dll           binary
+*.ear           binary
+*.jar           binary
+*.so            binary
+*.war           binary
+*.jks           binary

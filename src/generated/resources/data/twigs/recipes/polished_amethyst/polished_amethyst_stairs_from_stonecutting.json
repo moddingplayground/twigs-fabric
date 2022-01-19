@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "polished_amethyst_stairs",
+  "ingredient": {
+    "item": "twigs:polished_amethyst"
+  },
+  "result": "twigs:polished_amethyst_stairs",
+  "count": 1
+}

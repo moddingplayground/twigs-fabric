@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "mossy_cobblestone_brick_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:mossy_cobblestone_bricks"
+    }
+  },
+  "result": {
+    "item": "twigs:mossy_cobblestone_brick_stairs",
+    "count": 4
+  }
+}

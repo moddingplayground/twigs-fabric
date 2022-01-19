@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "rhyolite_slab",
+  "ingredient": {
+    "item": "twigs:rhyolite"
+  },
+  "result": "twigs:rhyolite_slab",
+  "count": 2
+}

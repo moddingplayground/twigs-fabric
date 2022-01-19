@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bamboo_thatch_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:bamboo_thatch"
+    }
+  },
+  "result": {
+    "item": "twigs:bamboo_thatch_slab",
+    "count": 6
+  }
+}

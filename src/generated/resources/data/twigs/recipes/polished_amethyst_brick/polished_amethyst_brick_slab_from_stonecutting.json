@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "polished_amethyst_brick_slab",
+  "ingredient": {
+    "item": "twigs:polished_amethyst_bricks"
+  },
+  "result": "twigs:polished_amethyst_brick_slab",
+  "count": 2
+}

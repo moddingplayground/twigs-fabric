@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+
+  "id": "twigs",
+  "version": "${version}",
+
+  "name": "Twigs",
+  "icon": "assets/twigs/icon.png",
+  "description": "A Minecraft mod all about building, adding new and interesting materials, as well as new renditions of current vanilla blocks.",
+
+  "license": [
+    "MIT (Code)",
+    "All Rights Reserved (Assets)"
+  ],
+  "authors": [
+    "Gaetano Russo (Ninni)",
+    "Daniel Orr (Andante)"
+  ],
+
+  "contact": {
+    "homepage": "https://moddingplayground.net/twigs",
+    "sources": "https://github.com/moddingplayground/twigs-fabric",
+    "issues": "https://github.com/moddingplayground/twigs-fabric/issues"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "mod.twigs.contact.discord": "https://discord.moddingplayground.net"
+      }
+    }
+  },
+
+  "environment": "*",
+  "entrypoints": {
+    "main":   [ "net.moddingplayground.twigs.Twigs" ],
+    "client": [ "net.moddingplayground.twigs.client.TwigsClient" ]
+  },
+  "mixins": [ "datagen.mixins.json", "twigs.mixins.json" ],
+  "accessWidener": "twigs.accesswidener",
+
+  "depends": {
+    "java": ">=17",
+    "minecraft": ">=1.18",
+    "fabricloader": ">=0.12",
+    "fabric": ">=0.46"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:twisting_vines"
+    },
+    {
+      "item": "minecraft:polished_blackstone_bricks"
+    }
+  ],
+  "result": {
+    "item": "twigs:twisting_polished_blackstone_bricks"
+  }
+}

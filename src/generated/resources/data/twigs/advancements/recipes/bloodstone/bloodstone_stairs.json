@@ -1,0 +1,34 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:bloodstone/bloodstone_stairs"
+    ]
+  },
+  "criteria": {
+    "has_bloodstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "twigs:bloodstone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:bloodstone/bloodstone_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bloodstone",
+      "has_the_recipe"
+    ]
+  ]
+}

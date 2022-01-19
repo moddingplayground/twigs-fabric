@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "twigs:block/mossy_bricks",
+    "top": "twigs:block/mossy_bricks",
+    "side": "twigs:block/mossy_bricks"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:schist/schist_stairs"
+    ]
+  },
+  "criteria": {
+    "has_schist": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "twigs:schist"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:schist/schist_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_schist",
+      "has_the_recipe"
+    ]
+  ]
+}

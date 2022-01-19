@@ -1,0 +1,47 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:rocky_dirt/rocky_dirt"
+    ]
+  },
+  "criteria": {
+    "has_one": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:dirt"
+            ]
+          }
+        ]
+      }
+    },
+    "has_two": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "twigs:pebble"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:rocky_dirt/rocky_dirt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_one",
+      "has_two",
+      "has_the_recipe"
+    ]
+  ]
+}

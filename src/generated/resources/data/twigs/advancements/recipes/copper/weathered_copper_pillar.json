@@ -1,0 +1,34 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:copper/weathered_copper_pillar"
+    ]
+  },
+  "criteria": {
+    "has_weathered_cut_copper_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:weathered_cut_copper_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:copper/weathered_copper_pillar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_weathered_cut_copper_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

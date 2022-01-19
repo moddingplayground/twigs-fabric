@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "smooth_basalt_brick_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:smooth_basalt_bricks"
+    }
+  },
+  "result": {
+    "item": "twigs:smooth_basalt_brick_wall",
+    "count": 6
+  }
+}

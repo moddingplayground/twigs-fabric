@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "twigs:block/smooth_basalt_bricks",
+    "top": "twigs:block/smooth_basalt_bricks",
+    "side": "twigs:block/smooth_basalt_bricks"
+  }
+}

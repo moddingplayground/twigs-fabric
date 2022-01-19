@@ -1,0 +1,47 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:paper_lantern/crimson_roots_paper_lantern"
+    ]
+  },
+  "criteria": {
+    "has_content": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:crimson_roots"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lantern": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "twigs:paper_lantern"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:paper_lantern/crimson_roots_paper_lantern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_content",
+      "has_lantern",
+      "has_the_recipe"
+    ]
+  ]
+}

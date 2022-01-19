@@ -1,0 +1,8 @@
+{
+  "parent": "twigs:block/wall_sided_inventory",
+  "textures": {
+    "bottom": "twigs:block/rhyolite_top",
+    "top": "twigs:block/rhyolite_top",
+    "side": "twigs:block/rhyolite"
+  }
+}

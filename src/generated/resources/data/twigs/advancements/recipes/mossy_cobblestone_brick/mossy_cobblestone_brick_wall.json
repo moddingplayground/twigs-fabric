@@ -1,0 +1,34 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:mossy_cobblestone_brick/mossy_cobblestone_brick_wall"
+    ]
+  },
+  "criteria": {
+    "has_mossy_cobblestone_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "twigs:mossy_cobblestone_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:mossy_cobblestone_brick/mossy_cobblestone_brick_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mossy_cobblestone_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

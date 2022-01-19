@@ -1,0 +1,8 @@
+{
+  "parent": "twigs:block/template_table",
+  "textures": {
+    "bottom": "twigs:block/jungle_table_bottom",
+    "top": "twigs:block/jungle_table_top",
+    "side": "twigs:block/jungle_table"
+  }
+}

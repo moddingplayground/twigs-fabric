@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "schist_wall",
+  "ingredient": {
+    "item": "twigs:schist"
+  },
+  "result": "twigs:schist_wall",
+  "count": 1
+}

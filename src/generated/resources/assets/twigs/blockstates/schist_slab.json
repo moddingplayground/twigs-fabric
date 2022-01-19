@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "twigs:block/schist_slab"
+    },
+    "type=double": {
+      "model": "twigs:block/schist"
+    },
+    "type=top": {
+      "model": "twigs:block/schist_slab_top"
+    }
+  }
+}

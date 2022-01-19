@@ -1,0 +1,34 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:polished_amethyst/chiseled_polished_amethyst"
+    ]
+  },
+  "criteria": {
+    "has_polished_amethyst_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "twigs:polished_amethyst_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:polished_amethyst/chiseled_polished_amethyst"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_amethyst_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

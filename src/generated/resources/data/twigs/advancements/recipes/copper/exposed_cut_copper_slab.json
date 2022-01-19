@@ -1,0 +1,34 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:copper/exposed_cut_copper_slab"
+    ]
+  },
+  "criteria": {
+    "has_exposed_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:exposed_copper"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:copper/exposed_cut_copper_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_exposed_copper",
+      "has_the_recipe"
+    ]
+  ]
+}

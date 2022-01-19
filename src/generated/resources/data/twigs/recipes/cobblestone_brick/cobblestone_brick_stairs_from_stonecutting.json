@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "cobblestone_brick_stairs",
+  "ingredient": {
+    "item": "twigs:cobblestone_bricks"
+  },
+  "result": "twigs:cobblestone_brick_stairs",
+  "count": 1
+}

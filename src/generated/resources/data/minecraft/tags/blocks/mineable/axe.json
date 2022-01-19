@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "twigs:stripped_bamboo",
+    "twigs:stripped_bundled_bamboo",
+    "twigs:stripped_bamboo_mat",
+    "twigs:bundled_bamboo",
+    "twigs:crimson_shroomlamp",
+    "twigs:warped_shroomlamp",
+    "twigs:azalea_flowers"
+  ]
+}

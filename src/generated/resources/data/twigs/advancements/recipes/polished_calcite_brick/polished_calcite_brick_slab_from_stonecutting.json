@@ -1,0 +1,47 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:polished_calcite_brick/polished_calcite_brick_slab_from_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "twigs:polished_calcite_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_polished_calcite_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "twigs:polished_calcite_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:polished_calcite_brick/polished_calcite_brick_slab_from_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_polished_calcite_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

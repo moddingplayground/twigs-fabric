@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "twigs:block/weeping_polished_blackstone_bricks",
+    "top": "twigs:block/weeping_polished_blackstone_bricks",
+    "side": "twigs:block/weeping_polished_blackstone_bricks"
+  }
+}

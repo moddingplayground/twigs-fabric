@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:savanna",
+    "minecraft:plains",
+    "minecraft:meadow",
+    "minecraft:stony_shore",
+    "minecraft:taiga"
+  ]
+}

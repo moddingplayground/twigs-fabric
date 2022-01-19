@@ -1,0 +1,47 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:rhyolite/rhyolite"
+    ]
+  },
+  "criteria": {
+    "has_one": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:red_sand"
+            ]
+          }
+        ]
+      }
+    },
+    "has_two": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:quartz"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:rhyolite/rhyolite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_one",
+      "has_two",
+      "has_the_recipe"
+    ]
+  ]
+}

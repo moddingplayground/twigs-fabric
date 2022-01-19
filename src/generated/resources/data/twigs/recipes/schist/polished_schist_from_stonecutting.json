@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "schist_polished",
+  "ingredient": {
+    "item": "twigs:schist"
+  },
+  "result": "twigs:polished_schist",
+  "count": 1
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "group": "weeping_polished_blackstone_brick_stairs",
+  "ingredient": {
+    "item": "twigs:weeping_polished_blackstone_bricks"
+  },
+  "result": "twigs:weeping_polished_blackstone_brick_stairs",
+  "count": 1
+}

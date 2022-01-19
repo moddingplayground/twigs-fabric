@@ -1,0 +1,47 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:bamboo_thatch/bamboo_thatch_slab_from_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "twigs:bamboo_thatch"
+            ]
+          }
+        ]
+      }
+    },
+    "has_bamboo_thatch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "twigs:bamboo_thatch"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:bamboo_thatch/bamboo_thatch_slab_from_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_bamboo_thatch",
+      "has_the_recipe"
+    ]
+  ]
+}

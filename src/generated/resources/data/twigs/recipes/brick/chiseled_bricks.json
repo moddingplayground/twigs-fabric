@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "brick_chiseled",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:brick_slab"
+    }
+  },
+  "result": {
+    "item": "twigs:chiseled_bricks"
+  }
+}
