@@ -66,7 +66,7 @@ public class TwigsBlocks {
         FabricBlockSettings.of(Material.WOOL)
                            .breakInstantly().sounds(BlockSoundGroup.BAMBOO)
                            .blockVision(AbstractBlock.AbstractBlockState::hasEmissiveLighting)
-                           .luminance(value -> 10).nonOpaque()
+                           .luminance(10).nonOpaque()
     ));
     public static final Block ALLIUM_PAPER_LANTERN = register("allium_paper_lantern", new PaperLanternBlock(Blocks.ALLIUM, FabricBlockSettings.copyOf(PAPER_LANTERN)));
     public static final Block BLUE_ORCHID_PAPER_LANTERN = register("blue_orchid_paper_lantern", new PaperLanternBlock(Blocks.BLUE_ORCHID, FabricBlockSettings.copyOf(PAPER_LANTERN)));
@@ -142,22 +142,22 @@ public class TwigsBlocks {
     public static final Block LAMP = register("lamp", new LampBlock(
         FabricBlockSettings.of(Material.METAL)
                            .requiresTool().strength(4.5F).sounds(BlockSoundGroup.LANTERN)
-                           .luminance(litLevel(18))
+                           .luminance(TwigsBlocks::litLevel)
     ));
 
-    public static final Block SOUL_LAMP = register("soul_lamp", new LampBlock(FabricBlockSettings.copyOf(LAMP).luminance(litLevel(17))));
+    public static final Block SOUL_LAMP = register("soul_lamp", new LampBlock(FabricBlockSettings.copyOf(LAMP)));
 
     public static final Block CRIMSON_SHROOMLAMP = register("crimson_shroomlamp", new Block(
         FabricBlockSettings.of(Material.NETHER_WOOD)
                            .strength(3.5F).sounds(BlockSoundGroup.SHROOMLIGHT).nonOpaque()
-                           .luminance(state -> 15)
+                           .luminance(TwigsBlocks::lightMax)
                            .blockVision(AbstractBlock.AbstractBlockState::hasEmissiveLighting)
     ));
 
     public static final Block WARPED_SHROOMLAMP = register("warped_shroomlamp", new Block(
         FabricBlockSettings.of(Material.NETHER_WOOD)
                            .strength(3.5F).sounds(BlockSoundGroup.SHROOMLIGHT).nonOpaque()
-                           .luminance(state -> 15)
+                           .luminance(TwigsBlocks::lightMax)
                            .blockVision(AbstractBlock.AbstractBlockState::hasEmissiveLighting)
     ));
 
@@ -363,6 +363,14 @@ public class TwigsBlocks {
 
     private static ToIntFunction<BlockState> litLevel(int lit) {
         return (state) -> state.get(Properties.LIT) ? lit : 0;
+    }
+
+    private static int litLevel(BlockState state) {
+        return litLevel(15).applyAsInt(state);
+    }
+
+    private static int lightMax(BlockState state) {
+        return 15;
     }
 
     public static boolean never(BlockState state, BlockView world, BlockPos pos) {
