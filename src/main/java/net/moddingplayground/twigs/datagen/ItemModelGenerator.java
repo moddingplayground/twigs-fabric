@@ -89,6 +89,7 @@ public class ItemModelGenerator extends AbstractItemModelGenerator {
         wood(set, WoodBlock.PRESSURE_PLATE, this::inherit);
         wood(set, WoodBlock.BUTTON, i -> buttonInventory(name(i, "block/%s_planks", "_button")));
         wood(set, WoodBlock.SIGN, this::generatedItem);
+        set.getBoatItem().ifPresent(this::add);
     }
 
     public void wood(WoodSet set, WoodBlock wood, Function<Item, ModelGen> factory) {

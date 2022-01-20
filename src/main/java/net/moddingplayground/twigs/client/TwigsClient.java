@@ -1,12 +1,17 @@
 package net.moddingplayground.twigs.client;
 
+import com.google.common.reflect.Reflection;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.TwigsBlocks;
+import net.moddingplayground.twigs.client.model.TwigsEntityModelLayers;
+import net.moddingplayground.twigs.client.render.entity.TwigsBoatEntityRenderer;
+import net.moddingplayground.twigs.entity.TwigsEntityType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 public class TwigsClient implements ClientModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("%s-client".formatted(Twigs.MOD_ID));
 
+    @SuppressWarnings("UnstableApiUsage")
     @Override
     public void onInitializeClient() {
         LOGGER.info("Initializing {}-client", Twigs.MOD_NAME);
@@ -45,6 +51,9 @@ public class TwigsClient implements ClientModInitializer {
 
             TwigsBlocks.BAMBOO_LEAVES
         );
+
+        Reflection.initialize(TwigsEntityModelLayers.class);
+        EntityRendererRegistry.register(TwigsEntityType.BOAT, TwigsBoatEntityRenderer::new);
 
         LOGGER.info("Initialized {}-client", Twigs.MOD_NAME);
     }

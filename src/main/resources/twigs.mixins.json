@@ -7,9 +7,12 @@
     "AbstractBlockStateMixin",
     "BlockEntityTypeMixin",
     "BlocksInvoker",
+    "BoatItemAccessor",
+    "EntityPredicateMixin",
     "SignTypeInvoker"
   ],
   "client": [
+    "client.EntityModelLayersAccessor",
     "client.EntityModelLayersMixin",
     "client.TexturedRenderLayersMixin"
   ],

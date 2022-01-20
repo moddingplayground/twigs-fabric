@@ -33,6 +33,10 @@ public abstract class AbstractItemModelGenerator extends AbstractModelGenerator<
         this.add(id.apply(item), factory.apply(item));
     }
 
+    public void add(Item... items) {
+        for (Item item : items) this.add(item, this::generatedItem);
+    }
+
     public void block(Block... blocks) {
         for (Block block : blocks) {
             this.add(Registry.BLOCK.getId(block), InheritingModelGen.inherit(name(block.asItem())));

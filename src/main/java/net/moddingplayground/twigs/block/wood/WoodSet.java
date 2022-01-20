@@ -10,8 +10,12 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.SignType;
 import net.minecraft.util.registry.Registry;
+import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.TwigsSignType;
+import net.moddingplayground.twigs.item.TwigsBoatItem;
+import net.moddingplayground.twigs.registry.TwigsRegistry;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,11 +35,12 @@ public class WoodSet {
     protected final Map<WoodBlock, Block> blocks;
 
     protected SignType signType = null;
+    protected Item boatItem = null;
 
     public WoodSet(
         String modId, String id, ItemGroup itemGroup, Predicate<WoodBlock> condition,
         WoodBlock.MaterialSet materialSet, WoodBlock.ColorSet colorSet, WoodBlock.SoundSet soundSet,
-        SaplingGenerator saplingGenerator, ActivationRule activationRule, boolean flammable
+        SaplingGenerator saplingGenerator, ActivationRule activationRule, boolean flammable, boolean boat
     ) {
         this.modId = modId;
         this.id = id;
@@ -48,6 +53,8 @@ public class WoodSet {
                 this.blocks.put(woodBlock, woodBlock.blockFactory.create(this, materialSet, colorSet, soundSet, saplingGenerator, activationRule));
             }
         }
+
+        if (boat) this.boatItem = new TwigsBoatItem(this, new FabricItemSettings().maxCount(1).group(Twigs.ITEM_GROUP));
     }
 
     public String getId() {
@@ -58,12 +65,22 @@ public class WoodSet {
         return this.flammable;
     }
 
+    public Optional<Item> getBoatItem() {
+        return Optional.ofNullable(this.boatItem);
+    }
+
     public Block get(WoodBlock block) {
+        this.containsOrThrow(block);
         return this.blocks.get(block);
     }
 
-    public boolean contains(WoodBlock... wood) {
-        return this.blocks.keySet().containsAll(List.of(wood));
+    public boolean contains(WoodBlock... blocks) {
+        return this.blocks.keySet().containsAll(List.of(blocks));
+    }
+
+    public boolean containsOrThrow(WoodBlock... blocks) {
+        if (!this.contains(blocks)) throw new IllegalArgumentException("WoodBlocks " + Arrays.toString(blocks) + "are not present in " + this);
+        return true;
     }
 
     public void requireTo(Consumer<WoodSet> action, WoodBlock... required) {
@@ -87,6 +104,8 @@ public class WoodSet {
             if (woodBlock.itemFactory != null) Optional.ofNullable(woodBlock.itemFactory.create(this, block, new FabricItemSettings().group(this.itemGroup)))
                                                        .ifPresent(i -> Registry.register(Registry.ITEM, id, i));
         });
+
+        this.getBoatItem().ifPresent(item -> Registry.register(Registry.ITEM, new Identifier(Twigs.MOD_ID, "%s_boat".formatted(this.id)), item));
 
         if (this.isFlammable()) {
             FlammableBlockRegistry flamReg = FlammableBlockRegistry.getDefaultInstance();
@@ -119,6 +138,11 @@ public class WoodSet {
             }, SIGN);
         }
 
-        return this;
+        return Registry.register(TwigsRegistry.WOOD, new Identifier(Twigs.MOD_ID, this.id), this);
+    }
+
+    @Override
+    public String toString() {
+        return "WoodSet{" + "modId='" + modId + '\'' + ", id='" + id + '\'' + '}';
     }
 }

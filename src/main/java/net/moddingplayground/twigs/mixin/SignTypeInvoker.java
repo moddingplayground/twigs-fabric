@@ -6,8 +6,5 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(SignType.class)
 public interface SignTypeInvoker {
-    @Invoker
-    static SignType invokeRegister(SignType type) {
-        throw new AssertionError();
-    }
+    @Invoker static SignType invokeRegister(SignType type) { throw new AssertionError(); }
 }

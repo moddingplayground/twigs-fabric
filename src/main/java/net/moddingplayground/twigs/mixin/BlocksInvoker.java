@@ -10,8 +10,5 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(Blocks.class)
 public interface BlocksInvoker {
-    @Invoker
-    static Boolean invokeCanSpawnOnLeaves(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
-        throw new AssertionError();
-    }
+    @Invoker static Boolean invokeCanSpawnOnLeaves(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) { throw new AssertionError(); }
 }

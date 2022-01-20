@@ -1,0 +1,28 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:stripped_bamboo/stripped_bamboo_boat"
+    ]
+  },
+  "criteria": {
+    "in_water": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "minecraft:water"
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:stripped_bamboo/stripped_bamboo_boat"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "in_water",
+      "has_the_recipe"
+    ]
+  ]
+}

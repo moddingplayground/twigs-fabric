@@ -90,7 +90,7 @@ public class TwigsBlocks {
         new WoodBlock.MaterialSet(Material.WOOD, Material.PLANT, Material.LEAVES, Material.DECORATION),
         new WoodBlock.ColorSet(MapColor.PALE_YELLOW, MapColor.OFF_WHITE),
         new WoodBlock.SoundSet(BlockSoundGroup.BAMBOO, BlockSoundGroup.BAMBOO_SAPLING, BlockSoundGroup.GRASS),
-        null, PressurePlateBlock.ActivationRule.EVERYTHING, true
+        null, PressurePlateBlock.ActivationRule.EVERYTHING, true, true
     ).register();
 
     public static final Block STRIPPED_BAMBOO = register("stripped_bamboo", new StrippedBambooBlock(FabricBlockSettings.copyOf(Blocks.BAMBOO)));

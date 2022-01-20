@@ -3,6 +3,8 @@
   "mod.twigs.contact.discord": "Discord",
   "itemGroup.twigs.item_group": "Twigs",
 
+  "entity.twigs.boat": "Boat",
+
   "block.twigs.azalea_flowers": "Azalea Flowers",
   "block.twigs.oak_table": "Oak Table",
   "block.twigs.spruce_table": "Spruce Table",
@@ -89,6 +91,7 @@
   "block.twigs.stripped_bamboo_button": "Stripped Bamboo Button",
   "block.twigs.stripped_bamboo_fence": "Stripped Bamboo Fence",
   "block.twigs.stripped_bamboo_fence_gate": "Stripped Bamboo Fence Gate",
+  "item.twigs.stripped_bamboo_boat": "Stripped Bamboo Boat",
   "block.twigs.rocky_dirt": "Rocky Dirt",
   "block.twigs.crimson_shroomlamp": "Crimson Shroomlamp",
   "block.twigs.warped_shroomlamp": "Warped Shroomlamp",
