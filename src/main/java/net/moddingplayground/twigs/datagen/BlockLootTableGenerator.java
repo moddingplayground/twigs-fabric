@@ -15,6 +15,7 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.StatePredicate;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.TwigsProperties;
+import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;
 import net.moddingplayground.twigs.block.wood.WoodSet;
 import net.moddingplayground.twigs.datagen.impl.generator.loot.AbstractBlockLootTableGenerator;
@@ -50,15 +51,6 @@ public class BlockLootTableGenerator extends AbstractBlockLootTableGenerator {
             BAMBOO_THATCH_STAIRS,
             BAMBOO_THATCH_SLAB,
             STRIPPED_BAMBOO_MAT,
-            OAK_TABLE,
-            SPRUCE_TABLE,
-            BIRCH_TABLE,
-            JUNGLE_TABLE,
-            ACACIA_TABLE,
-            DARK_OAK_TABLE,
-            CRIMSON_TABLE,
-            WARPED_TABLE,
-            STRIPPED_BAMBOO_TABLE,
             CHISELED_BRICKS,
             CRACKED_BRICKS,
             MOSSY_BRICKS,
@@ -174,7 +166,7 @@ public class BlockLootTableGenerator extends AbstractBlockLootTableGenerator {
         this.addPottedPlantDrop(POTTED_AZALEA_FLOWERS);
         this.addPottedPlantDrop(POTTED_BAMBOO_LEAVES);
 
-        this.woods(STRIPPED_BAMBOO_SET);
+        this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
 
         this.add(getAdditiveLootTable(Blocks.BAMBOO), new LootTable.Builder().pool(pool().with(
             ItemEntry.builder(BAMBOO_LEAVES)
@@ -211,24 +203,27 @@ public class BlockLootTableGenerator extends AbstractBlockLootTableGenerator {
     }
 
     public void wood(WoodSet set) {
-        this.wood(set, WoodBlock.PLANKS);
-        this.wood(set, WoodBlock.SAPLING);
-        this.wood(set, WoodBlock.POTTED_SAPLING, this::addPottedPlantDrop);
-        this.wood(set, WoodBlock.LOG);
-        this.wood(set, WoodBlock.STRIPPED_LOG);
-        this.wood(set, WoodBlock.WOOD);
-        this.wood(set, WoodBlock.STRIPPED_WOOD);
-        this.wood(set, WoodBlock.LEAVES, b -> this.add(b, dropLeaves(b, set.get(WoodBlock.SAPLING), SAPLING_DROP_CHANCES)));
-        this.wood(set, WoodBlock.SLAB, this::addSlabDrop);
-        this.wood(set, WoodBlock.STAIRS);
-        this.wood(set, WoodBlock.FENCE);
-        this.wood(set, WoodBlock.DOOR, b -> this.add(b, this.dropsDoor(b)));
-        this.wood(set, WoodBlock.TRAPDOOR);
-        this.wood(set, WoodBlock.FENCE_GATE);
-        this.wood(set, WoodBlock.PRESSURE_PLATE);
-        this.wood(set, WoodBlock.BUTTON);
-        this.wood(set, WoodBlock.SIGN);
-        this.wood(set, WoodBlock.WALL_SIGN);
+        if (!set.isVanilla()) {
+            this.wood(set, WoodBlock.PLANKS);
+            this.wood(set, WoodBlock.SAPLING);
+            this.wood(set, WoodBlock.POTTED_SAPLING, this::addPottedPlantDrop);
+            this.wood(set, WoodBlock.LOG);
+            this.wood(set, WoodBlock.STRIPPED_LOG);
+            this.wood(set, WoodBlock.WOOD);
+            this.wood(set, WoodBlock.STRIPPED_WOOD);
+            this.wood(set, WoodBlock.LEAVES, b -> this.add(b, dropLeaves(b, set.get(WoodBlock.SAPLING), SAPLING_DROP_CHANCES)));
+            this.wood(set, WoodBlock.SLAB, this::addSlabDrop);
+            this.wood(set, WoodBlock.STAIRS);
+            this.wood(set, WoodBlock.FENCE);
+            this.wood(set, WoodBlock.DOOR, b -> this.add(b, this.dropsDoor(b)));
+            this.wood(set, WoodBlock.TRAPDOOR);
+            this.wood(set, WoodBlock.FENCE_GATE);
+            this.wood(set, WoodBlock.PRESSURE_PLATE);
+            this.wood(set, WoodBlock.BUTTON);
+            this.wood(set, WoodBlock.SIGN);
+            this.wood(set, WoodBlock.WALL_SIGN);
+        }
+        if (set instanceof TwigsWoodSet twigs) this.add(twigs.getTable());
     }
 
     public void wood(WoodSet set, WoodBlock wood, Consumer<Block> factory) {

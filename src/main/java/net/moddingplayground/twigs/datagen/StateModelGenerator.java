@@ -3,6 +3,7 @@ package net.moddingplayground.twigs.datagen;
 import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;
 import net.moddingplayground.twigs.Twigs;
+import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;
 import net.moddingplayground.twigs.block.wood.WoodSet;
 import net.moddingplayground.twigs.datagen.impl.generator.model.InheritingModelGen;
@@ -16,14 +17,18 @@ import java.util.ArrayList;
 import java.util.function.Function;
 
 import static net.moddingplayground.twigs.block.TwigsBlocks.*;
+import static net.moddingplayground.twigs.block.wood.WoodBlock.*;
+import static net.moddingplayground.twigs.datagen.impl.generator.model.InheritingModelGen.leaves;
 import static net.moddingplayground.twigs.datagen.impl.generator.model.InheritingModelGen.*;
+import static net.moddingplayground.twigs.datagen.impl.generator.model.block.BuildingBlocks.fence;
 import static net.moddingplayground.twigs.datagen.impl.generator.model.block.BuildingBlocks.slabAll;
 import static net.moddingplayground.twigs.datagen.impl.generator.model.block.BuildingBlocks.stairsAll;
 import static net.moddingplayground.twigs.datagen.impl.generator.model.block.BuildingBlocks.*;
 import static net.moddingplayground.twigs.datagen.impl.generator.model.block.InteractiveBlocks.button;
+import static net.moddingplayground.twigs.datagen.impl.generator.model.block.InteractiveBlocks.door;
 import static net.moddingplayground.twigs.datagen.impl.generator.model.block.InteractiveBlocks.fenceGate;
 import static net.moddingplayground.twigs.datagen.impl.generator.model.block.InteractiveBlocks.pressurePlate;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.block.InteractiveBlocks.*;
+import static net.moddingplayground.twigs.datagen.impl.generator.model.block.InteractiveBlocks.trapdoor;
 import static net.moddingplayground.twigs.datagen.impl.generator.model.block.ParticleOnlyModelGen.*;
 
 public class StateModelGenerator extends AbstractStateModelGenerator {
@@ -175,20 +180,8 @@ public class StateModelGenerator extends AbstractStateModelGenerator {
         this.slabColumns(RHYOLITE_SLAB);
         this.slabAllsVanilla(TUFF_SLAB, CALCITE_SLAB);
 
-        this.tables(
-            OAK_TABLE,
-            SPRUCE_TABLE,
-            BIRCH_TABLE,
-            JUNGLE_TABLE,
-            ACACIA_TABLE,
-            DARK_OAK_TABLE,
-            CRIMSON_TABLE,
-            WARPED_TABLE,
-            STRIPPED_BAMBOO_TABLE
-        );
-
         this.add(STRIPPED_BAMBOO, b -> axisRotated(name(b), quadPole(Identifier.tryParse(name(b) + "_stalk"))));
-        this.woods(STRIPPED_BAMBOO_SET);
+        this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
 
         this.add(AZALEA_FLOWERS, b -> wallPlant(name(b), name(b)));
         this.add(POTTED_AZALEA_FLOWERS, this::flowerPotCross);
@@ -206,24 +199,27 @@ public class StateModelGenerator extends AbstractStateModelGenerator {
     }
 
     public void wood(WoodSet set) {
-        wood(set, WoodBlock.PLANKS, this::cubeAll);
-        wood(set, WoodBlock.SAPLING, b -> simple(name(b), cross(name(b))));
-        wood(set, WoodBlock.POTTED_SAPLING, this::flowerPotCross);
-        wood(set, WoodBlock.LOG, block -> axisRotated(name(block), cubeColumn(name(block, "block/%s_top"), name(block))));
-        wood(set, WoodBlock.STRIPPED_LOG, block -> axisRotated(name(block), cubeColumn(name(block, "block/%s_top"), name(block))));
-        wood(set, WoodBlock.WOOD, block -> axisRotated(name(block), InheritingModelGen.cubeAll(name(block, "block/%s_log", "_wood"))));
-        wood(set, WoodBlock.STRIPPED_WOOD, block -> axisRotated(name(block), InheritingModelGen.cubeAll(name(block, "block/%s_log", "_wood"))));
-        wood(set, WoodBlock.LEAVES, block -> simple(name(block), leaves(name(block))));
-        wood(set, WoodBlock.SLAB, block -> slabAll(name(block), name(block, "block/%s_planks", "_slab"), name(block, "block/%s_planks", "_slab")));
-        wood(set, WoodBlock.STAIRS, block -> stairsAll(name(block), name(block, "block/%s_planks", "_stairs")));
-        wood(set, WoodBlock.FENCE, block -> fence(name(block), name(block, "block/%s_planks", "_fence")));
-        wood(set, WoodBlock.DOOR, block -> door(name(block)));
-        wood(set, WoodBlock.TRAPDOOR, block -> trapdoor(name(block)));
-        wood(set, WoodBlock.FENCE_GATE, block -> fenceGate(name(block), name(block, "block/%s_planks", "_fence_gate")));
-        wood(set, WoodBlock.BUTTON, block -> button(name(block), name(block, "block/%s_planks", "_button")));
-        wood(set, WoodBlock.PRESSURE_PLATE, block -> pressurePlate(name(block), name(block, "block/%s_planks", "_pressure_plate")));
-        wood(set, WoodBlock.SIGN, block -> simple(name(block), particles(name(block, "block/%s_planks", "_sign"))));
-        wood(set, WoodBlock.WALL_SIGN, block -> simple(name(block, "block/%s_sign", "_wall_sign"), null)); // same particle-only model as floor sign, avoid double generation
+        if (!set.isVanilla()) {
+            wood(set, PLANKS, this::cubeAll);
+            wood(set, SAPLING, b -> simple(name(b), cross(name(b))));
+            wood(set, POTTED_SAPLING, this::flowerPotCross);
+            wood(set, LOG, block -> axisRotated(name(block), cubeColumn(name(block, "block/%s_top"), name(block))));
+            wood(set, STRIPPED_LOG, block -> axisRotated(name(block), cubeColumn(name(block, "block/%s_top"), name(block))));
+            wood(set, WOOD, block -> axisRotated(name(block), InheritingModelGen.cubeAll(name(block, "block/%s_log", "_wood"))));
+            wood(set, STRIPPED_WOOD, block -> axisRotated(name(block), InheritingModelGen.cubeAll(name(block, "block/%s_log", "_wood"))));
+            wood(set, LEAVES, block -> simple(name(block), leaves(name(block))));
+            wood(set, SLAB, block -> slabAll(name(block), name(block, "block/%s_planks", "_slab"), name(block, "block/%s_planks", "_slab")));
+            wood(set, STAIRS, block -> stairsAll(name(block), name(block, "block/%s_planks", "_stairs")));
+            wood(set, FENCE, block -> fence(name(block), name(block, "block/%s_planks", "_fence")));
+            wood(set, DOOR, block -> door(name(block)));
+            wood(set, TRAPDOOR, block -> trapdoor(name(block)));
+            wood(set, FENCE_GATE, block -> fenceGate(name(block), name(block, "block/%s_planks", "_fence_gate")));
+            wood(set, BUTTON, block -> button(name(block), name(block, "block/%s_planks", "_button")));
+            wood(set, PRESSURE_PLATE, block -> pressurePlate(name(block), name(block, "block/%s_planks", "_pressure_plate")));
+            wood(set, SIGN, block -> simple(name(block), particles(name(block, "block/%s_planks", "_sign"))));
+            wood(set, WALL_SIGN, block -> simple(name(block, "block/%s_sign", "_wall_sign"), null)); // same particle-only model as floor sign, avoid double generation
+        }
+        if (set instanceof TwigsWoodSet twigs) this.tables(twigs.getTable());
     }
 
     public void wood(WoodSet set, WoodBlock wood, Function<Block, StateGen> factory) {

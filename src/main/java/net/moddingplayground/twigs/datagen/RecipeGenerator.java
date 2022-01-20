@@ -16,6 +16,7 @@ import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.registry.Registry;
 import net.moddingplayground.twigs.Twigs;
+import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodSet;
 import net.moddingplayground.twigs.data.family.TwigsBlockFamilies;
 import net.moddingplayground.twigs.datagen.impl.generator.recipe.AbstractRecipeGenerator;
@@ -98,16 +99,6 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
         this.add(shroomlamp + path(CRIMSON_SHROOMLAMP), this.sandwich(CRIMSON_PLANKS, SHROOMLIGHT, CRIMSON_SHROOMLAMP, 3));
         this.add(shroomlamp + path(WARPED_SHROOMLAMP), this.sandwich(WARPED_PLANKS, SHROOMLIGHT, WARPED_SHROOMLAMP, 3));
 
-        this.table(OAK_SLAB, OAK_FENCE, OAK_TABLE);
-        this.table(SPRUCE_SLAB, SPRUCE_FENCE, SPRUCE_TABLE);
-        this.table(BIRCH_SLAB, BIRCH_FENCE, BIRCH_TABLE);
-        this.table(JUNGLE_SLAB, JUNGLE_FENCE, JUNGLE_TABLE);
-        this.table(ACACIA_SLAB, ACACIA_FENCE, ACACIA_TABLE);
-        this.table(DARK_OAK_SLAB, DARK_OAK_FENCE, DARK_OAK_TABLE);
-        this.table(CRIMSON_SLAB, CRIMSON_FENCE, CRIMSON_TABLE);
-        this.table(WARPED_SLAB, WARPED_FENCE, WARPED_TABLE);
-        this.table(STRIPPED_BAMBOO_SET.get(SLAB), STRIPPED_BAMBOO_SET.get(FENCE), STRIPPED_BAMBOO_TABLE);
-
         String bundledBamboo = path(BUNDLED_BAMBOO);
         this.add(baseFolder(bundledBamboo) + bundledBamboo, generic3x3(BAMBOO, BUNDLED_BAMBOO, 3));
         this.add(baseFolder(bundledBamboo) + bundledBamboo + "_undo", shapeless(BUNDLED_BAMBOO, BAMBOO, 3));
@@ -116,7 +107,8 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
         this.add(woodId(STRIPPED_BAMBOO_SET, "from_stonecutting"), stonecutting(BAMBOO, STRIPPED_BAMBOO));
         this.add(woodId(STRIPPED_BAMBOO_SET,"planks"), planks(STRIPPED_BAMBOO, STRIPPED_BAMBOO_SET.get(PLANKS)));
         this.add(woodId(STRIPPED_BAMBOO_SET, "mat"), generic3x1(STRIPPED_BAMBOO, STRIPPED_BAMBOO_MAT, 2));
-        this.wood(STRIPPED_BAMBOO_SET, null);
+
+        this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
     }
 
     public void family(BlockFamily family, Map<BlockFamily.Variant, BiFunction<ItemConvertible, ItemConvertible, CraftingRecipeJsonFactory>> factories, boolean stonecutting) {
@@ -192,19 +184,26 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
     }
 
     public void wood(WoodSet set, @Nullable Tag.Identified<Item> logs) {
-        if (logs != null && !logs.values().isEmpty()) set.requireTo(s -> this.add(woodId(set, "planks"), planks(logs, s.get(PLANKS))), PLANKS);
-        set.requireTo(s -> this.add(woodId(s, "wood"), wood(s.get(LOG), s.get(WOOD))), LOG, WOOD);
-        set.requireTo(s -> this.add(woodId(s, "stripped_wood"), wood(s.get(STRIPPED_LOG), s.get(STRIPPED_WOOD))), STRIPPED_LOG, STRIPPED_WOOD);
-        set.requireTo(s -> this.add(woodId(s, "button"), woodenButton(s.get(PLANKS), s.get(BUTTON))), PLANKS, BUTTON);
-        set.requireTo(s -> this.add(woodId(s, "door"), woodenDoor(s.get(PLANKS), s.get(DOOR))), PLANKS, DOOR);
-        set.requireTo(s -> this.add(woodId(s, "fence"), woodenFence(s.get(PLANKS), s.get(FENCE))), PLANKS, FENCE);
-        set.requireTo(s -> this.add(woodId(s, "fence_gate"), woodenFenceGate(s.get(PLANKS), s.get(FENCE_GATE))), PLANKS, FENCE_GATE);
-        set.requireTo(s -> this.add(woodId(s, "pressure_plate"), woodenPressurePlate(s.get(PLANKS), s.get(PRESSURE_PLATE))), PLANKS, PRESSURE_PLATE);
-        set.requireTo(s -> this.add(woodId(s, "slab"), woodenSlab(s.get(PLANKS), s.get(SLAB))), PLANKS, SLAB);
-        set.requireTo(s -> this.add(woodId(s, "stairs"), woodenStairs(s.get(PLANKS), s.get(STAIRS))), PLANKS, STAIRS);
-        set.requireTo(s -> this.add(woodId(s, "trapdoor"), woodenTrapdoor(s.get(PLANKS), s.get(TRAPDOOR))), PLANKS, TRAPDOOR);
-        set.requireTo(s -> this.add(woodId(s, "sign"), sign(s.get(PLANKS), s.get(SIGN))), PLANKS, SIGN);
-        set.requireTo(s -> s.getBoatItem().ifPresent(item -> this.add(woodId(s, "boat"), boat(s.get(PLANKS), item))), PLANKS);
+        if (!set.isVanilla()) {
+            if (logs != null && !logs.values().isEmpty()) set.requireTo(s -> this.add(woodId(set, "planks"), planks(logs, s.get(PLANKS))), PLANKS);
+            set.requireTo(s -> this.add(woodId(s, "wood"), wood(s.get(LOG), s.get(WOOD))), LOG, WOOD);
+            set.requireTo(s -> this.add(woodId(s, "stripped_wood"), wood(s.get(STRIPPED_LOG), s.get(STRIPPED_WOOD))), STRIPPED_LOG, STRIPPED_WOOD);
+            set.requireTo(s -> this.add(woodId(s, "button"), woodenButton(s.get(PLANKS), s.get(BUTTON))), PLANKS, BUTTON);
+            set.requireTo(s -> this.add(woodId(s, "door"), woodenDoor(s.get(PLANKS), s.get(DOOR))), PLANKS, DOOR);
+            set.requireTo(s -> this.add(woodId(s, "fence"), woodenFence(s.get(PLANKS), s.get(FENCE))), PLANKS, FENCE);
+            set.requireTo(s -> this.add(woodId(s, "fence_gate"), woodenFenceGate(s.get(PLANKS), s.get(FENCE_GATE))), PLANKS, FENCE_GATE);
+            set.requireTo(s -> this.add(woodId(s, "pressure_plate"), woodenPressurePlate(s.get(PLANKS), s.get(PRESSURE_PLATE))), PLANKS, PRESSURE_PLATE);
+            set.requireTo(s -> this.add(woodId(s, "slab"), woodenSlab(s.get(PLANKS), s.get(SLAB))), PLANKS, SLAB);
+            set.requireTo(s -> this.add(woodId(s, "stairs"), woodenStairs(s.get(PLANKS), s.get(STAIRS))), PLANKS, STAIRS);
+            set.requireTo(s -> this.add(woodId(s, "trapdoor"), woodenTrapdoor(s.get(PLANKS), s.get(TRAPDOOR))), PLANKS, TRAPDOOR);
+            set.requireTo(s -> this.add(woodId(s, "sign"), sign(s.get(PLANKS), s.get(SIGN))), PLANKS, SIGN);
+            set.requireTo(s -> s.getBoatItem().ifPresent(item -> this.add(woodId(s, "boat"), boat(s.get(PLANKS), item))), PLANKS);
+        }
+        if (set instanceof TwigsWoodSet twigs) this.table(set.get(SLAB), set.get(FENCE), twigs.getTable());
+    }
+
+    public void woods(WoodSet... sets) {
+        for (WoodSet set : sets) this.wood(set, null);
     }
 
     public String woodId(WoodSet set, String id) {

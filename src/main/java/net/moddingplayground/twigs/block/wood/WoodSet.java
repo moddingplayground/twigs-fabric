@@ -1,10 +1,14 @@
 package net.moddingplayground.twigs.block.wood;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.sapling.SaplingGenerator;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
@@ -31,8 +35,9 @@ public class WoodSet {
     protected final String modId;
     protected final String id;
     protected final ItemGroup itemGroup;
-    private final boolean flammable;
+    protected final boolean flammable;
     protected final Map<WoodBlock, Block> blocks;
+    private boolean vanilla;
 
     protected SignType signType = null;
     protected Item boatItem = null;
@@ -57,12 +62,21 @@ public class WoodSet {
         if (boat) this.boatItem = new TwigsBoatItem(this, new FabricItemSettings().maxCount(1).group(Twigs.ITEM_GROUP));
     }
 
+    public WoodSet(String modId, String id, ItemGroup itemGroup, boolean flammable) {
+        this(modId, id, itemGroup, w -> false, null, null, null, null, null, flammable, false);
+        this.vanilla = true;
+    }
+
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public boolean isFlammable() {
         return this.flammable;
+    }
+
+    public boolean isVanilla() {
+        return this.vanilla;
     }
 
     public Optional<Item> getBoatItem() {
@@ -139,6 +153,15 @@ public class WoodSet {
         }
 
         return Registry.register(TwigsRegistry.WOOD, new Identifier(Twigs.MOD_ID, this.id), this);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public void registerClient() {
+        if (!this.isVanilla()) {
+            BlockRenderLayerMap layers = BlockRenderLayerMap.INSTANCE;
+            requireTo(s -> layers.putBlock(s.get(DOOR), RenderLayer.getCutout()), DOOR);
+            requireTo(s -> layers.putBlock(s.get(TRAPDOOR), RenderLayer.getCutout()), TRAPDOOR);
+        }
     }
 
     @Override

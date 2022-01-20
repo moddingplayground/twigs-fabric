@@ -6,6 +6,7 @@ import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.registry.Registry;
 import net.moddingplayground.twigs.Twigs;
+import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;
 import net.moddingplayground.twigs.block.wood.WoodSet;
 import net.moddingplayground.twigs.datagen.impl.generator.tag.AbstractTagGenerator;
@@ -21,34 +22,39 @@ public class ItemTagGenerator extends AbstractTagGenerator<Item> {
 
     @Override
     public void generate() {
-        this.add(TwigsItemTags.TABLES, OAK_TABLE, SPRUCE_TABLE, BIRCH_TABLE, JUNGLE_TABLE, ACACIA_TABLE, DARK_OAK_TABLE, CRIMSON_TABLE, WARPED_TABLE, STRIPPED_BAMBOO_TABLE);
         this.add(TwigsItemTags.PAPER_LANTERNS, PAPER_LANTERN, ALLIUM_PAPER_LANTERN, BLUE_ORCHID_PAPER_LANTERN, CRIMSON_ROOTS_PAPER_LANTERN, DANDELION_PAPER_LANTERN);
         this.add(ItemTags.DIRT, ROCKY_DIRT);
-
-        this.wood(STRIPPED_BAMBOO_SET, null);
+        this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
     }
 
     public void wood(WoodSet set, @Nullable Tag.Identified<Item> logs) {
-        this.wood(set, ItemTags.PLANKS, WoodBlock.PLANKS);
-        this.wood(set, ItemTags.SAPLINGS, WoodBlock.SAPLING);
-        this.wood(set, logs, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
+        if (!set.isVanilla()) {
+            this.wood(set, ItemTags.PLANKS, WoodBlock.PLANKS);
+            this.wood(set, ItemTags.SAPLINGS, WoodBlock.SAPLING);
+            this.wood(set, logs, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
 
-        if (set.isFlammable()) {
-            if (logs != null && !logs.values().isEmpty()) this.add(ItemTags.LOGS_THAT_BURN, logs);
-        } else {
-            if (logs != null && !logs.values().isEmpty()) this.add(ItemTags.LOGS, logs);
-            this.wood(set, ItemTags.NON_FLAMMABLE_WOOD, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
+            if (set.isFlammable()) {
+                if (logs != null && !logs.values().isEmpty()) this.add(ItemTags.LOGS_THAT_BURN, logs);
+            } else {
+                if (logs != null && !logs.values().isEmpty()) this.add(ItemTags.LOGS, logs);
+                this.wood(set, ItemTags.NON_FLAMMABLE_WOOD, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
+            }
+
+            this.wood(set, ItemTags.LEAVES, WoodBlock.LEAVES);
+            this.wood(set, ItemTags.WOODEN_SLABS, WoodBlock.SLAB);
+            this.wood(set, ItemTags.WOODEN_PRESSURE_PLATES, WoodBlock.PRESSURE_PLATE);
+            this.wood(set, ItemTags.WOODEN_FENCES, WoodBlock.FENCE);
+            this.wood(set, ItemTags.WOODEN_TRAPDOORS, WoodBlock.TRAPDOOR);
+            this.wood(set, ItemTags.WOODEN_STAIRS, WoodBlock.STAIRS);
+            this.wood(set, ItemTags.WOODEN_BUTTONS, WoodBlock.BUTTON);
+            this.wood(set, ItemTags.WOODEN_DOORS, WoodBlock.DOOR);
+            this.wood(set, ItemTags.SIGNS, WoodBlock.SIGN);
         }
+        if (set instanceof TwigsWoodSet twigs) this.add(TwigsItemTags.TABLES, twigs.getTable());
+    }
 
-        this.wood(set, ItemTags.LEAVES, WoodBlock.LEAVES);
-        this.wood(set, ItemTags.WOODEN_SLABS, WoodBlock.SLAB);
-        this.wood(set, ItemTags.WOODEN_PRESSURE_PLATES, WoodBlock.PRESSURE_PLATE);
-        this.wood(set, ItemTags.WOODEN_FENCES, WoodBlock.FENCE);
-        this.wood(set, ItemTags.WOODEN_TRAPDOORS, WoodBlock.TRAPDOOR);
-        this.wood(set, ItemTags.WOODEN_STAIRS, WoodBlock.STAIRS);
-        this.wood(set, ItemTags.WOODEN_BUTTONS, WoodBlock.BUTTON);
-        this.wood(set, ItemTags.WOODEN_DOORS, WoodBlock.DOOR);
-        this.wood(set, ItemTags.SIGNS, WoodBlock.SIGN);
+    public void woods(WoodSet... sets) {
+        for (WoodSet set : sets) this.wood(set, null);
     }
 
     public void wood(WoodSet set, @Nullable Tag.Identified<Item> tag, WoodBlock... woods) {

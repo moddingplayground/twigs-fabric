@@ -76,6 +76,10 @@ public enum WoodBlock {
         this(BlockItemFactory.DEFAULT, blockFactory);
     }
 
+    public String getId() {
+        return this.id;
+    }
+
     public boolean isArtificial() {
         return !EnumSet.of(
             WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD,

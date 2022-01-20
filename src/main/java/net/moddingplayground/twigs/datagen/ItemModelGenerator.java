@@ -6,6 +6,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.moddingplayground.twigs.Twigs;
+import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;
 import net.moddingplayground.twigs.block.wood.WoodSet;
 import net.moddingplayground.twigs.datagen.impl.generator.model.ModelGen;
@@ -57,7 +58,7 @@ public class ItemModelGenerator extends AbstractItemModelGenerator {
             STRIPPED_BAMBOO
         );
 
-        this.woods(STRIPPED_BAMBOO_SET);
+        this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
 
         for (Block block : Registry.BLOCK) {
             if (block.asItem() == Items.AIR) continue;
@@ -73,23 +74,25 @@ public class ItemModelGenerator extends AbstractItemModelGenerator {
     }
 
     public void wood(WoodSet set) {
+        if (!set.isVanilla()) {
         wood(set, WoodBlock.PLANKS, this::inherit);
-        wood(set, WoodBlock.SAPLING, this::generatedBlock);
-        wood(set, WoodBlock.LOG, this::inherit);
-        wood(set, WoodBlock.STRIPPED_LOG, this::inherit);
-        wood(set, WoodBlock.WOOD, this::inherit);
-        wood(set, WoodBlock.STRIPPED_WOOD, this::inherit);
-        wood(set, WoodBlock.LEAVES, this::inherit);
-        wood(set, WoodBlock.SLAB, this::inherit);
-        wood(set, WoodBlock.STAIRS, this::inherit);
-        wood(set, WoodBlock.FENCE, i -> fenceInventory(name(i, "block/%s_planks", "_fence")));
-        wood(set, WoodBlock.DOOR, this::generatedItem);
-        wood(set, WoodBlock.TRAPDOOR, i -> inherit(name(i, "block/%s_bottom")));
-        wood(set, WoodBlock.FENCE_GATE, this::inherit);
-        wood(set, WoodBlock.PRESSURE_PLATE, this::inherit);
-        wood(set, WoodBlock.BUTTON, i -> buttonInventory(name(i, "block/%s_planks", "_button")));
-        wood(set, WoodBlock.SIGN, this::generatedItem);
-        set.getBoatItem().ifPresent(this::add);
+            wood(set, WoodBlock.SAPLING, this::generatedBlock);
+            wood(set, WoodBlock.LOG, this::inherit);
+            wood(set, WoodBlock.STRIPPED_LOG, this::inherit);
+            wood(set, WoodBlock.WOOD, this::inherit);
+            wood(set, WoodBlock.STRIPPED_WOOD, this::inherit);
+            wood(set, WoodBlock.LEAVES, this::inherit);
+            wood(set, WoodBlock.SLAB, this::inherit);
+            wood(set, WoodBlock.STAIRS, this::inherit);
+            wood(set, WoodBlock.FENCE, i -> fenceInventory(name(i, "block/%s_planks", "_fence")));
+            wood(set, WoodBlock.DOOR, this::generatedItem);
+            wood(set, WoodBlock.TRAPDOOR, i -> inherit(name(i, "block/%s_bottom")));
+            wood(set, WoodBlock.FENCE_GATE, this::inherit);
+            wood(set, WoodBlock.PRESSURE_PLATE, this::inherit);
+            wood(set, WoodBlock.BUTTON, i -> buttonInventory(name(i, "block/%s_planks", "_button")));
+            wood(set, WoodBlock.SIGN, this::generatedItem);
+            set.getBoatItem().ifPresent(this::add);
+        }
     }
 
     public void wood(WoodSet set, WoodBlock wood, Function<Item, ModelGen> factory) {

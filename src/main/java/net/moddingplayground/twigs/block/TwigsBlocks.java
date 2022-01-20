@@ -1,5 +1,6 @@
 package net.moddingplayground.twigs.block;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -44,8 +45,8 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.vanilla.PublicStairsBlock;
+import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;
-import net.moddingplayground.twigs.block.wood.WoodSet;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -99,7 +100,7 @@ public class TwigsBlocks {
 
     public static final Block STRIPPED_BAMBOO = register("stripped_bamboo", new StrippedBambooBlock(FabricBlockSettings.copyOf(Blocks.BAMBOO)));
 
-    public static final WoodSet STRIPPED_BAMBOO_SET = new WoodSet(
+    public static final TwigsWoodSet STRIPPED_BAMBOO_SET = new TwigsWoodSet(
         Twigs.MOD_ID, "stripped_bamboo", Twigs.ITEM_GROUP, WoodBlock::isArtificial,
         new WoodBlock.MaterialSet(Material.WOOD, Material.PLANT, Material.LEAVES, Material.DECORATION),
         new WoodBlock.ColorSet(MapColor.PALE_YELLOW, MapColor.OFF_WHITE),
@@ -109,15 +110,18 @@ public class TwigsBlocks {
 
     public static final Block STRIPPED_BAMBOO_MAT = register("stripped_bamboo_mat", new BambooMatBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CARPET).sounds(BlockSoundGroup.SCAFFOLDING)));
 
-    public static final Block OAK_TABLE = register("oak_table", new TableBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS).breakInstantly()));
-    public static final Block SPRUCE_TABLE = register("spruce_table", new TableBlock(FabricBlockSettings.copyOf(Blocks.SPRUCE_PLANKS).breakInstantly()));
-    public static final Block BIRCH_TABLE = register("birch_table", new TableBlock(FabricBlockSettings.copyOf(Blocks.BIRCH_PLANKS).breakInstantly()));
-    public static final Block JUNGLE_TABLE = register("jungle_table", new TableBlock(FabricBlockSettings.copyOf(Blocks.JUNGLE_PLANKS).breakInstantly()));
-    public static final Block ACACIA_TABLE = register("acacia_table", new TableBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_PLANKS).breakInstantly()));
-    public static final Block DARK_OAK_TABLE = register("dark_oak_table", new TableBlock(FabricBlockSettings.copyOf(Blocks.DARK_OAK_PLANKS).breakInstantly()));
-    public static final Block CRIMSON_TABLE = register("crimson_table", new TableBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_PLANKS).breakInstantly()));
-    public static final Block WARPED_TABLE = register("warped_table", new TableBlock(FabricBlockSettings.copyOf(Blocks.WARPED_PLANKS).breakInstantly()));
-    public static final Block STRIPPED_BAMBOO_TABLE = register("stripped_bamboo_table", new TableBlock(FabricBlockSettings.copyOf(STRIPPED_BAMBOO_SET.get(WoodBlock.PLANKS)).breakInstantly()));
+    // wood sets
+
+    public static final TwigsWoodSet OAK = registerVanillaWood("oak");
+    public static final TwigsWoodSet SPRUCE = registerVanillaWood("spruce");
+    public static final TwigsWoodSet BIRCH = registerVanillaWood("birch");
+    public static final TwigsWoodSet JUNGLE = registerVanillaWood("jungle");
+    public static final TwigsWoodSet ACACIA = registerVanillaWood("acacia");
+    public static final TwigsWoodSet DARK_OAK = registerVanillaWood("dark_oak");
+    public static final TwigsWoodSet CRIMSON = registerVanillaWood("crimson", false);
+    public static final TwigsWoodSet WARPED = registerVanillaWood("warped", false);
+
+    public static final List<TwigsWoodSet> WOOD_SETS = ImmutableList.of(STRIPPED_BAMBOO_SET, OAK, SPRUCE, BIRCH, JUNGLE, ACACIA, DARK_OAK, CRIMSON, WARPED);
 
     // lamps
 
@@ -321,13 +325,6 @@ public class TwigsBlocks {
         flamReg.add(BAMBOO_THATCH,30, 60);
         flamReg.add(BAMBOO_THATCH_SLAB, 30, 60);
         flamReg.add(BAMBOO_THATCH_STAIRS, 30, 60);
-        flamReg.add(OAK_TABLE, 5, 20);
-        flamReg.add(SPRUCE_TABLE, 5, 20);
-        flamReg.add(BIRCH_TABLE, 5, 20);
-        flamReg.add(ACACIA_TABLE, 5, 20);
-        flamReg.add(JUNGLE_TABLE, 5, 20);
-        flamReg.add(DARK_OAK_TABLE, 5, 20);
-        flamReg.add(STRIPPED_BAMBOO_TABLE, 5, 20);
         flamReg.add(STRIPPED_BAMBOO, 5, 20);
 
         FuelRegistry fuelReg = FuelRegistry.INSTANCE;
@@ -390,5 +387,13 @@ public class TwigsBlocks {
 
     private static Block register(String id, Block block) {
         return register(id, block, b -> new BlockItem(b, new FabricItemSettings().group(Twigs.ITEM_GROUP)));
+    }
+
+    private static TwigsWoodSet registerVanillaWood(String id, boolean flammable) {
+        return new TwigsWoodSet(Twigs.MOD_ID, id, Twigs.ITEM_GROUP, flammable).register();
+    }
+
+    private static TwigsWoodSet registerVanillaWood(String id) {
+        return registerVanillaWood(id, true);
     }
 }
