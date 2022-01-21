@@ -95,13 +95,31 @@ public class BlockTagGenerator extends AbstractTagGenerator<Block> {
             POLISHED_BLOODSTONE_SLAB
         );
 
-        this.add(TwigsBlockTags.PAPER_LANTERNS, PAPER_LANTERN, ALLIUM_PAPER_LANTERN, BLUE_ORCHID_PAPER_LANTERN, CRIMSON_ROOTS_PAPER_LANTERN, DANDELION_PAPER_LANTERN);
         this.add(BlockTags.DIRT, ROCKY_DIRT);
         this.add(BlockTags.PIGLIN_REPELLENTS, SOUL_LAMP);
+        this.add(BlockTags.REPLACEABLE_PLANTS, AZALEA_FLOWERS);
+
+        this.add(TwigsBlockTags.PAPER_LANTERNS,
+            PAPER_LANTERN,
+            ALLIUM_PAPER_LANTERN,
+            BLUE_ORCHID_PAPER_LANTERN,
+            CRIMSON_ROOTS_PAPER_LANTERN,
+            DANDELION_PAPER_LANTERN
+        );
+
+        this.add(BlockTags.CRYSTAL_SOUND_BLOCKS,
+            POLISHED_AMETHYST,
+            POLISHED_AMETHYST_STAIRS,
+            POLISHED_AMETHYST_SLAB,
+            CHISELED_POLISHED_AMETHYST,
+            POLISHED_AMETHYST_BRICKS,
+            POLISHED_AMETHYST_BRICK_STAIRS,
+            POLISHED_AMETHYST_BRICK_SLAB,
+            POLISHED_AMETHYST_BRICK_WALL,
+            CRACKED_POLISHED_AMETHYST_BRICKS
+        );
 
         this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
-
-        this.add(BlockTags.REPLACEABLE_PLANTS, AZALEA_FLOWERS);
 
         this.add(BlockTags.AXE_MINEABLE,
             STRIPPED_BAMBOO,
