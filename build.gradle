@@ -59,7 +59,11 @@ processResources {
 
 sourceSets.main.resources { srcDirs += "$projectDir/src/generated/resources" }
 tasks.withType(JavaCompile).configureEach { it.options.release = 17 }
-jar { from("LICENSE") { rename { "${it}_${archivesBaseName}"} } }
+
+jar {
+  from("LICENSE") { rename { "${it}_${archivesBaseName}" } }
+  from("LICENSE_ASSETS") { rename { "${it}_${archivesBaseName}" } }
+}
 
 publishing {
   publications {
