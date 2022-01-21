@@ -96,8 +96,14 @@ public class BlockTagGenerator extends AbstractTagGenerator<Block> {
         );
 
         this.add(BlockTags.DIRT, ROCKY_DIRT);
+        this.add(BlockTags.FOXES_SPAWNABLE_ON, ROCKY_DIRT);
+        this.add(BlockTags.ENDERMAN_HOLDABLE, ROCKY_DIRT);
+        this.add(BlockTags.BAMBOO_PLANTABLE_ON, ROCKY_DIRT);
+
         this.add(BlockTags.PIGLIN_REPELLENTS, SOUL_LAMP);
+        this.add(BlockTags.BASE_STONE_OVERWORLD, SCHIST, RHYOLITE);
         this.add(BlockTags.REPLACEABLE_PLANTS, AZALEA_FLOWERS);
+        this.add(BlockTags.FLOWER_POTS, POTTED_AZALEA_FLOWERS, POTTED_BAMBOO_LEAVES);
 
         this.add(TwigsBlockTags.PAPER_LANTERNS,
             PAPER_LANTERN,
