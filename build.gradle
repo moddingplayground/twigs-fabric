@@ -7,7 +7,7 @@ plugins {
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 
-archivesBaseName = project.archives_base_name
+archivesBaseName = "${project.archives_base_name}-${project.minecraft_version}"
 group = project.maven_group
 
 version = System.env.GITHUB_ACTIONS == "true"
@@ -61,8 +61,8 @@ sourceSets.main.resources { srcDirs += "$projectDir/src/generated/resources" }
 tasks.withType(JavaCompile).configureEach { it.options.release = 17 }
 
 jar {
-  from("LICENSE") { rename { "${it}_${archivesBaseName}" } }
-  from("LICENSE_ASSETS") { rename { "${it}_${archivesBaseName}" } }
+  from("LICENSE") { rename { "${it}_${project.mod_id}" } }
+  from("LICENSE_ASSETS") { rename { "${it}_${project.mod_id}" } }
 }
 
 publishing {
