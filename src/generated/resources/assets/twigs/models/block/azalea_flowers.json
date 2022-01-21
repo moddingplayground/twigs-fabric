@@ -1,5 +1,5 @@
 {
-  "parent": "twigs:block/template_wall_plant_thin",
+  "parent": "toymaker:block/template_wall_plant_thin",
   "textures": {
     "texture": "twigs:block/azalea_flowers"
   }

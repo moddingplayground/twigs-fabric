@@ -4,9 +4,9 @@ import net.minecraft.tag.Tag;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
+import net.moddingplayground.toymaker.api.generator.tag.AbstractTagGenerator;
+import net.moddingplayground.toymaker.api.generator.tag.TagFactory;
 import net.moddingplayground.twigs.Twigs;
-import net.moddingplayground.twigs.datagen.impl.generator.tag.AbstractTagGenerator;
-import net.moddingplayground.twigs.datagen.impl.generator.tag.TagFactory;
 import net.moddingplayground.twigs.tag.TwigsBiomeTags;
 
 import static net.minecraft.world.biome.BiomeKeys.*;

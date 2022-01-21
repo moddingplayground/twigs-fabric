@@ -1,5 +1,5 @@
 {
-  "parent": "twigs:recipes/root",
+  "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
       "twigs:bamboo_thatch/bamboo_thatch_slab_from_stonecutting"

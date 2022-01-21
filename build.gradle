@@ -19,6 +19,11 @@ repositories {
     name = "Terraformers Maven"
     url  = "https://maven.terraformersmc.com/releases/"
   }
+
+  maven {
+    name = "Modding Playground Maven"
+    url  = "https://raw.githubusercontent.com/moddingplayground/maven/main/"
+  }
 }
 
 dependencies {
@@ -28,18 +33,20 @@ dependencies {
 
   modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
   modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
+
+  modImplementation "net.moddingplayground.toymaker:toymaker-fabric:${project.toymaker_version}"
+  include "net.moddingplayground.toymaker:toymaker-fabric:${project.toymaker_version}"
 }
 
 loom {
-  accessWidenerPath = file("src/main/resources/${project.mod_id}.accesswidener")
-
   runs {
     data {
       server()
 
       vmArgs(
-              "-D${project.mod_id}.datagen=true",
-              "-D${project.mod_id}.datagen.path=\"${project.file("src/generated/resources")};${project.file("$buildDir/resources/main")}\""
+              "-Dtoymaker.datagen=true",
+              "-Dtoymaker.datagen.modid=${project.mod_id}",
+              "-Dtoymaker.datagen.path=\"${project.file("src/generated/resources")};${project.file("$buildDir/resources/main")}\""
       )
     }
   }
@@ -50,15 +57,9 @@ processResources {
   filesMatching("fabric.mod.json") { expand "version": project.version }
 }
 
-sourceSets.main.resources {
-  srcDirs += "$projectDir/src/generated/resources"
-}
-
+sourceSets.main.resources { srcDirs += "$projectDir/src/generated/resources" }
 tasks.withType(JavaCompile).configureEach { it.options.release = 17 }
-
-jar {
-  from("LICENSE") { rename { "${it}_${archivesBaseName}"} }
-}
+jar { from("LICENSE") { rename { "${it}_${archivesBaseName}"} } }
 
 publishing {
   publications {

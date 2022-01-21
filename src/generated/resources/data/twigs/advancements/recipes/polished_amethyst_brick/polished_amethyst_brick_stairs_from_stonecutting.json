@@ -1,5 +1,5 @@
 {
-  "parent": "twigs:recipes/root",
+  "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
       "twigs:polished_amethyst_brick/polished_amethyst_brick_stairs_from_stonecutting"

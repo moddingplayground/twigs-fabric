@@ -32,11 +32,11 @@
 
   "environment": "*",
   "entrypoints": {
-    "main":   [ "net.moddingplayground.twigs.Twigs" ],
-    "client": [ "net.moddingplayground.twigs.client.TwigsClient" ]
+    "main":     [ "net.moddingplayground.twigs.Twigs" ],
+    "client":   [ "net.moddingplayground.twigs.client.TwigsClient" ],
+    "toymaker": [ "net.moddingplayground.twigs.datagen.TwigsToymaker" ]
   },
-  "mixins": [ "datagen.mixins.json", "twigs.mixins.json" ],
-  "accessWidener": "twigs.accesswidener",
+  "mixins": [ "twigs.mixins.json" ],
 
   "depends": {
     "java": ">=17",

@@ -4,11 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.registry.Registry;
+import net.moddingplayground.toymaker.api.generator.tag.AbstractTagGenerator;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;
 import net.moddingplayground.twigs.block.wood.WoodSet;
-import net.moddingplayground.twigs.datagen.impl.generator.tag.AbstractTagGenerator;
 import net.moddingplayground.twigs.tag.TwigsBlockTags;
 import org.jetbrains.annotations.Nullable;
 

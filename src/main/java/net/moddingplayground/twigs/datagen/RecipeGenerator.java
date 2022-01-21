@@ -15,12 +15,12 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.registry.Registry;
+import net.moddingplayground.toymaker.api.generator.recipe.AbstractRecipeGenerator;
+import net.moddingplayground.toymaker.impl.mixin.RecipesProviderAccessor;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodSet;
 import net.moddingplayground.twigs.data.family.TwigsBlockFamilies;
-import net.moddingplayground.twigs.datagen.impl.generator.recipe.AbstractRecipeGenerator;
-import net.moddingplayground.twigs.datagen.impl.mixin.RecipesProviderAccessor;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;

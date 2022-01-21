@@ -1,5 +1,5 @@
 {
-  "parent": "twigs:recipes/root",
+  "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
       "twigs:table/jungle_table"

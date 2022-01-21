@@ -1,5 +1,5 @@
 {
-  "parent": "twigs:recipes/root",
+  "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
       "twigs:paper_lantern/allium_paper_lantern"

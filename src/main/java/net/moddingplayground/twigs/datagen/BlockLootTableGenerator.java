@@ -13,12 +13,12 @@ import net.minecraft.loot.function.LootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.StatePredicate;
+import net.moddingplayground.toymaker.api.generator.loot.AbstractBlockLootTableGenerator;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.TwigsProperties;
 import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;
 import net.moddingplayground.twigs.block.wood.WoodSet;
-import net.moddingplayground.twigs.datagen.impl.generator.loot.AbstractBlockLootTableGenerator;
 
 import java.util.function.Consumer;
 

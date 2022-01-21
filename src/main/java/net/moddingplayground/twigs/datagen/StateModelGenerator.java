@@ -2,34 +2,26 @@ package net.moddingplayground.twigs.datagen;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;
+import net.moddingplayground.toymaker.api.generator.model.InheritingModelGen;
+import net.moddingplayground.toymaker.api.generator.model.ModelGen;
+import net.moddingplayground.toymaker.api.generator.model.StateGen;
+import net.moddingplayground.toymaker.api.generator.model.StateModelInfo;
+import net.moddingplayground.toymaker.api.generator.model.block.AbstractStateModelGenerator;
+import net.moddingplayground.toymaker.api.generator.model.block.VariantsStateGen;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;
 import net.moddingplayground.twigs.block.wood.WoodSet;
-import net.moddingplayground.twigs.datagen.impl.generator.model.InheritingModelGen;
-import net.moddingplayground.twigs.datagen.impl.generator.model.ModelGen;
-import net.moddingplayground.twigs.datagen.impl.generator.model.StateGen;
-import net.moddingplayground.twigs.datagen.impl.generator.model.StateModelInfo;
-import net.moddingplayground.twigs.datagen.impl.generator.model.block.AbstractStateModelGenerator;
-import net.moddingplayground.twigs.datagen.impl.generator.model.block.VariantsStateGen;
 
 import java.util.ArrayList;
 import java.util.function.Function;
 
+import static net.moddingplayground.toymaker.api.generator.model.InheritingModelGen.*;
+import static net.moddingplayground.toymaker.api.generator.model.block.BuildingBlocks.*;
+import static net.moddingplayground.toymaker.api.generator.model.block.InteractiveBlocks.*;
+import static net.moddingplayground.toymaker.api.generator.model.block.ParticleOnlyModelGen.*;
 import static net.moddingplayground.twigs.block.TwigsBlocks.*;
 import static net.moddingplayground.twigs.block.wood.WoodBlock.*;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.InheritingModelGen.leaves;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.InheritingModelGen.*;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.block.BuildingBlocks.fence;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.block.BuildingBlocks.slabAll;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.block.BuildingBlocks.stairsAll;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.block.BuildingBlocks.*;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.block.InteractiveBlocks.button;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.block.InteractiveBlocks.door;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.block.InteractiveBlocks.fenceGate;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.block.InteractiveBlocks.pressurePlate;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.block.InteractiveBlocks.trapdoor;
-import static net.moddingplayground.twigs.datagen.impl.generator.model.block.ParticleOnlyModelGen.*;
 
 public class StateModelGenerator extends AbstractStateModelGenerator {
     public StateModelGenerator() {
@@ -248,8 +240,8 @@ public class StateModelGenerator extends AbstractStateModelGenerator {
                 Identifier n = name(b);
                 Identifier side = Identifier.tryParse(n + "_side");
                 return VariantsStateGen.variants()
-                    .variant("hanging=true", StateModelInfo.create(Identifier.tryParse(n + "_hanging"), paperLanternHanging(bottom, top, side)))
-                    .variant("hanging=false", StateModelInfo.create(n, paperLantern(bottom, top, side)));
+                                       .variant("hanging=true", StateModelInfo.create(Identifier.tryParse(n + "_hanging"), paperLanternHanging(bottom, top, side)))
+                                       .variant("hanging=false", StateModelInfo.create(n, paperLantern(bottom, top, side)));
             });
         }
     }
