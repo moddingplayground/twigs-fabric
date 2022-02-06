@@ -13,8 +13,8 @@ import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.TwigsBlocks;
 
 public class TwigsConfiguredFeatures {
-    public static final ConfiguredFeature<?, ?> PATCH_TWIG = register("patch_twig", Feature.RANDOM_PATCH.configure(randomPatch(BlockStateProvider.of(TwigsBlocks.TWIG.getDefaultState().getBlock()), 16)));
-    public static final ConfiguredFeature<?, ?> PATCH_PEBBLE = register("patch_pebble", Feature.RANDOM_PATCH.configure(randomPatch(BlockStateProvider.of(TwigsBlocks.PEBBLE.getDefaultState().getBlock()), 8)));
+    public static final ConfiguredFeature<?, ?> PATCH_TWIG = register("patch_twig", Feature.RANDOM_PATCH.configure(randomPatch(BlockStateProvider.of(TwigsBlocks.TWIG.getDefaultState().getBlock()), 3)));
+    public static final ConfiguredFeature<?, ?> PATCH_PEBBLE = register("patch_pebble", Feature.RANDOM_PATCH.configure(randomPatch(BlockStateProvider.of(TwigsBlocks.PEBBLE.getDefaultState().getBlock()), 2)));
 
     private static RandomPatchFeatureConfig randomPatch(BlockStateProvider block, int tries) {
         return ConfiguredFeatures.createRandomPatchFeatureConfig(tries, Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(block)).withInAirFilter());
