@@ -21,16 +21,29 @@ public class BiomeTagGenerator extends AbstractTagGenerator<Biome> {
             DARK_FOREST,
             BIRCH_FOREST,
             OLD_GROWTH_BIRCH_FOREST,
-            WINDSWEPT_FOREST,
-            TAIGA
+            TAIGA,
+            OLD_GROWTH_PINE_TAIGA,
+            OLD_GROWTH_SPRUCE_TAIGA,
+            SWAMP
         );
 
         this.add(TwigsBiomeTags.SPAWNS_PEBBLE,
-            SAVANNA,
             PLAINS,
+            SUNFLOWER_PLAINS,
             MEADOW,
+            RIVER,
+            MUSHROOM_FIELDS,
             STONY_SHORE,
-            TAIGA
+            TAIGA,
+            OLD_GROWTH_PINE_TAIGA,
+            OLD_GROWTH_SPRUCE_TAIGA,
+            WINDSWEPT_FOREST,
+            WINDSWEPT_HILLS,
+            WINDSWEPT_GRAVELLY_HILLS,
+            WINDSWEPT_SAVANNA,
+            SAVANNA,
+            SAVANNA_PLATEAU,
+            SWAMP
         );
     }
 }
