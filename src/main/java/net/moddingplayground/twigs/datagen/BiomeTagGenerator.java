@@ -1,18 +1,24 @@
 package net.moddingplayground.twigs.datagen;
 
+import net.fabricmc.fabric.impl.biome.OverworldBiomeData;
 import net.minecraft.util.registry.BuiltinRegistries;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.moddingplayground.toymaker.api.generator.tag.AbstractTagGenerator;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.tag.TwigsBiomeTags;
 
+import static net.minecraft.world.biome.Biome.*;
 import static net.minecraft.world.biome.BiomeKeys.*;
+import static net.moddingplayground.twigs.tag.TwigsBiomeTags.*;
 
 public class BiomeTagGenerator extends AbstractTagGenerator<Biome> {
     public BiomeTagGenerator() {
         super(Twigs.MOD_ID, BuiltinRegistries.BIOME, "biome");
     }
 
+    @SuppressWarnings("UnstableApiUsage")
     @Override
     public void generate() {
         this.add(TwigsBiomeTags.SPAWNS_TWIG,
@@ -45,5 +51,18 @@ public class BiomeTagGenerator extends AbstractTagGenerator<Biome> {
             SAVANNA_PLATEAU,
             SWAMP
         );
+
+        for (Biome biome : BuiltinRegistries.BIOME) {
+            RegistryKey<Biome> key = getKey(biome);
+            Category category = biome.getCategory();
+
+            if (OverworldBiomeData.canGenerateInOverworld(key)) this.add(SPAWNS_RHYOLITE, biome);
+            if (category == Category.NETHER) this.add(SPAWNS_BLOODSTONE, biome);
+            if (category == Category.MOUNTAIN) this.add(SPAWNS_SCHIST, biome);
+        }
+    }
+
+    public RegistryKey<Biome> getKey(Biome biome) {
+        return RegistryKey.of(Registry.BIOME_KEY, BuiltinRegistries.BIOME.getId(biome));
     }
 }

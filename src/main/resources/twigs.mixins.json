@@ -9,6 +9,7 @@
     "BlocksInvoker",
     "BoatItemAccessor",
     "EntityPredicateMixin",
+    "OrePlacedFeaturesAccessor",
     "SignTypeInvoker"
   ],
   "client": [
