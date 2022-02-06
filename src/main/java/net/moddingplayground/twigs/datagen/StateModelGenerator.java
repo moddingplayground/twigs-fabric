@@ -179,7 +179,6 @@ public class StateModelGenerator extends AbstractStateModelGenerator {
         this.add(POTTED_AZALEA_FLOWERS, this::flowerPot);
 
         this.add(STRIPPED_BAMBOO_MAT, b -> simple(name(b), mat(name(b))));
-        this.add(POTTED_BAMBOO_LEAVES, this::flowerPotCross);
 
         this.add(CHISELED_BRICKS, b -> simple(name(b), cubeColumn(Identifier.tryParse(name(b) + "_top"), name(b))));
         this.lamps(LAMP, SOUL_LAMP);

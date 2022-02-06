@@ -164,7 +164,6 @@ public class BlockLootTableGenerator extends AbstractBlockLootTableGenerator {
         this.add(BAMBOO_LEAVES, this::dropsLayer14);
 
         this.addPottedPlantDrop(POTTED_AZALEA_FLOWERS);
-        this.addPottedPlantDrop(POTTED_BAMBOO_LEAVES);
 
         this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
 

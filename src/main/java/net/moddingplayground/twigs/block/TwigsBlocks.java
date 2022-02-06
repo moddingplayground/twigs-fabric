@@ -73,8 +73,6 @@ public class TwigsBlocks {
                            .sounds(BlockSoundGroup.AZALEA_LEAVES)
     ));
 
-    public static final Block POTTED_BAMBOO_LEAVES = register("potted_bamboo_leaves", new FlowerPotBlock(BAMBOO_LEAVES, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), null);
-
     // paper lanterns
 
     public static final Block PAPER_LANTERN = register("paper_lantern", new PaperLanternBlock(

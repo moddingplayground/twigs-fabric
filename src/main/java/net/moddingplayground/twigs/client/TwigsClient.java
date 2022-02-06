@@ -35,7 +35,6 @@ public class TwigsClient implements ClientModInitializer {
             TwigsBlocks.PEBBLE,
             TwigsBlocks.TWIG,
             TwigsBlocks.POTTED_AZALEA_FLOWERS,
-            TwigsBlocks.POTTED_BAMBOO_LEAVES,
 
             TwigsBlocks.PAPER_LANTERN,
             TwigsBlocks.ALLIUM_PAPER_LANTERN,

@@ -103,7 +103,7 @@ public class BlockTagGenerator extends AbstractTagGenerator<Block> {
         this.add(BlockTags.PIGLIN_REPELLENTS, SOUL_LAMP);
         this.add(BlockTags.BASE_STONE_OVERWORLD, SCHIST, RHYOLITE);
         this.add(BlockTags.REPLACEABLE_PLANTS, AZALEA_FLOWERS);
-        this.add(BlockTags.FLOWER_POTS, POTTED_AZALEA_FLOWERS, POTTED_BAMBOO_LEAVES);
+        this.add(BlockTags.FLOWER_POTS, POTTED_AZALEA_FLOWERS);
 
         this.add(TwigsBlockTags.PAPER_LANTERNS,
             PAPER_LANTERN,
