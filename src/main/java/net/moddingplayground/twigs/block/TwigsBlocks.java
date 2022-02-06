@@ -47,16 +47,17 @@ import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.vanilla.PublicStairsBlock;
 import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;
+import net.moddingplayground.twigs.item.FlintAndSteelBlockItem;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 import java.util.function.ToIntFunction;
 
 @SuppressWarnings("unused")
 public class TwigsBlocks {
-    public static final Block TWIG = register("twig", new FloorLayerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().sounds(BlockSoundGroup.WOOD).noCollision()));
+    public static final Block TWIG = register("twig", new FloorLayerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().sounds(BlockSoundGroup.WOOD).noCollision()), FlintAndSteelBlockItem::new);
     public static final Block PEBBLE = register("pebble", new FloorLayerBlock(FabricBlockSettings.of(Material.STONE).breakInstantly().sounds(BlockSoundGroup.STONE).noCollision()));
 
     public static final Block AZALEA_FLOWERS = register("azalea_flowers", new GlowLichenBlock(
@@ -377,14 +378,14 @@ public class TwigsBlocks {
         return false;
     }
 
-    private static Block register(String id, Block block, Function<Block, Item> item) {
+    private static Block register(String id, Block block, BiFunction<Block, Item.Settings, Item> item) {
         Identifier identifier = new Identifier(Twigs.MOD_ID, id);
-        if (item != null) Registry.register(Registry.ITEM, identifier, item.apply(block));
+        if (item != null) Registry.register(Registry.ITEM, identifier, item.apply(block, new FabricItemSettings().group(Twigs.ITEM_GROUP)));
         return Registry.register(Registry.BLOCK, identifier, block);
     }
 
     private static Block register(String id, Block block) {
-        return register(id, block, b -> new BlockItem(b, new FabricItemSettings().group(Twigs.ITEM_GROUP)));
+        return register(id, block, BlockItem::new);
     }
 
     private static TwigsWoodSet registerVanillaWood(String id, boolean flammable) {
