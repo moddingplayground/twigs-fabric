@@ -176,7 +176,7 @@ public class StateModelGenerator extends AbstractStateModelGenerator {
         this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
 
         this.add(AZALEA_FLOWERS, b -> wallPlant(name(b), name(b)));
-        this.add(POTTED_AZALEA_FLOWERS, this::flowerPotCross);
+        this.add(POTTED_AZALEA_FLOWERS, this::flowerPot);
 
         this.add(STRIPPED_BAMBOO_MAT, b -> simple(name(b), mat(name(b))));
         this.add(POTTED_BAMBOO_LEAVES, this::flowerPotCross);
@@ -228,8 +228,12 @@ public class StateModelGenerator extends AbstractStateModelGenerator {
             .texture("texture", texture);
     }
 
-    private StateGen flowerPotCross(Block b) {
-        return simple(name(b), InheritingModelGen.flowerPotCross(name(b, "block/%s", "(^potted_)", "")));
+    private StateGen flowerPot(Block block) {
+        return simple(name(block), InheritingModelGen.flowerPotCross(name(block, "block/%s_pot", "(^potted_)", "")));
+    }
+
+    private StateGen flowerPotCross(Block block) {
+        return simple(name(block), InheritingModelGen.flowerPotCross(name(block, "block/%s", "(^potted_)", "")));
     }
 
     private void paperLanterns(Block... blocks) {
