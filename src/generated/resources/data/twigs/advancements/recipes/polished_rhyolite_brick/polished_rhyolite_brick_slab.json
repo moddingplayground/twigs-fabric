@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:recipes/root",
+  "parent": "twigs:recipes/root",
   "rewards": {
     "recipes": [
       "twigs:polished_rhyolite_brick/polished_rhyolite_brick_slab"

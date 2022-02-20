@@ -1,8 +1,8 @@
-package net.moddingplayground.twigs.datagen;
+package net.moddingplayground.twigs.data;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.registry.Registry;
-import net.moddingplayground.toymaker.api.generator.tag.AbstractTagGenerator;
+import net.moddingplayground.frame.api.toymaker.v0.generator.tag.AbstractTagGenerator;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.tag.TwigsEntityTypeTags;
 

@@ -1,5 +1,6 @@
 package net.moddingplayground.twigs.world.gen.feature;
 
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
@@ -24,7 +25,7 @@ import static net.minecraft.world.gen.GenerationStep.Feature.*;
 import static net.minecraft.world.gen.YOffset.*;
 import static net.minecraft.world.gen.decorator.HeightRangePlacementModifier.*;
 
-public class TwigsPlacedFeatures {
+public class TwigsPlacedFeatures implements ModInitializer {
     public static final PlacedFeature PATCH_TWIG = register("patch_twig", TwigsConfiguredFeatures.PATCH_TWIG.withPlacement(modifiers(2)));
     public static final PlacedFeature PATCH_PEBBLE = register("patch_pebble", TwigsConfiguredFeatures.PATCH_PEBBLE.withPlacement(modifiers(2)));
 
@@ -35,7 +36,8 @@ public class TwigsPlacedFeatures {
     public static final PlacedFeature ORE_SCHIST_UPPER = register("ore_schist_upper", TwigsConfiguredFeatures.ORE_SCHIST.withPlacement(rarityOre(6, uniform(fixed(64), fixed(128)))));
     public static final PlacedFeature ORE_SCHIST_LOWER = register("ore_schist_lower", TwigsConfiguredFeatures.ORE_SCHIST.withPlacement(countOre(2, uniform(getBottom(), fixed(60)))));
 
-    static {
+    @Override
+    public void onInitialize() {
         tryPlace(PATCH_TWIG, TwigsBiomeTags.SPAWNS_TWIG, VEGETAL_DECORATION);
         tryPlace(PATCH_PEBBLE, TwigsBiomeTags.SPAWNS_PEBBLE, VEGETAL_DECORATION);
         tryPlace(ORE_RHYOLITE_LOWER, TwigsBiomeTags.SPAWNS_RHYOLITE, UNDERGROUND_ORES);
@@ -56,15 +58,15 @@ public class TwigsPlacedFeatures {
         return Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(Twigs.MOD_ID, id), feature);
     }
 
-    public static List<PlacementModifier> modifiers(int chance) {
+    private static List<PlacementModifier> modifiers(int chance) {
         return VegetationPlacedFeatures.modifiers(chance);
     }
 
-    public static List<PlacementModifier> countOre(int count, HeightRangePlacementModifier modifier) {
+    private static List<PlacementModifier> countOre(int count, HeightRangePlacementModifier modifier) {
         return OrePlacedFeaturesAccessor.invokeModifiersWithCount(count, modifier);
     }
 
-    public static List<PlacementModifier> rarityOre(int chance, HeightRangePlacementModifier modifier) {
+    private static List<PlacementModifier> rarityOre(int chance, HeightRangePlacementModifier modifier) {
         return OrePlacedFeaturesAccessor.invokeModifiersWithRarity(chance, modifier);
     }
 }

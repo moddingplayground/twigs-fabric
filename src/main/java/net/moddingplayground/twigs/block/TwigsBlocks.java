@@ -2,10 +2,9 @@ package net.moddingplayground.twigs.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.fabricmc.fabric.api.loot.v1.FabricLootSupplierBuilder;
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -32,7 +31,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootManager;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
@@ -43,11 +41,13 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
+import net.moddingplayground.frame.api.loottables.v0.LootTableAdditions;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.vanilla.PublicStairsBlock;
 import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;
 import net.moddingplayground.twigs.item.FlintAndSteelBlockItem;
+import net.moddingplayground.twigs.sound.TwigsSoundEvents;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -56,7 +56,7 @@ import java.util.function.BiFunction;
 import java.util.function.ToIntFunction;
 
 @SuppressWarnings("unused")
-public class TwigsBlocks {
+public final class TwigsBlocks implements ModInitializer {
     public static final Block TWIG = register("twig", new FloorLayerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().sounds(BlockSoundGroup.WOOD).noCollision()), FlintAndSteelBlockItem::new);
     public static final Block PEBBLE = register("pebble", new FloorLayerBlock(FabricBlockSettings.of(Material.STONE).breakInstantly().sounds(BlockSoundGroup.STONE).noCollision()));
 
@@ -284,7 +284,8 @@ public class TwigsBlocks {
     public static final Block POLISHED_AMETHYST_BRICK_WALL = register("polished_amethyst_brick_wall", new WallBlock(FabricBlockSettings.copyOf(POLISHED_AMETHYST_BRICKS)));
     public static final Block CRACKED_POLISHED_AMETHYST_BRICKS = register("cracked_polished_amethyst_bricks", new Block(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)));
 
-    static {
+    @Override
+    public void onInitialize() {
         UseBlockCallback.EVENT.register((player, world, hand, hit) -> {
             ItemStack stack = player.getStackInHand(hand);
             BlockPos pos = hit.getBlockPos();
@@ -293,11 +294,20 @@ public class TwigsBlocks {
             Optional<BlockState> nu = Optional.empty();
 
             if (state.isOf(Blocks.FLOWERING_AZALEA) && stack.isIn(FabricToolTags.SHEARS)) {
-                world.playSound(player, pos, SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 Block.dropStack(world, pos.up(), new ItemStack(AZALEA_FLOWERS, world.random.nextInt(2) + 1));
+                world.playSound(player, pos, TwigsSoundEvents.BLOCK_FLOWERING_AZALEA_SHEAR, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 nu = Optional.of(Blocks.AZALEA.getDefaultState());
             } if (state.isOf(Blocks.BAMBOO) && stack.isIn(FabricToolTags.AXES)) {
                 if (!world.getBlockState(pos.up()).isOf(Blocks.BAMBOO)) {
+                    int leaves = state.get(Properties.BAMBOO_LEAVES).ordinal();
+                    if (leaves > 0) {
+                        int drop = world.random.nextInt(leaves * (leaves + 1));
+                        if (drop > 0) {
+                            Block.dropStack(world, pos, new ItemStack(BAMBOO_LEAVES, drop));
+                            world.playSound(player, pos, TwigsSoundEvents.BLOCK_BAMBOO_STRIP_SHEAR, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                        }
+                    }
+
                     world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     nu = Optional.of(STRIPPED_BAMBOO.getDefaultState().with(StrippedBambooBlock.FROM_BAMBOO, true));
                 }
@@ -313,9 +323,7 @@ public class TwigsBlocks {
             return ActionResult.PASS;
         });
 
-        LootTableLoadingCallback.EVENT.register((resourceManager, manager, id, supplier, setter) -> {
-            lootAddition(Blocks.BAMBOO, id, supplier, manager);
-        });
+        LootTableAdditions.of(Blocks.BAMBOO).defaulted(Twigs.MOD_ID).register();
 
         FlammableBlockRegistry flamReg = FlammableBlockRegistry.getDefaultInstance();
         flamReg.add(AZALEA_FLOWERS,30, 60);
@@ -349,24 +357,15 @@ public class TwigsBlocks {
         for (int i = 0, l = copperPillars.size() - 1; i < l; i++) OxidizableBlocksRegistry.registerOxidizableBlockPair(unwaxedCopperPillars.get(i), unwaxedCopperPillars.get(i + 1));
     }
 
-    private static void lootAddition(Block block, Identifier id, FabricLootSupplierBuilder supplier, LootManager manager) {
-        if (id.equals(block.getLootTableId())) supplier.copyFrom(manager.getTable(getAdditiveLootTable(block)));
-    }
-
-    public static Identifier getAdditiveLootTable(Block block) {
-        Identifier id = block.getLootTableId();
-        return new Identifier(Twigs.MOD_ID, "additions/%s/%s".formatted(id.getNamespace(), id.getPath()));
-    }
-
-    private static ToIntFunction<BlockState> litLevel(int lit) {
+    public static ToIntFunction<BlockState> litLevel(int lit) {
         return (state) -> state.get(Properties.LIT) ? lit : 0;
     }
 
-    private static int litLevel(BlockState state) {
+    public static int litLevel(BlockState state) {
         return litLevel(15).applyAsInt(state);
     }
 
-    private static int lightMax(BlockState state) {
+    public static int lightMax(BlockState state) {
         return 15;
     }
 

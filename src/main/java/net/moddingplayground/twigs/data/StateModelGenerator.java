@@ -1,13 +1,13 @@
-package net.moddingplayground.twigs.datagen;
+package net.moddingplayground.twigs.data;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;
-import net.moddingplayground.toymaker.api.generator.model.InheritingModelGen;
-import net.moddingplayground.toymaker.api.generator.model.ModelGen;
-import net.moddingplayground.toymaker.api.generator.model.StateGen;
-import net.moddingplayground.toymaker.api.generator.model.StateModelInfo;
-import net.moddingplayground.toymaker.api.generator.model.block.AbstractStateModelGenerator;
-import net.moddingplayground.toymaker.api.generator.model.block.VariantsStateGen;
+import net.moddingplayground.frame.api.toymaker.v0.generator.model.InheritingModelGen;
+import net.moddingplayground.frame.api.toymaker.v0.generator.model.ModelGen;
+import net.moddingplayground.frame.api.toymaker.v0.generator.model.StateGen;
+import net.moddingplayground.frame.api.toymaker.v0.generator.model.StateModelInfo;
+import net.moddingplayground.frame.api.toymaker.v0.generator.model.block.AbstractStateModelGenerator;
+import net.moddingplayground.frame.api.toymaker.v0.generator.model.block.VariantsStateGen;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;
@@ -16,10 +16,18 @@ import net.moddingplayground.twigs.block.wood.WoodSet;
 import java.util.ArrayList;
 import java.util.function.Function;
 
-import static net.moddingplayground.toymaker.api.generator.model.InheritingModelGen.*;
-import static net.moddingplayground.toymaker.api.generator.model.block.BuildingBlocks.*;
-import static net.moddingplayground.toymaker.api.generator.model.block.InteractiveBlocks.*;
-import static net.moddingplayground.toymaker.api.generator.model.block.ParticleOnlyModelGen.*;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.InheritingModelGen.leaves;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.InheritingModelGen.*;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.block.BuildingBlocks.fence;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.block.BuildingBlocks.slabAll;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.block.BuildingBlocks.stairsAll;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.block.BuildingBlocks.*;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.block.InteractiveBlocks.button;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.block.InteractiveBlocks.door;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.block.InteractiveBlocks.fenceGate;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.block.InteractiveBlocks.pressurePlate;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.block.InteractiveBlocks.trapdoor;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.block.ParticleOnlyModelGen.*;
 import static net.moddingplayground.twigs.block.TwigsBlocks.*;
 import static net.moddingplayground.twigs.block.wood.WoodBlock.*;
 

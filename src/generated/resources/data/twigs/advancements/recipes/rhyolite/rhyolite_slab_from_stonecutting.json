@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:recipes/root",
+  "parent": "twigs:recipes/root",
   "rewards": {
     "recipes": [
       "twigs:rhyolite/rhyolite_slab_from_stonecutting"

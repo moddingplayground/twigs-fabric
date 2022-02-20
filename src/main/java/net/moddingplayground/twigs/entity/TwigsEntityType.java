@@ -46,7 +46,5 @@ public class TwigsEntityType {
     }
 
     @FunctionalInterface
-    private interface SpawnEggFactory {
-        SpawnEggItem apply(EntityType<? extends MobEntity> type, int primaryColor, int secondaryColor, Item.Settings settings);
-    }
+    public interface SpawnEggFactory { SpawnEggItem apply(EntityType<? extends MobEntity> type, int primaryColor, int secondaryColor, Item.Settings settings); }
 }

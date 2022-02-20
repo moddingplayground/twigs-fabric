@@ -1,4 +1,4 @@
-package net.moddingplayground.twigs.datagen;
+package net.moddingplayground.twigs.data;
 
 import net.minecraft.block.BambooBlock;
 import net.minecraft.block.Block;
@@ -13,7 +13,8 @@ import net.minecraft.loot.function.LootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.StatePredicate;
-import net.moddingplayground.toymaker.api.generator.loot.AbstractBlockLootTableGenerator;
+import net.moddingplayground.frame.api.loottables.v0.LootTableAdditions;
+import net.moddingplayground.frame.api.toymaker.v0.generator.loot.AbstractBlockLootTableGenerator;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.TwigsProperties;
 import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
@@ -167,7 +168,7 @@ public class BlockLootTableGenerator extends AbstractBlockLootTableGenerator {
 
         this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
 
-        this.add(getAdditiveLootTable(Blocks.BAMBOO), new LootTable.Builder().pool(pool().with(
+        this.add(LootTableAdditions.of(Blocks.BAMBOO).createDefaultLootTable(Twigs.MOD_ID), new LootTable.Builder().pool(pool().with(
             ItemEntry.builder(BAMBOO_LEAVES)
                      .conditionally(InvertedLootCondition.builder(stateCond(Blocks.BAMBOO, BambooBlock.LEAVES, BambooLeaves.NONE)))
         )));

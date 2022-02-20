@@ -1,12 +1,12 @@
-package net.moddingplayground.twigs.datagen;
+package net.moddingplayground.twigs.data;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.moddingplayground.toymaker.api.generator.model.ModelGen;
-import net.moddingplayground.toymaker.api.generator.model.item.AbstractItemModelGenerator;
+import net.moddingplayground.frame.api.toymaker.v0.generator.model.ModelGen;
+import net.moddingplayground.frame.api.toymaker.v0.generator.model.item.AbstractItemModelGenerator;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;
@@ -14,7 +14,7 @@ import net.moddingplayground.twigs.block.wood.WoodSet;
 
 import java.util.function.Function;
 
-import static net.moddingplayground.toymaker.api.generator.model.InheritingModelGen.*;
+import static net.moddingplayground.frame.api.toymaker.v0.generator.model.InheritingModelGen.*;
 import static net.moddingplayground.twigs.block.TwigsBlocks.*;
 
 public class ItemModelGenerator extends AbstractItemModelGenerator {

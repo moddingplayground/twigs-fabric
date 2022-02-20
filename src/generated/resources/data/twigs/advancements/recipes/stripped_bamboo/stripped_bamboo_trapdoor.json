@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:recipes/root",
+  "parent": "twigs:recipes/root",
   "rewards": {
     "recipes": [
       "twigs:stripped_bamboo/stripped_bamboo_trapdoor"

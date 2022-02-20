@@ -7,7 +7,6 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.moddingplayground.twigs.block.TwigsBlocks;
-import net.moddingplayground.twigs.data.family.TwigsBlockFamilies;
 import net.moddingplayground.twigs.entity.TwigsEntityType;
 import net.moddingplayground.twigs.registry.TwigsRegistry;
 import net.moddingplayground.twigs.world.gen.feature.TwigsConfiguredFeatures;
@@ -29,14 +28,8 @@ public class Twigs implements ModInitializer {
 
         Reflection.initialize(
             TwigsRegistry.class,
-
-            TwigsEntityType.class,
-            TwigsBlocks.class,
-
-            TwigsBlockFamilies.class,
-
-            TwigsConfiguredFeatures.class,
-            TwigsPlacedFeatures.class
+            TwigsBlocks.class, TwigsEntityType.class,
+            TwigsConfiguredFeatures.class, TwigsPlacedFeatures.class
         );
 
         LOGGER.info("Initialized {}", MOD_NAME);

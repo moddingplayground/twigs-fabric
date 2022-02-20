@@ -11,7 +11,6 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
@@ -26,6 +25,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import net.moddingplayground.twigs.sound.TwigsSoundEvents;
 
 @SuppressWarnings("deprecation")
 public class FloorLayerBlock extends PlantBlock implements Waterloggable {
@@ -79,7 +79,7 @@ public class FloorLayerBlock extends PlantBlock implements Waterloggable {
             if (stack.isEmpty() || stack.isOf(this.asItem())) {
                 if (player.getInventory().insertStack(new ItemStack(this))) {
                     world.removeBlock(pos, false);
-                    world.playSoundFromEntity(null, player, SoundEvents.ENTITY_ITEM_FRAME_REMOVE_ITEM, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                    world.playSoundFromEntity(null, player, TwigsSoundEvents.BLOCK_FLOOR_LAYER_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
                     return ActionResult.SUCCESS;
                 }
             }

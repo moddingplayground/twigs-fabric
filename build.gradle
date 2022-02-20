@@ -1,12 +1,22 @@
 //file:noinspection all
 
+buildscript {
+  dependencies {
+    classpath 'org.kohsuke:github-api:1.135'
+  }
+}
+
 plugins {
   id 'fabric-loom' version '0.10-SNAPSHOT'
   id 'maven-publish'
+
+  id 'com.matthewprenger.cursegradle' version '1.4.0'
+  id 'com.modrinth.minotaur' version '1.1.0'
 }
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
+def ENV = System.getenv()
 
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 archivesBaseName = "${project.archives_base_name}-${project.minecraft_version}"
 group = project.maven_group
 
@@ -16,13 +26,18 @@ version = System.env.GITHUB_ACTIONS == "true"
 
 repositories {
   maven {
-    name = "Terraformers Maven"
+    name = "Terraformers"
     url  = "https://maven.terraformersmc.com/releases/"
   }
 
   maven {
-    name = "Modding Playground Maven"
+    name = "Modding Playground"
     url  = "https://raw.githubusercontent.com/moddingplayground/maven/main/"
+  }
+
+  maven {
+    name = "Shedaniel"
+    url  = "https://maven.shedaniel.me/"
   }
 }
 
@@ -32,10 +47,8 @@ dependencies {
   modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
   modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+  modImplementation "net.moddingplayground.frame:frame-fabric:${project.frame_version}"
   modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
-
-  modImplementation "net.moddingplayground.toymaker:toymaker-fabric:${project.toymaker_version}"
-  include "net.moddingplayground.toymaker:toymaker-fabric:${project.toymaker_version}"
 }
 
 loom {
@@ -59,14 +72,73 @@ processResources {
 
 sourceSets.main.resources { srcDirs += "$projectDir/src/generated/resources" }
 tasks.withType(JavaCompile).configureEach { it.options.release = 17 }
+java { withSourcesJar() }
 
 jar {
   from("LICENSE") { rename { "${it}_${project.mod_id}" } }
   from("LICENSE_ASSETS") { rename { "${it}_${project.mod_id}" } }
 }
 
-publishing {
-  publications {
-    mavenJava(MavenPublication) { from components.java }
+publishing { publications { mavenJava(MavenPublication) { from components.java } } }
+
+import org.kohsuke.github.GHReleaseBuilder
+import org.kohsuke.github.GitHub
+
+task github(dependsOn: remapJar) {
+  onlyIf { ENV.GITHUB_TOKEN }
+
+  doLast {
+    def github = GitHub.connectUsingOAuth(ENV.GITHUB_TOKEN as String)
+    def repository = github.getRepository(project.github_repository)
+
+    def releaseBuilder = new GHReleaseBuilder(repository, version as String)
+    releaseBuilder.name("[$project.minecraft_version] Frame $project.version")
+    releaseBuilder.body(ENV.CHANGELOG ?: "No changelog provided")
+    releaseBuilder.commitish(project.github_branch)
+    releaseBuilder.prerelease(project.prerelease == "true")
+
+    def ghRelease = releaseBuilder.create()
+    ghRelease.uploadAsset(file("${project.buildDir}/libs/${archivesBaseName}-${version}.jar"), "application/java-archive");
   }
 }
+github.mustRunAfter build
+
+curseforge {
+  if (ENV.CURSEFORGE_API_KEY) { apiKey = ENV.CURSEFORGE_API_KEY }
+
+  project {
+    id = project.curseforge_id
+    changelog = ENV.CHANGELOG ?: "No changelog provided"
+    releaseType = project.prerelease == "true" ? "beta" : "release"
+    addGameVersion project.curseforge_version
+    addGameVersion "Fabric"
+
+    mainArtifact(remapJar) {
+      displayName = "[$project.minecraft_version] Frame $project.version"
+    }
+
+    afterEvaluate { uploadTask.dependsOn("remapJar") }
+  }
+
+  options {
+    forgeGradleIntegration = false
+  }
+}
+
+task modrinth(type: com.modrinth.minotaur.TaskModrinthUpload, dependsOn: remapJar) {
+  onlyIf { ENV.MODRINTH_TOKEN }
+
+  token = ENV.MODRINTH_TOKEN
+  projectId = project.modrinth_id
+  versionNumber = version
+  versionName = "[$project.minecraft_version] Frame $project.version"
+  releaseType = project.prerelease == "true" ? "beta" : "release"
+  changelog = ENV.CHANGELOG ?: "No changelog provided"
+
+  uploadFile = remapJar
+
+  addGameVersion(project.minecraft_version)
+  addLoader('fabric')
+}
+
+task releaseVersion(dependsOn: [ 'build', 'github', 'curseforge', 'modrinth' ])

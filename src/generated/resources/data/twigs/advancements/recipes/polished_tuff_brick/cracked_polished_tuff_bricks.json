@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:recipes/root",
+  "parent": "twigs:recipes/root",
   "rewards": {
     "recipes": [
       "twigs:polished_tuff_brick/cracked_polished_tuff_bricks"

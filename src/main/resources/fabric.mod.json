@@ -32,16 +32,25 @@
 
   "environment": "*",
   "entrypoints": {
-    "main":     [ "net.moddingplayground.twigs.Twigs" ],
-    "client":   [ "net.moddingplayground.twigs.client.TwigsClient" ],
-    "toymaker": [ "net.moddingplayground.twigs.datagen.TwigsToymaker" ]
+    "main":     [
+      "net.moddingplayground.twigs.Twigs",
+      "net.moddingplayground.twigs.block.TwigsBlocks",
+      "net.moddingplayground.twigs.world.gen.feature.TwigsPlacedFeatures"
+    ],
+    "toymaker": [ "net.moddingplayground.twigs.data.TwigsToymaker" ],
+
+    "client":   [
+      "net.moddingplayground.twigs.client.TwigsClient",
+      "net.moddingplayground.twigs.client.model.TwigsEntityModelLayers"
+    ]
   },
   "mixins": [ "twigs.mixins.json" ],
 
   "depends": {
     "java": ">=17",
     "minecraft": ">=1.18",
-    "fabricloader": ">=0.12",
-    "fabric": ">=0.46"
+    "fabricloader": ">=0.13",
+    "fabric": ">=0.46",
+    "frame": ">=0.12"
   }
 }

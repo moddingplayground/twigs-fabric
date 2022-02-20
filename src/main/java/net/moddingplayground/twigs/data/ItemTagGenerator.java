@@ -1,11 +1,11 @@
-package net.moddingplayground.twigs.datagen;
+package net.moddingplayground.twigs.data;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.registry.Registry;
-import net.moddingplayground.toymaker.api.generator.tag.AbstractTagGenerator;
+import net.moddingplayground.frame.api.toymaker.v0.generator.tag.AbstractTagGenerator;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodBlock;

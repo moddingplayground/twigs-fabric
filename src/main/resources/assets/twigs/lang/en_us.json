@@ -3,6 +3,10 @@
   "mod.twigs.contact.discord": "Discord",
   "itemGroup.twigs.item_group": "Twigs",
 
+  "subtitles.block.twigs.lamp.light": "Lamp lit",
+  "subtitles.block.twigs.lamp.extinguish": "Lamp extinguished",
+  "subtitles.block.twigs.floor_layer.pickup": "Block picked up",
+
   "entity.twigs.boat": "Boat",
 
   "block.twigs.azalea_flowers": "Azalea Flowers",

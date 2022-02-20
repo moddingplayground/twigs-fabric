@@ -32,7 +32,7 @@ public class TwigsConfiguredFeatures {
         return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(Twigs.MOD_ID, id), feature);
     }
 
-    public static class States {
+    class States {
         public static final BlockState TWIG = TwigsBlocks.TWIG.getDefaultState();
         public static final BlockState PEBBLE = TwigsBlocks.PEBBLE.getDefaultState();
         public static final BlockState RHYOLITE = TwigsBlocks.RHYOLITE.getDefaultState();

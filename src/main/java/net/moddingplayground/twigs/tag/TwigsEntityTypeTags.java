@@ -6,8 +6,8 @@ import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.moddingplayground.twigs.Twigs;
 
-public class TwigsEntityTypeTags {
-    public static final Tag.Identified<EntityType<?>> BAMBOO_LEAVES_SLOW_IMMUNE = register("bamboo_leaves_slow_immune");
+public interface TwigsEntityTypeTags {
+    Tag.Identified<EntityType<?>> BAMBOO_LEAVES_SLOW_IMMUNE = register("bamboo_leaves_slow_immune");
 
     private static Tag.Identified<EntityType<?>> register(String id) {
         return TagFactory.ENTITY_TYPE.create(new Identifier(Twigs.MOD_ID, id));

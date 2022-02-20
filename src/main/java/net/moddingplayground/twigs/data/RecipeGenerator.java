@@ -1,4 +1,4 @@
-package net.moddingplayground.twigs.datagen;
+package net.moddingplayground.twigs.data;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.Block;
@@ -15,8 +15,8 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.registry.Registry;
-import net.moddingplayground.toymaker.api.generator.recipe.AbstractRecipeGenerator;
-import net.moddingplayground.toymaker.impl.mixin.RecipesProviderAccessor;
+import net.moddingplayground.frame.api.toymaker.v0.generator.recipe.AbstractRecipeGenerator;
+import net.moddingplayground.frame.mixin.toymaker.RecipesProviderAccessor;
 import net.moddingplayground.twigs.Twigs;
 import net.moddingplayground.twigs.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.block.wood.WoodSet;
@@ -48,7 +48,7 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
 
     @Override
     public void generate() {
-        TwigsBlockFamilies.getFamilies()
+        TwigsBlockFamilies.FAMILIES.values().stream()
                      .filter(BlockFamily::shouldGenerateRecipes)
                      .forEach(f -> {
                          this.family(f, RecipesProviderAccessor.getVARIANT_FACTORIES(), false);

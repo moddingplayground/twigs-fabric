@@ -1,0 +1,29 @@
+{
+  "block.lamp.light": {
+    "sounds": [ "minecraft:mob/ghast/fireball4" ],
+    "subtitle": "subtitles.block.twigs.lamp.light"
+  },
+  "block.lamp.extinguish": {
+    "sounds": [ "minecraft:random/fizz" ],
+    "subtitle": "subtitles.block.twigs.lamp.extinguish"
+  },
+
+  "block.floor_layer.pickup": {
+    "sounds": [
+      "minecraft:entity/itemframe/remove_item1",
+      "minecraft:entity/itemframe/remove_item2",
+      "minecraft:entity/itemframe/remove_item3",
+      "minecraft:entity/itemframe/remove_item4"
+    ],
+    "subtitle": "subtitles.block.twigs.floor_layer.pickup"
+  },
+
+  "block.flowering_azalea.shear": {
+    "sounds": [ "mob/sheep/shear" ],
+    "subtitle": "subtitles.item.shears.shear"
+  },
+  "block.bamboo.strip_shear": {
+    "sounds": [ "mob/sheep/shear" ],
+    "subtitle": "subtitles.item.shears.shear"
+  }
+}

@@ -20,7 +20,7 @@ import org.apache.logging.log4j.Logger;
 import static net.moddingplayground.twigs.block.TwigsBlocks.*;
 
 @Environment(EnvType.CLIENT)
-public class TwigsClient implements ClientModInitializer {
+public final class TwigsClient implements ClientModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("%s-client".formatted(Twigs.MOD_ID));
 
     @SuppressWarnings("UnstableApiUsage")
