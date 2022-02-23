@@ -35,6 +35,16 @@ public interface TwigsBlockFamilies {
         .slab(MOSSY_BRICK_SLAB)
         .build();
 
+    BlockFamily SMOOTH_BASALT = register(Blocks.SMOOTH_BASALT)
+        .group("smooth_basalt")
+        .polished(SMOOTH_BASALT_BRICKS)
+        .build();
+
+    BlockFamily POLISHED_BASALT = register(Blocks.POLISHED_BASALT)
+        .group("polished_basalt")
+        .polished(POLISHED_BASALT_BRICKS)
+        .build();
+
     BlockFamily SMOOTH_BASALT_BRICK = register(SMOOTH_BASALT_BRICKS)
         .group("smooth_basalt_brick")
         .wall(SMOOTH_BASALT_BRICK_WALL)
@@ -69,6 +79,7 @@ public interface TwigsBlockFamilies {
 
     BlockFamily POLISHED_AMETHYST = register(TwigsBlocks.POLISHED_AMETHYST)
         .group("polished_amethyst")
+        .polished(POLISHED_AMETHYST_BRICKS)
         .chiseled(CHISELED_POLISHED_AMETHYST)
         .stairs(POLISHED_AMETHYST_STAIRS)
         .slab(POLISHED_AMETHYST_SLAB)
@@ -105,6 +116,7 @@ public interface TwigsBlockFamilies {
 
     BlockFamily POLISHED_TUFF = register(TwigsBlocks.POLISHED_TUFF)
         .group("polished_tuff")
+        .polished(POLISHED_TUFF_BRICKS)
         .stairs(POLISHED_TUFF_STAIRS)
         .slab(POLISHED_TUFF_SLAB)
         .build();
@@ -193,6 +205,7 @@ public interface TwigsBlockFamilies {
 
     BlockFamily POLISHED_RHYOLITE = register(TwigsBlocks.POLISHED_RHYOLITE)
         .group("polished_rhyolite")
+        .polished(POLISHED_RHYOLITE_BRICKS)
         .stairs(POLISHED_RHYOLITE_STAIRS)
         .slab(POLISHED_RHYOLITE_SLAB)
         .build();
@@ -215,6 +228,7 @@ public interface TwigsBlockFamilies {
 
     BlockFamily POLISHED_SCHIST = register(TwigsBlocks.POLISHED_SCHIST)
         .group("polished_schist")
+        .polished(POLISHED_SCHIST_BRICKS)
         .stairs(POLISHED_SCHIST_STAIRS)
         .slab(POLISHED_SCHIST_SLAB)
         .build();
@@ -237,6 +251,7 @@ public interface TwigsBlockFamilies {
 
     BlockFamily POLISHED_BLOODSTONE = register(TwigsBlocks.POLISHED_BLOODSTONE)
         .group("polished_bloodstone")
+        .polished(POLISHED_BLOODSTONE_BRICKS)
         .stairs(POLISHED_BLOODSTONE_STAIRS)
         .slab(POLISHED_BLOODSTONE_SLAB)
         .build();

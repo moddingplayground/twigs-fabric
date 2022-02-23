@@ -67,6 +67,9 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
         String mossyBrick = pathP(MOSSY_BRICKS);
         this.add(baseFolder(mossyBrick) + path(MOSSY_BRICKS), shapeless(VINE, BRICKS, MOSSY_BRICKS, 2));
 
+        String mossyCobblestoneBrick = pathP(MOSSY_COBBLESTONE_BRICKS);
+        this.add(baseFolder(mossyCobblestoneBrick) + path(MOSSY_COBBLESTONE_BRICKS), shapeless(VINE, COBBLESTONE_BRICKS, MOSSY_COBBLESTONE_BRICKS, 2));
+
         String polishedAmethystBrick = pathP(POLISHED_AMETHYST_BRICKS);
         this.add(baseFolder(polishedAmethystBrick) + path(POLISHED_AMETHYST_BRICKS) + "from_stonecutting", stonecutting(POLISHED_AMETHYST, POLISHED_AMETHYST_BRICKS));
 
@@ -84,6 +87,9 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
 
         String bloodstone = path(BLOODSTONE);
         this.add(baseFolder(bloodstone) + bloodstone, chequer2x2(QUARTZ, IRON_NUGGET, BLOODSTONE, 2));
+
+        String bambooThatch = path(BAMBOO_THATCH);
+        this.add(baseFolder(bambooThatch) + bambooThatch, generic2x2(BAMBOO_LEAVES, BAMBOO_THATCH, 2));
 
         String paperLantern = path(PAPER_LANTERN);
         this.add(baseFolder(paperLantern) + paperLantern, ringSurrounding(PAPER, TORCH, PAPER_LANTERN, 2));

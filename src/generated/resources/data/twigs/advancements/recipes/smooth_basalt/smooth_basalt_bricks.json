@@ -1,0 +1,34 @@
+{
+  "parent": "twigs:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:smooth_basalt/smooth_basalt_bricks"
+    ]
+  },
+  "criteria": {
+    "has_smooth_basalt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:smooth_basalt"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:smooth_basalt/smooth_basalt_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_smooth_basalt",
+      "has_the_recipe"
+    ]
+  ]
+}
