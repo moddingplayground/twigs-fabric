@@ -3,7 +3,7 @@ package net.moddingplayground.twigs.mixin;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.predicate.entity.EntityPredicate;
-import net.moddingplayground.twigs.entity.TwigsBoatEntity;
+import net.moddingplayground.twigs.impl.entity.TwigsBoatEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;

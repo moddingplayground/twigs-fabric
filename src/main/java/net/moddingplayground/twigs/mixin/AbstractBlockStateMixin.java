@@ -10,7 +10,7 @@ import net.minecraft.state.property.Property;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
-import net.moddingplayground.twigs.block.StrippedBambooBlock;
+import net.moddingplayground.twigs.api.block.StrippedBambooBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
