@@ -70,9 +70,6 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
         String mossyCobblestoneBrick = pathP(MOSSY_COBBLESTONE_BRICKS);
         this.add(baseFolder(mossyCobblestoneBrick) + path(MOSSY_COBBLESTONE_BRICKS), shapeless(VINE, COBBLESTONE_BRICKS, MOSSY_COBBLESTONE_BRICKS, 2));
 
-        String polishedAmethystBrick = pathP(POLISHED_AMETHYST_BRICKS);
-        this.add(baseFolder(polishedAmethystBrick) + path(POLISHED_AMETHYST_BRICKS) + "from_stonecutting", stonecutting(POLISHED_AMETHYST, POLISHED_AMETHYST_BRICKS));
-
         String twistingPBB = pathP(TWISTING_POLISHED_BLACKSTONE_BRICKS);
         this.add(baseFolder(twistingPBB) + path(TWISTING_POLISHED_BLACKSTONE_BRICKS), shapeless(TWISTING_VINES, POLISHED_BLACKSTONE_BRICKS, TWISTING_POLISHED_BLACKSTONE_BRICKS, 1));
 

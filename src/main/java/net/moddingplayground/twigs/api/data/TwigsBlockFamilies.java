@@ -90,6 +90,7 @@ public interface TwigsBlockFamilies {
         .cracked(CRACKED_POLISHED_AMETHYST_BRICKS)
         .stairs(POLISHED_AMETHYST_BRICK_STAIRS)
         .slab(POLISHED_AMETHYST_BRICK_SLAB)
+        .wall(POLISHED_AMETHYST_BRICK_WALL)
         .build();
 
     BlockFamily TWISTING_POLISHED_BLACKSTONE_BRICK = register(TWISTING_POLISHED_BLACKSTONE_BRICKS)
@@ -139,6 +140,7 @@ public interface TwigsBlockFamilies {
 
     BlockFamily POLISHED_CALCITE = register(TwigsBlocks.POLISHED_CALCITE)
         .group("polished_calcite")
+        .polished(POLISHED_CALCITE_BRICKS)
         .stairs(POLISHED_CALCITE_STAIRS)
         .slab(POLISHED_CALCITE_SLAB)
         .build();
