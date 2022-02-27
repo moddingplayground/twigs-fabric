@@ -1,0 +1,24 @@
+buildscript {
+    repositories { mavenCentral() }
+    dependencies { classpath 'org.kohsuke:github-api:1.301' }
+}
+
+import org.kohsuke.github.GHReleaseBuilder
+import org.kohsuke.github.GitHub
+
+task github(dependsOn: build) {
+    def ENV = System.getenv()
+
+    onlyIf { ENV.GITHUB_TOKEN }
+    doLast {
+        def github = GitHub.connectUsingOAuth(ENV.GITHUB_TOKEN)
+        def repository = github.getRepository(project.github_repository)
+
+        def builder = new GHReleaseBuilder(repository, version)
+        builder.name("[$project.ver_minecraft] $project.mod_name $version")
+        builder.body(new File("./gradle/publishing", "CHANGELOG.md").text)
+        builder.commitish(project.github_branch)
+        builder.prerelease(project.release_type == 'beta')
+        builder.create().uploadAsset(file("${project.buildDir}/libs/${archivesBaseName}-${version}.jar"), "application/java-archive");
+    }
+}

@@ -1,0 +1,23 @@
+buildscript {
+    repositories { maven { url "https://plugins.gradle.org/m2/" } }
+    dependencies { classpath group: 'gradle.plugin.com.modrinth.minotaur', name: 'Minotaur', version: '1.1.0' }
+}
+
+apply plugin: "com.modrinth.minotaur"
+task modrinth(type: com.modrinth.minotaur.TaskModrinthUpload, dependsOn: remapJar) {
+    def ENV = System.getenv()
+
+    onlyIf { ENV.MODRINTH_TOKEN }
+    token = ENV.MODRINTH_TOKEN
+
+    projectId = project.modrinth_id
+    versionNumber = version
+    versionName = "[$project.ver_minecraft] $project.mod_name $version"
+    releaseType = project.release_type
+    changelog = new File("./gradle/publishing", "CHANGELOG.md").text
+
+    uploadFile = remapJar
+
+    addGameVersion(project.ver_minecraft)
+    addLoader('fabric')
+}

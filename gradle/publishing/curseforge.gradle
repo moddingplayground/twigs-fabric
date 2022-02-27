@@ -1,0 +1,21 @@
+apply plugin: "com.matthewprenger.cursegradle"
+curseforge {
+    def ENV = System.getenv()
+
+    if (!ENV.CURSEFORGE_API_KEY) return
+    apiKey = ENV.CURSEFORGE_API_KEY
+
+    project {
+        id = project.curseforge_id
+        addGameVersion project.curseforge_version
+        addGameVersion 'Fabric'
+
+        changelog = new File("./gradle/publishing", "CHANGELOG.md").text
+        releaseType = project.release_type
+
+        mainArtifact(remapJar) { displayName = "[$project.ver_minecraft] $project.mod_name $version" }
+        afterEvaluate { uploadTask.dependsOn(remapJar) }
+    }
+
+    options { forgeGradleIntegration = false }
+}

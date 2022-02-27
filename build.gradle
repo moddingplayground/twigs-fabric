@@ -1,61 +1,64 @@
-//file:noinspection all
-
-buildscript {
-  dependencies {
-    classpath 'org.kohsuke:github-api:1.135'
-  }
-}
-
 plugins {
-  id 'fabric-loom' version '0.10-SNAPSHOT'
+  id 'fabric-loom' version '0.11-SNAPSHOT'
   id 'maven-publish'
 
-  id 'com.matthewprenger.cursegradle' version '1.4.0'
   id 'com.modrinth.minotaur' version '1.1.0'
+  id 'com.matthewprenger.cursegradle' version '1.4.0'
 }
 
-def ENV = System.getenv()
+/* Setup */
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
-archivesBaseName = "${project.archives_base_name}-${project.minecraft_version}"
+tasks.withType(JavaCompile).configureEach { it.options.release = 17 }
+
+archivesBaseName = "${project.mod_id}-fabric-${project.ver_minecraft}"
 group = project.maven_group
 
-version = System.env.GITHUB_ACTIONS == "true"
-        ? "${project.mod_version}+build.${System.env.GITHUB_RUN_NUMBER}"
-        : project.mod_version
+def ENV = System.getenv()
+version = ENV.GITHUB_ACTIONS == 'true'
+        ? "${project.version}+build.${ENV.GITHUB_RUN_NUMBER}"
+        : project.version
+
+/* Dependencies */
 
 repositories {
   maven {
-    name = "Terraformers"
-    url  = "https://maven.terraformersmc.com/releases/"
+    name = 'Terraformers'
+    url  = 'https://maven.terraformersmc.com/releases/'
   }
 
   maven {
     name = "Modding Playground"
-    url  = "https://raw.githubusercontent.com/moddingplayground/maven/main/"
+    url  = 'https://raw.githubusercontent.com/moddingplayground/maven/main/'
   }
 
   maven {
     name = "Shedaniel"
-    url  = "https://maven.shedaniel.me/"
+    url  = 'https://maven.shedaniel.me/'
   }
 }
 
 dependencies {
-  minecraft "com.mojang:minecraft:${project.minecraft_version}"
-  mappings "net.fabricmc:yarn:${project.minecraft_version}+build.${project.yarn_build}:v2"
-  modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+  minecraft "com.mojang:minecraft:${project.ver_minecraft}"
+  mappings "net.fabricmc:yarn:${project.ver_minecraft}+build.${project.ver_yarn}:v2"
+  modImplementation "net.fabricmc:fabric-loader:${project.ver_loader}"
 
-  modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-  modImplementation "net.moddingplayground.frame:frame-fabric:${project.frame_version}"
-  modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
+  // api
+  modImplementation "net.fabricmc.fabric-api:fabric-api:${project.ver_fabric}"
+  modImplementation "net.moddingplayground.frame:frame-fabric:${project.ver_frame}"
+
+  // integration
+  modImplementation "com.terraformersmc:modmenu:${project.ver_mod_menu}"
 }
 
+/* Data Generation */
+
 loom {
+  runtimeOnlyLog4j = true
+
   runs {
     data {
       server()
-
       vmArgs(
               "-Dtoymaker.datagen=true",
               "-Dtoymaker.datagen.modid=${project.mod_id}",
@@ -65,80 +68,39 @@ loom {
   }
 }
 
+sourceSets.main.resources { srcDirs += 'src/generated/resources' }
+
+/* Resource Processing */
+
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
 processResources {
-  inputs.property "version", project.version
-  filesMatching("fabric.mod.json") { expand "version": project.version }
+  inputs.property 'version', version
+  filesMatching('fabric.mod.json') { expand 'version': version }
+
+  doLast {
+    def start = System.currentTimeMillis()
+    def minif = 0
+    def bytes = 0
+    fileTree(dir: outputs.files.asPath, include: '**/*.json').each {
+      File file = it
+      minif++
+      def oldLength = file.length()
+      file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
+      bytes += oldLength - file.length()
+    }
+    println('Minified ' + minif + ' json files. Saved ' + bytes + ' bytes. Took ' + (System.currentTimeMillis() - start) + 'ms.')
+  }
 }
 
-sourceSets.main.resources { srcDirs += "$projectDir/src/generated/resources" }
-tasks.withType(JavaCompile).configureEach { it.options.release = 17 }
-java { withSourcesJar() }
+jar { from('README.md', 'LICENSE', 'LICENSE_ASSETS') exclude('.cache') }
 
-jar {
-  from("LICENSE") { rename { "${it}_${project.mod_id}" } }
-  from("LICENSE_ASSETS") { rename { "${it}_${project.mod_id}" } }
-}
+/* Publishing */
 
 publishing { publications { mavenJava(MavenPublication) { from components.java } } }
 
-import org.kohsuke.github.GHReleaseBuilder
-import org.kohsuke.github.GitHub
-
-task github(dependsOn: remapJar) {
-  onlyIf { ENV.GITHUB_TOKEN }
-
-  doLast {
-    def github = GitHub.connectUsingOAuth(ENV.GITHUB_TOKEN as String)
-    def repository = github.getRepository(project.github_repository)
-
-    def releaseBuilder = new GHReleaseBuilder(repository, version as String)
-    releaseBuilder.name("[$project.minecraft_version] Frame $project.version")
-    releaseBuilder.body(ENV.CHANGELOG ?: "No changelog provided")
-    releaseBuilder.commitish(project.github_branch)
-    releaseBuilder.prerelease(project.prerelease == "true")
-
-    def ghRelease = releaseBuilder.create()
-    ghRelease.uploadAsset(file("${project.buildDir}/libs/${archivesBaseName}-${version}.jar"), "application/java-archive");
-  }
-}
-github.mustRunAfter build
-
-curseforge {
-  if (ENV.CURSEFORGE_API_KEY) { apiKey = ENV.CURSEFORGE_API_KEY }
-
-  project {
-    id = project.curseforge_id
-    changelog = ENV.CHANGELOG ?: "No changelog provided"
-    releaseType = project.prerelease == "true" ? "beta" : "release"
-    addGameVersion project.curseforge_version
-    addGameVersion "Fabric"
-
-    mainArtifact(remapJar) {
-      displayName = "[$project.minecraft_version] Frame $project.version"
-    }
-
-    afterEvaluate { uploadTask.dependsOn("remapJar") }
-  }
-
-  options {
-    forgeGradleIntegration = false
-  }
-}
-
-task modrinth(type: com.modrinth.minotaur.TaskModrinthUpload, dependsOn: remapJar) {
-  onlyIf { ENV.MODRINTH_TOKEN }
-
-  token = ENV.MODRINTH_TOKEN
-  projectId = project.modrinth_id
-  versionNumber = version
-  versionName = "[$project.minecraft_version] Frame $project.version"
-  releaseType = project.prerelease == "true" ? "beta" : "release"
-  changelog = ENV.CHANGELOG ?: "No changelog provided"
-
-  uploadFile = remapJar
-
-  addGameVersion(project.minecraft_version)
-  addLoader('fabric')
-}
-
-task releaseVersion(dependsOn: [ 'build', 'github', 'curseforge', 'modrinth' ])
+task releaseVersion(dependsOn: [ build, 'github', 'modrinth', 'curseforge' ])
+apply from: 'gradle/publishing/github.gradle'
+apply from: 'gradle/publishing/modrinth.gradle'
+apply from: 'gradle/publishing/curseforge.gradle'
