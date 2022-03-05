@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "calcite_wall",
-  "ingredient": {
-    "item": "minecraft:calcite"
-  },
-  "result": "twigs:calcite_wall",
-  "count": 1
-}

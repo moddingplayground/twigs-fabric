@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "SSS",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:warped_planks"
+    },
+    "S": {
+      "item": "minecraft:shroomlight"
+    }
+  },
+  "result": {
+    "item": "twigs:warped_shroomlamp",
+    "count": 1
+  }
+}

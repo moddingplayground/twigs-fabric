@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:rhyolite"
+    }
+  },
+  "result": {
+    "item": "twigs:rhyolite_slab",
+    "count": 6
+  }
+}

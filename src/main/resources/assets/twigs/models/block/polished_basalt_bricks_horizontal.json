@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "twigs:block/polished_basalt_bricks_top",
+    "side": "twigs:block/polished_basalt_bricks"
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "   ",
+        "  _",
+        "  _"
+    ],
+    "key": {
+        "_": {
+            "item": "minecraft:brick_slab"
+        }
+    },
+    "result": {
+        "item": "twigs:chiseled_bricks",
+        "count": 1
+    }
+}

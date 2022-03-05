@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "twigs:paper_lantern"
+        },
+        {
+            "item": "minecraft:blue_orchid"
+        }
+    ],
+    "result": {
+        "item": "twigs:blue_orchid_paper_lantern",
+        "count": 1
+    }
+}

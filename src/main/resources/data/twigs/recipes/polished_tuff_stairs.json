@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:polished_tuff"
+    }
+  },
+  "result": {
+    "item": "twigs:polished_tuff_stairs",
+    "count": 4
+  }
+}

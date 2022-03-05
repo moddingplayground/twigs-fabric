@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "twigs:block/smooth_basalt_bricks"
+  }
+}

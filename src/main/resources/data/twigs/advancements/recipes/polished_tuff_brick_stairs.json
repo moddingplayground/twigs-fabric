@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:polished_tuff_brick_stairs"
+    ]
+  },
+  "criteria": {
+    "has_polished_tuff_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "twigs:polished_tuff_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:polished_tuff_brick_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_tuff_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

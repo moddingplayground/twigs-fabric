@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "twigs:bloodstone"
+  },
+  "result": "twigs:bloodstone_stairs",
+  "count": 1
+}

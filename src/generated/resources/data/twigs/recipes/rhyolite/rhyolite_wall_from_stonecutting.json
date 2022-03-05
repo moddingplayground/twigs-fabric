@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "rhyolite_wall",
-  "ingredient": {
-    "item": "twigs:rhyolite"
-  },
-  "result": "twigs:rhyolite_wall",
-  "count": 1
-}

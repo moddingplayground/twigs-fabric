@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:polished_amethyst_brick_wall_from_polished_amethyst_brick_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_polished_amethyst_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "twigs:polished_amethyst_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:polished_amethyst_brick_wall_from_polished_amethyst_brick_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_amethyst_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

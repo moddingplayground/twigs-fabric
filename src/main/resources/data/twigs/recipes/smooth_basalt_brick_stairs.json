@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#  ",
+        "## ",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "twigs:smooth_basalt_bricks"
+        }
+    },
+    "result": {
+        "item": "twigs:smooth_basalt_brick_stairs",
+        "count": 4
+    }
+}

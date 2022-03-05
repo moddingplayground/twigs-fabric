@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:rhyolite_stairs"
+    ]
+  },
+  "criteria": {
+    "has_rhyolite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "twigs:rhyolite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:rhyolite_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rhyolite",
+      "has_the_recipe"
+    ]
+  ]
+}

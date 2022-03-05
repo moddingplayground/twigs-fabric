@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "polished_tuff_polished",
-  "ingredient": {
-    "item": "twigs:polished_tuff"
-  },
-  "result": "twigs:polished_tuff_bricks",
-  "count": 1
-}

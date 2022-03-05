@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "twigs:block/cobblestone_bricks",
-    "top": "twigs:block/cobblestone_bricks",
-    "side": "twigs:block/cobblestone_bricks"
-  }
-}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:twisting_polished_blackstone_brick_stairs_from_twisting_polished_blackstone_brick_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_twisting_polished_blackstone_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "twigs:twisting_polished_blackstone_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:twisting_polished_blackstone_brick_stairs_from_twisting_polished_blackstone_brick_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_twisting_polished_blackstone_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

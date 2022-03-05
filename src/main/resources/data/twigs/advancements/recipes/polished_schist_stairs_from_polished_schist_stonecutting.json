@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:polished_schist_stairs_from_polished_schist_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_polished_schist": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "twigs:polished_schist"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:polished_schist_stairs_from_polished_schist_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_schist",
+      "has_the_recipe"
+    ]
+  ]
+}

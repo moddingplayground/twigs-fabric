@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#W#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:polished_blackstone_bricks"
+        },
+        "W": {
+            "item": "minecraft:weeping_vines"
+        }
+    },
+    "result": {
+        "item": "twigs:weeping_polished_blackstone_bricks",
+        "count": 8
+    }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "twigs:item/crimson_roots_paper_lantern"
+  }
+}

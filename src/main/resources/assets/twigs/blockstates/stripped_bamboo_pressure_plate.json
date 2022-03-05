@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "twigs:block/stripped_bamboo_pressure_plate"
+    },
+    "powered=true": {
+      "model": "twigs:block/stripped_bamboo_pressure_plate_down"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "twigs:block/table_template",
+  "textures": {
+    "side": "twigs:block/crimson_table",
+    "top": "twigs:block/crimson_table_top",
+    "bottom": "twigs:block/crimson_table_bottom"
+  }
+}

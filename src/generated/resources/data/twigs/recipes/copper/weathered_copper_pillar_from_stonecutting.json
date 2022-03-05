@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "copper_chiseled",
-  "ingredient": {
-    "item": "minecraft:weathered_copper"
-  },
-  "result": "twigs:weathered_copper_pillar",
-  "count": 1
-}

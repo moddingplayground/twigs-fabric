@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:polished_schist_bricks"
+    }
+  },
+  "result": {
+    "item": "twigs:polished_schist_brick_slab",
+    "count": 6
+  }
+}

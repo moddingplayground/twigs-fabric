@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "twigs:cobblestone_bricks"
+  },
+  "result": "twigs:cracked_cobblestone_bricks",
+  "experience": 0.1,
+  "cookingtime": 200
+}

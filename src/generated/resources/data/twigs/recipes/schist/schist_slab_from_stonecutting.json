@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "schist_slab",
-  "ingredient": {
-    "item": "twigs:schist"
-  },
-  "result": "twigs:schist_slab",
-  "count": 2
-}

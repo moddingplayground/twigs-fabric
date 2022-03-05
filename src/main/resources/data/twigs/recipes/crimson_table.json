@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "___",
+        "O O",
+        "O O"
+    ],
+    "key": {
+        "_": {
+            "item": "minecraft:crimson_slab"
+        },
+        "O": {
+            "item": "minecraft:crimson_fence"
+        }
+    },
+    "result": {
+        "item": "twigs:crimson_table",
+        "count": 1
+    }
+}

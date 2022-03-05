@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:polished_schist"
+    }
+  },
+  "result": {
+    "item": "twigs:polished_schist_bricks",
+    "count": 4
+  }
+}

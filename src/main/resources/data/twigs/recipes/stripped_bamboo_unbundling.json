@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "twigs:stripped_bundled_bamboo"
+    }
+  ],
+  "result": {
+    "item": "twigs:stripped_bamboo",
+    "count": 9
+  }
+}

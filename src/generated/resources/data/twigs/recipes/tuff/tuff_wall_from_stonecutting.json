@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "tuff_wall",
-  "ingredient": {
-    "item": "minecraft:tuff"
-  },
-  "result": "twigs:tuff_wall",
-  "count": 1
-}

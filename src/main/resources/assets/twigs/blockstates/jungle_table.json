@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "twigs:block/jungle_table",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "twigs:block/jungle_table"
+    },
+    "facing=south": {
+      "model": "twigs:block/jungle_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "twigs:block/jungle_table",
+      "y": 270
+    }
+  }
+}

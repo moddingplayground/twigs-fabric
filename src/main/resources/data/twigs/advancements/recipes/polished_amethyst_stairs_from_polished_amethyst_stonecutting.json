@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:polished_amethyst_stairs_from_polished_amethyst_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_polished_amethyst": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "twigs:polished_amethyst"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:polished_amethyst_stairs_from_polished_amethyst_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_amethyst",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "twigs:rhyolite"
+    },
+    "result": "twigs:polished_rhyolite",
+    "count": 1
+}

@@ -1,28 +1,24 @@
 {
   "variants": {
-    "layers=1": [
-      { "model": "twigs:block/bamboo_leaves" },
-      { "model": "twigs:block/bamboo_leaves", "y": 90 },
-      { "model": "twigs:block/bamboo_leaves", "y": 180 },
-      { "model": "twigs:block/bamboo_leaves", "y": 270 }
+    "pickles=1": [
+      {
+        "model": "twigs:block/bamboo_leaves_0"
+      }
     ],
-    "layers=2": [
-      { "model": "twigs:block/bamboo_leaves2" },
-      { "model": "twigs:block/bamboo_leaves2", "y": 90 },
-      { "model": "twigs:block/bamboo_leaves2", "y": 180 },
-      { "model": "twigs:block/bamboo_leaves2", "y": 270 }
+    "pickles=2": [
+      {
+        "model": "twigs:block/bamboo_leaves_1"
+      }
     ],
-    "layers=3": [
-      { "model": "twigs:block/bamboo_leaves3" },
-      { "model": "twigs:block/bamboo_leaves3", "y": 90 },
-      { "model": "twigs:block/bamboo_leaves3", "y": 180 },
-      { "model": "twigs:block/bamboo_leaves3", "y": 270 }
+    "pickles=3": [
+      {
+        "model": "twigs:block/bamboo_leaves_2"
+      }
     ],
-    "layers=4": [
-      { "model": "twigs:block/bamboo_leaves4" },
-      { "model": "twigs:block/bamboo_leaves4", "y": 90 },
-      { "model": "twigs:block/bamboo_leaves4", "y": 180 },
-      { "model": "twigs:block/bamboo_leaves4", "y": 270 }
+    "pickles=4": [
+      {
+        "model": "twigs:block/bamboo_leaves_3"
+      }
     ]
   }
 }

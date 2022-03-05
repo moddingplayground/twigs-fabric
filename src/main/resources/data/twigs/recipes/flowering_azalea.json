@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "twigs:azalea_flowers"
+    },
+    {
+      "item": "twigs:azalea_flowers"
+    },
+    {
+      "item": "twigs:azalea_flowers"
+    },
+    {
+      "item": "minecraft:azalea"
+    }
+  ],
+  "result": {
+    "item": "minecraft:flowering_azalea",
+    "count": 1
+  }
+}

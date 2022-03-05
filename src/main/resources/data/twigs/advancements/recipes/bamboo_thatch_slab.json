@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:bamboo_thatch_slab"
+    ]
+  },
+  "criteria": {
+    "has_bamboo_thatch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "twigs:bamboo_thatch"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:bamboo_thatch_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bamboo_thatch",
+      "has_the_recipe"
+    ]
+  ]
+}

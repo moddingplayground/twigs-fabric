@@ -16,6 +16,9 @@
     "Gaetano Russo (Ninni)",
     "Daniel Orr (Andante)"
   ],
+  "contributors": ["",
+    "Dopadream"
+  ],
 
   "contact": {
     "homepage": "https://moddingplayground.net/twigs",
@@ -32,25 +35,20 @@
 
   "environment": "*",
   "entrypoints": {
-    "main":     [
-      "net.moddingplayground.twigs.impl.TwigsImpl",
-      "net.moddingplayground.twigs.impl.block.TwigsBlocksImpl",
-      "net.moddingplayground.twigs.impl.world.gen.feature.TwigsPlacedFeaturesImpl"
+    "main": [
+      "net.moddingplayground.twigs.Twigs"
     ],
-    "toymaker": [ "net.moddingplayground.twigs.impl.data.TwigsToymakerImpl" ],
-
-    "client":   [
-      "net.moddingplayground.twigs.impl.client.TwigsClientImpl",
-      "net.moddingplayground.twigs.impl.client.model.TwigsEntityModelLayers"
+    "client": [
+      "net.moddingplayground.twigs.TwigsClient"
     ]
   },
   "mixins": [ "twigs.mixins.json" ],
+  "accessWidener": "twigs.accesswidener",
 
   "depends": {
     "java": ">=17",
-    "minecraft": ">=1.18",
+    "minecraft": ">=1.18.2",
     "fabricloader": ">=0.13",
-    "fabric": ">=0.46",
-    "frame": ">=0.12.1"
+    "fabric": ">=0.47"
   }
 }

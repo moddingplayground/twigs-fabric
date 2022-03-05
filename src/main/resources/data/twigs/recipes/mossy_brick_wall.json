@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "   ",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "twigs:mossy_bricks"
+        }
+    },
+    "result": {
+        "item": "twigs:mossy_brick_wall",
+        "count": 6
+    }
+}

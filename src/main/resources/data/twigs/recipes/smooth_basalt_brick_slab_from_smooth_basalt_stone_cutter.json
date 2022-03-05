@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:smooth_basalt"
+    },
+    "result": "twigs:smooth_basalt_brick_slab",
+    "count": 2
+}

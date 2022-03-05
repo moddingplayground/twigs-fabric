@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "twigs:polished_amethyst"
+    },
+    "result": "twigs:chiseled_polished_amethyst",
+    "count": 1
+}

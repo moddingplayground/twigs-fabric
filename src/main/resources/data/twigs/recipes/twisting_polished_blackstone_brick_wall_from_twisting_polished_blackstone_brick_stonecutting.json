@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "twigs:twisting_polished_blackstone_bricks"
+  },
+  "result": "twigs:twisting_polished_blackstone_brick_wall",
+  "count": 1
+}

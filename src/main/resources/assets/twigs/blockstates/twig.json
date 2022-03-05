@@ -1,0 +1,51 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "twigs:block/twig"
+      },
+      {
+        "model": "twigs:block/twig",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/twig",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/twig",
+        "y": 270
+      },
+      {
+        "model": "twigs:block/twig_1"
+      },
+      {
+        "model": "twigs:block/twig_1",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/twig_1",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/twig_1",
+        "y": 270
+      },
+      {
+        "model": "twigs:block/twig_2"
+      },
+      {
+        "model": "twigs:block/twig_2",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/twig_2",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/twig_2",
+        "y": 270
+      }
+    ]
+  }
+}

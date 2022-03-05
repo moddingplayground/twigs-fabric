@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:polished_bloodstone"
+    }
+  },
+  "result": {
+    "item": "twigs:polished_bloodstone_bricks",
+    "count": 4
+  }
+}

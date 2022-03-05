@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "smooth_basalt_polished",
-  "ingredient": {
-    "item": "minecraft:smooth_basalt"
-  },
-  "result": "twigs:smooth_basalt_bricks",
-  "count": 1
-}

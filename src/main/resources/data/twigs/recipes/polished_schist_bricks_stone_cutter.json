@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "twigs:polished_schist"
+    },
+    "result": "twigs:polished_schist_bricks",
+    "count": 1
+}

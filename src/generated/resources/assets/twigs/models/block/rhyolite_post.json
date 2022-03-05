@@ -1,8 +1,0 @@
-{
-  "parent": "toymaker:block/template_wall_sided_post",
-  "textures": {
-    "bottom": "twigs:block/rhyolite_top",
-    "top": "twigs:block/rhyolite_top",
-    "side": "twigs:block/rhyolite"
-  }
-}

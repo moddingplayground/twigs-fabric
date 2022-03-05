@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:polished_amethyst_bricks"
+    }
+  },
+  "result": {
+    "item": "twigs:polished_amethyst_brick_wall",
+    "count": 6
+  }
+}

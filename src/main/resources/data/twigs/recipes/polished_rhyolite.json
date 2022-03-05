@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:rhyolite"
+    }
+  },
+  "result": {
+    "item": "twigs:polished_rhyolite",
+    "count": 4
+  }
+}

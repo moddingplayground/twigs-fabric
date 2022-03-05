@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "twigs:polished_bloodstone"
+  },
+  "result": "twigs:polished_bloodstone_slab",
+  "count": 2
+}

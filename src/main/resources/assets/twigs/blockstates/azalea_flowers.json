@@ -1,0 +1,62 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "twigs:block/azalea_flowers",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": {
+        "model": "twigs:block/azalea_flowers",
+        "x": 270,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "down": "true"
+      },
+      "apply": {
+        "model": "twigs:block/azalea_flowers",
+        "x": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": "twigs:block/azalea_flowers"
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "twigs:block/azalea_flowers",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "twigs:block/azalea_flowers",
+        "y": 270,
+        "uvlock": true
+      }
+    }
+  ]
+}

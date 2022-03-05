@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "twigs:rhyolite"
+  },
+  "result": "twigs:rhyolite_stairs",
+  "count": 1
+}

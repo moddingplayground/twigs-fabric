@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twigs:bloodstone"
+    }
+  },
+  "result": {
+    "item": "twigs:bloodstone_stairs",
+    "count": 4
+  }
+}

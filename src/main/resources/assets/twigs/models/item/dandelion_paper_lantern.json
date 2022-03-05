@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "twigs:item/dandelion_paper_lantern"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "twigs:schist_stairs_from_schist_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_schist": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "twigs:schist"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "twigs:schist_stairs_from_schist_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_schist",
+      "has_the_recipe"
+    ]
+  ]
+}
