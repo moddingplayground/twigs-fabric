@@ -9,7 +9,7 @@ if (ENV.MODRINTH_TOKEN) modrinth {
     token = ENV.MODRINTH_TOKEN
     projectId = project.modrinth_id
     versionNumber = version
-    versionName = "[$project.ver_minecraft] $project.mod_name $version"
+    versionName = "[$project.ver_minecraft] $project.mod_name $project.version"
     versionType = project.release_type
     changelog = new File("./gradle/publishing", "CHANGELOG.md").text
     uploadFile = remapJar
