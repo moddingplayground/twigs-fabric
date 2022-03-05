@@ -2,7 +2,7 @@ plugins {
   id 'fabric-loom' version '0.11-SNAPSHOT'
   id 'maven-publish'
 
-  id 'com.modrinth.minotaur' version '1.1.0'
+  id 'com.modrinth.minotaur' version '2.+'
   id 'com.matthewprenger.cursegradle' version '1.4.0'
 }
 
@@ -11,13 +11,11 @@ plugins {
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 tasks.withType(JavaCompile).configureEach { it.options.release = 17 }
 
-archivesBaseName = "${project.mod_id}-fabric-${project.ver_minecraft}"
-group = project.maven_group
-
 def ENV = System.getenv()
-version = ENV.GITHUB_ACTIONS == 'true'
-        ? "${project.version}+build.${ENV.GITHUB_RUN_NUMBER}"
-        : project.version
+String ver = "${project.version}+${project.github_branch}"
+version = ENV.GITHUB_ACTIONS ? "${ver}.build.${ENV.GITHUB_RUN_NUMBER}" : ver
+
+group = project.maven_group
 
 /* Dependencies */
 

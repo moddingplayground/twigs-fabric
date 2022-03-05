@@ -3,20 +3,20 @@ package net.moddingplayground.twigs.impl.data;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.Block;
 import net.minecraft.data.family.BlockFamily;
-import net.minecraft.data.server.RecipesProvider;
-import net.minecraft.data.server.recipe.CookingRecipeJsonFactory;
-import net.minecraft.data.server.recipe.CraftingRecipeJsonFactory;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
-import net.minecraft.data.server.recipe.SingleItemRecipeJsonFactory;
+import net.minecraft.data.server.RecipeProvider;
+import net.minecraft.data.server.recipe.CookingRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.CraftingRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.SingleItemRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.tag.ItemTags;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.registry.Registry;
 import net.moddingplayground.frame.api.toymaker.v0.generator.recipe.AbstractRecipeGenerator;
-import net.moddingplayground.frame.mixin.toymaker.RecipesProviderAccessor;
+import net.moddingplayground.frame.mixin.toymaker.RecipeProviderAccessor;
 import net.moddingplayground.twigs.api.data.TwigsBlockFamilies;
 import net.moddingplayground.twigs.impl.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.impl.block.wood.WoodSet;
@@ -31,8 +31,8 @@ import static net.moddingplayground.twigs.api.block.TwigsBlocks.*;
 import static net.moddingplayground.twigs.impl.block.wood.WoodBlock.*;
 
 public class RecipeGenerator extends AbstractRecipeGenerator {
-    public final Map<BlockFamily.Variant, BiFunction<ItemConvertible, ItemConvertible, CraftingRecipeJsonFactory>> stonecuttingVariantFactories =
-        new ImmutableMap.Builder<BlockFamily.Variant, BiFunction<ItemConvertible, ItemConvertible, CraftingRecipeJsonFactory>>()
+    public final Map<BlockFamily.Variant, BiFunction<ItemConvertible, ItemConvertible, CraftingRecipeJsonBuilder>> stonecuttingVariantFactories =
+        new ImmutableMap.Builder<BlockFamily.Variant, BiFunction<ItemConvertible, ItemConvertible, CraftingRecipeJsonBuilder>>()
                     .put(BlockFamily.Variant.CHISELED, this::variantStonecutting)
                     .put(BlockFamily.Variant.CUT, this::variantStonecutting)
                     .put(BlockFamily.Variant.SLAB, (output, input) -> this.stonecutting(input, output, 2))
@@ -50,7 +50,7 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
         TwigsBlockFamilies.FAMILIES.values().stream()
                      .filter(BlockFamily::shouldGenerateRecipes)
                      .forEach(f -> {
-                         this.family(f, RecipesProviderAccessor.getVARIANT_FACTORIES(), false);
+                         this.family(f, RecipeProviderAccessor.getVARIANT_FACTORIES(), false);
                          this.family(f, this.stonecuttingVariantFactories, true);
                      });
 
@@ -114,9 +114,9 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
         this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
     }
 
-    public void family(BlockFamily family, Map<BlockFamily.Variant, BiFunction<ItemConvertible, ItemConvertible, CraftingRecipeJsonFactory>> factories, boolean stonecutting) {
+    public void family(BlockFamily family, Map<BlockFamily.Variant, BiFunction<ItemConvertible, ItemConvertible, CraftingRecipeJsonBuilder>> factories, boolean stonecutting) {
         family.getVariants().forEach((variant, output) -> {
-            BiFunction<ItemConvertible, ItemConvertible, CraftingRecipeJsonFactory> func = factories.get(variant);
+            BiFunction<ItemConvertible, ItemConvertible, CraftingRecipeJsonBuilder> func = factories.get(variant);
             Block input = this.getVariantRecipeInput(family, variant, stonecutting);
 
             Optional<String> group = family.getGroup();
@@ -124,9 +124,9 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
             String id = group.map(s -> s + "/").orElse("") + blockId + (stonecutting ? "_from_stonecutting" : "");
 
             if (func != null) {
-                CraftingRecipeJsonFactory factory = func.apply(output, input);
+                CraftingRecipeJsonBuilder factory = func.apply(output, input);
                 group.ifPresent(g -> factory.group(g + (variant == BlockFamily.Variant.CUT ? "" : "_" + variant.getName())));
-                factory.criterion(family.getUnlockCriterionName().orElseGet(() -> RecipesProvider.hasItem(input)), RecipesProvider.conditionsFromItem(input));
+                factory.criterion(family.getUnlockCriterionName().orElseGet(() -> RecipeProvider.hasItem(input)), RecipeProvider.conditionsFromItem(input));
 
                 this.add(id, factory);
             }
@@ -135,15 +135,15 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
         });
     }
 
-    public CookingRecipeJsonFactory cracking(ItemConvertible output, ItemConvertible input) {
-        return CookingRecipeJsonFactory.createSmelting(Ingredient.ofItems(input), output, 0.1f, 200)
-                                       .criterion(RecipesProvider.hasItem(input), RecipesProvider.conditionsFromItem(input));
+    public CookingRecipeJsonBuilder cracking(ItemConvertible output, ItemConvertible input) {
+        return CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(input), output, 0.1f, 200)
+                                       .criterion(RecipeProvider.hasItem(input), RecipeProvider.conditionsFromItem(input));
     }
 
     private void lamp(Item torch, Block lamp) {
         this.add(
             baseFolder("lamp") + path(lamp),
-            ShapedRecipeJsonFactory.create(lamp)
+            ShapedRecipeJsonBuilder.create(lamp)
                                    .group("lamp")
                                    .pattern("###")
                                    .pattern("NTN")
@@ -162,7 +162,7 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
     private void table(ItemConvertible slab, ItemConvertible fence, ItemConvertible table) {
         this.add(
             baseFolder("table") + path(table),
-            ShapedRecipeJsonFactory.create(table)
+            ShapedRecipeJsonBuilder.create(table)
                                    .group("table")
                                    .pattern("###")
                                    .pattern("X X")
@@ -177,7 +177,7 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
     public void paperLantern(ItemConvertible content, ItemConvertible lantern) {
         this.add(
             baseFolder("paper_lantern") + path(lantern),
-            ShapelessRecipeJsonFactory.create(lantern)
+            ShapelessRecipeJsonBuilder.create(lantern)
                                       .group("paper_lantern")
                                       .input(content)
                                       .input(PAPER_LANTERN)
@@ -186,9 +186,9 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
         );
     }
 
-    public void wood(WoodSet set, @Nullable Tag.Identified<Item> logs) {
+    public void wood(WoodSet set, @Nullable TagKey<Item> logs) {
         if (!set.isVanilla()) {
-            if (logs != null && !logs.values().isEmpty()) set.requireTo(s -> this.add(woodId(set, "planks"), planks(logs, s.get(PLANKS))), PLANKS);
+            if (logs != null && TwigsToymakerImpl.containsItem(logs)) set.requireTo(s -> this.add(woodId(set, "planks"), planks(logs, s.get(PLANKS))), PLANKS);
             set.requireTo(s -> this.add(woodId(s, "wood"), wood(s.get(LOG), s.get(WOOD))), LOG, WOOD);
             set.requireTo(s -> this.add(woodId(s, "stripped_wood"), wood(s.get(STRIPPED_LOG), s.get(STRIPPED_WOOD))), STRIPPED_LOG, STRIPPED_WOOD);
             set.requireTo(s -> this.add(woodId(s, "button"), woodenButton(s.get(PLANKS), s.get(BUTTON))), PLANKS, BUTTON);
@@ -218,7 +218,7 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
         return "%s/".formatted(folder);
     }
 
-    public SingleItemRecipeJsonFactory variantStonecutting(ItemConvertible to, ItemConvertible from) {
+    public SingleItemRecipeJsonBuilder variantStonecutting(ItemConvertible to, ItemConvertible from) {
         return stonecutting(from, to);
     }
 

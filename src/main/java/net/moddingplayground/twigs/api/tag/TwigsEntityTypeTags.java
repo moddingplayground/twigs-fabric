@@ -1,15 +1,15 @@
 package net.moddingplayground.twigs.api.tag;
 
-import net.fabricmc.fabric.api.tag.TagFactory;
 import net.minecraft.entity.EntityType;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.moddingplayground.twigs.api.Twigs;
 
 public interface TwigsEntityTypeTags {
-    Tag.Identified<EntityType<?>> BAMBOO_LEAVES_SLOW_IMMUNE = register("bamboo_leaves_slow_immune");
+    TagKey<EntityType<?>> BAMBOO_LEAVES_SLOW_IMMUNE = register("bamboo_leaves_slow_immune");
 
-    private static Tag.Identified<EntityType<?>> register(String id) {
-        return TagFactory.ENTITY_TYPE.create(new Identifier(Twigs.MOD_ID, id));
+    private static TagKey<EntityType<?>> register(String id) {
+        return TagKey.of(Registry.ENTITY_TYPE_KEY, new Identifier(Twigs.MOD_ID, id));
     }
 }

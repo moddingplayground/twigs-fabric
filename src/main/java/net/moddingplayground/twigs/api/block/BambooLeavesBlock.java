@@ -98,7 +98,7 @@ public class BambooLeavesBlock extends PlantBlock implements Waterloggable {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && state.get(LAYERS) > 2) {
             EntityType<?> type = entity.getType();
-            if (!TwigsEntityTypeTags.BAMBOO_LEAVES_SLOW_IMMUNE.contains(type)) {
+            if (!type.isIn(TwigsEntityTypeTags.BAMBOO_LEAVES_SLOW_IMMUNE)) {
                 entity.slowMovement(state, new Vec3d(0.75D, 1.0D, 0.75D));
             }
         }

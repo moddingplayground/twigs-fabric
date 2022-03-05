@@ -2,7 +2,7 @@ package net.moddingplayground.twigs.impl.data;
 
 import net.minecraft.block.Block;
 import net.minecraft.tag.BlockTags;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.registry.Registry;
 import net.moddingplayground.frame.api.toymaker.v0.generator.tag.AbstractTagGenerator;
 import net.moddingplayground.twigs.api.tag.TwigsBlockTags;
@@ -251,7 +251,7 @@ public class BlockTagGenerator extends AbstractTagGenerator<Block> {
         );
     }
 
-    public void wood(WoodSet set, @Nullable Tag.Identified<Block> logs) {
+    public void wood(WoodSet set, @Nullable TagKey<Block> logs) {
         if (!set.isVanilla()) {
             this.wood(set, BlockTags.PLANKS, WoodBlock.PLANKS);
             this.wood(set, BlockTags.SAPLINGS, WoodBlock.SAPLING);
@@ -259,9 +259,9 @@ public class BlockTagGenerator extends AbstractTagGenerator<Block> {
             this.wood(set, logs, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
 
             if (set.isFlammable()) {
-                if (logs != null && !logs.values().isEmpty()) this.add(BlockTags.LOGS_THAT_BURN, logs);
+                if (logs != null && TwigsToymakerImpl.containsBlock(logs)) this.add(BlockTags.LOGS_THAT_BURN, logs);
             } else {
-                if (logs != null && !logs.values().isEmpty()) this.add(BlockTags.LOGS, logs);
+                if (logs != null && TwigsToymakerImpl.containsBlock(logs)) this.add(BlockTags.LOGS, logs);
                 this.wood(set, BlockTags.NON_FLAMMABLE_WOOD, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
             }
 
@@ -284,7 +284,7 @@ public class BlockTagGenerator extends AbstractTagGenerator<Block> {
         for (WoodSet set : sets) this.wood(set, null);
     }
 
-    public void wood(WoodSet set, @Nullable Tag.Identified<Block> tag, WoodBlock... woods) {
+    public void wood(WoodSet set, @Nullable TagKey<Block> tag, WoodBlock... woods) {
         for (WoodBlock wood : woods) { if (set.contains(wood)) this.add(tag, set.get(wood)); }
     }
 }

@@ -1,16 +1,16 @@
 package net.moddingplayground.twigs.api.tag;
 
-import net.fabricmc.fabric.api.tag.TagFactory;
 import net.minecraft.item.Item;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.moddingplayground.twigs.api.Twigs;
 
 public interface TwigsItemTags {
-    Tag.Identified<Item> TABLES = register("tables");
-    Tag.Identified<Item> PAPER_LANTERNS = register("paper_lanterns");
+    TagKey<Item> TABLES = register("tables");
+    TagKey<Item> PAPER_LANTERNS = register("paper_lanterns");
 
-    private static Tag.Identified<Item> register(String id) {
-        return TagFactory.ITEM.create(new Identifier(Twigs.MOD_ID, id));
+    private static TagKey<Item> register(String id) {
+        return TagKey.of(Registry.ITEM_KEY, new Identifier(Twigs.MOD_ID, id));
     }
 }

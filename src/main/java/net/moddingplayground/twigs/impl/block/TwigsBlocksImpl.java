@@ -8,12 +8,13 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.fabricmc.fabric.api.registry.TillableBlockRegistry;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShearsItem;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -40,11 +41,11 @@ public class TwigsBlocksImpl implements TwigsBlocks {
 
             Optional<BlockState> nu = Optional.empty();
 
-            if (state.isOf(Blocks.FLOWERING_AZALEA) && stack.isIn(FabricToolTags.SHEARS)) {
+            if (state.isOf(Blocks.FLOWERING_AZALEA) && stack.getItem() instanceof ShearsItem) {
                 Block.dropStack(world, pos.up(), new ItemStack(AZALEA_FLOWERS, world.random.nextInt(2) + 1));
                 world.playSound(player, pos, TwigsSoundEvents.BLOCK_FLOWERING_AZALEA_SHEAR, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 nu = Optional.of(Blocks.AZALEA.getDefaultState());
-            } if (state.isOf(Blocks.BAMBOO) && stack.isIn(FabricToolTags.AXES)) {
+            } if (state.isOf(Blocks.BAMBOO) && stack.getItem() instanceof AxeItem) {
                 if (!world.getBlockState(pos.up()).isOf(Blocks.BAMBOO)) {
                     int leaves = state.get(Properties.BAMBOO_LEAVES).ordinal();
                     if (leaves > 0) {

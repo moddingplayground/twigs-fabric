@@ -3,7 +3,7 @@ package net.moddingplayground.twigs.impl.data;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tag.ItemTags;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.registry.Registry;
 import net.moddingplayground.frame.api.toymaker.v0.generator.tag.AbstractTagGenerator;
 import net.moddingplayground.twigs.api.tag.TwigsItemTags;
@@ -111,16 +111,16 @@ public class ItemTagGenerator extends AbstractTagGenerator<Item> {
         this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
     }
 
-    public void wood(WoodSet set, @Nullable Tag.Identified<Item> logs) {
+    public void wood(WoodSet set, @Nullable TagKey<Item> logs) {
         if (!set.isVanilla()) {
             this.wood(set, ItemTags.PLANKS, WoodBlock.PLANKS);
             this.wood(set, ItemTags.SAPLINGS, WoodBlock.SAPLING);
             this.wood(set, logs, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
 
             if (set.isFlammable()) {
-                if (logs != null && !logs.values().isEmpty()) this.add(ItemTags.LOGS_THAT_BURN, logs);
+                if (logs != null && TwigsToymakerImpl.containsItem(logs)) this.add(ItemTags.LOGS_THAT_BURN, logs);
             } else {
-                if (logs != null && !logs.values().isEmpty()) this.add(ItemTags.LOGS, logs);
+                if (logs != null && TwigsToymakerImpl.containsItem(logs)) this.add(ItemTags.LOGS, logs);
                 this.wood(set, ItemTags.NON_FLAMMABLE_WOOD, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
             }
 
@@ -141,11 +141,11 @@ public class ItemTagGenerator extends AbstractTagGenerator<Item> {
         for (WoodSet set : sets) this.wood(set, null);
     }
 
-    public void wood(WoodSet set, @Nullable Tag.Identified<Item> tag, WoodBlock... woods) {
+    public void wood(WoodSet set, @Nullable TagKey<Item> tag, WoodBlock... woods) {
         for (WoodBlock wood : woods) { if (set.contains(wood)) this.add(tag, set.get(wood).asItem()); }
     }
 
-    private void add(Tag.Identified<Item> tag, Block... blocks) {
+    private void add(TagKey<Item> tag, Block... blocks) {
         for (Block block : blocks) this.add(tag, block.asItem());
     }
 }
