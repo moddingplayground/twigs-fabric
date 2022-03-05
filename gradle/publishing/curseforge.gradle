@@ -1,8 +1,6 @@
 apply plugin: "com.matthewprenger.cursegradle"
-curseforge {
-    def ENV = System.getenv()
-
-    if (!ENV.CURSEFORGE_API_KEY) return
+def ENV = System.getenv()
+if (ENV.CURSEFORGE_API_KEY) curseforge {
     apiKey = ENV.CURSEFORGE_API_KEY
 
     project {
@@ -13,7 +11,11 @@ curseforge {
         changelog = new File("./gradle/publishing", "CHANGELOG.md").text
         releaseType = project.release_type
 
-        mainArtifact(remapJar) { displayName = "[$project.ver_minecraft] $project.mod_name $version" }
+        mainArtifact(remapJar) {
+            displayName = "[$project.ver_minecraft] $project.mod_name $project.version"
+            relations { requiredLibrary 'fabric-api' }
+        }
+
         afterEvaluate { uploadTask.dependsOn(remapJar) }
     }
 
