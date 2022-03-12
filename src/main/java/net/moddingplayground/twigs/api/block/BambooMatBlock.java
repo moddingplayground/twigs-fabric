@@ -37,7 +37,6 @@ public class BambooMatBlock extends Block {
     }
 
     @Override
-    @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockPos pos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(pos);

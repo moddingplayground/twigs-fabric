@@ -71,7 +71,6 @@ public class PaperLanternBlock extends LanternBlock {
     }
 
     @Override
-    @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         World world = ctx.getWorld();
         BlockPos pos = ctx.getBlockPos();
