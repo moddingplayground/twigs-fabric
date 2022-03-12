@@ -17,6 +17,7 @@ import net.minecraft.util.SignType;
 import net.minecraft.util.registry.Registry;
 import net.moddingplayground.frame.api.contentregistries.v0.StateRegistry;
 import net.moddingplayground.twigs.api.Twigs;
+import net.moddingplayground.twigs.api.item.TwigsItemGroups;
 import net.moddingplayground.twigs.api.registry.TwigsRegistry;
 import net.moddingplayground.twigs.impl.item.TwigsBoatItem;
 
@@ -60,7 +61,7 @@ public class WoodSet {
             }
         }
 
-        if (boat) this.boatItem = new TwigsBoatItem(this, new FabricItemSettings().maxCount(1).group(Twigs.getItemGroup()));
+        if (boat) this.boatItem = new TwigsBoatItem(this, new FabricItemSettings().maxCount(1).group(TwigsItemGroups.ALL));
     }
 
     public WoodSet(String modId, String id, ItemGroup itemGroup, boolean flammable) {

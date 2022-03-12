@@ -1,5 +1,6 @@
 package net.moddingplayground.twigs.impl.world.gen.feature;
 
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.registry.RegistryEntry;
@@ -12,7 +13,7 @@ import net.moddingplayground.twigs.api.world.gen.feature.TwigsPlacedFeatures;
 import static net.fabricmc.fabric.api.biome.v1.BiomeModifications.*;
 import static net.minecraft.world.gen.GenerationStep.Feature.*;
 
-public class TwigsPlacedFeaturesImpl implements TwigsPlacedFeatures {
+public final class TwigsPlacedFeaturesImpl implements TwigsPlacedFeatures, ModInitializer {
     @Override
     public void onInitialize() {
         tryPlace(PATCH_TWIG, TwigsBiomeTags.SPAWNS_TWIG, VEGETAL_DECORATION);

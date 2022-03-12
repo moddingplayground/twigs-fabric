@@ -17,7 +17,7 @@ import net.moddingplayground.twigs.api.Twigs;
 import java.util.function.Function;
 
 @SuppressWarnings("deprecation")
-public class TwigsToymakerImpl implements Twigs, ToymakerEntrypoint {
+public final class TwigsToymakerImpl implements Twigs, ToymakerEntrypoint {
     @Override
     public void onInitializeToymaker() {
         ItemModelGeneratorStore.register(() -> new ItemModelGenerator(MOD_ID));

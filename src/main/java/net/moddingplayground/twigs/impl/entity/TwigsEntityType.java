@@ -13,32 +13,34 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.registry.Registry;
 import net.moddingplayground.twigs.api.Twigs;
+import net.moddingplayground.twigs.api.item.TwigsItemGroups;
 
 public class TwigsEntityType {
     public static final EntityType<TwigsBoatEntity> BOAT = register(
         "boat",
         FabricEntityTypeBuilder.<TwigsBoatEntity>create()
                                .entityFactory(TwigsBoatEntity::new).spawnGroup(SpawnGroup.MISC)
-                               .dimensions(EntityDimensions.fixed(1.375f, 0.5625f)).trackRangeChunks(10)
+                               .dimensions(EntityDimensions.fixed(1.375f, 0.5625f))
+                               .trackRangeChunks(10)
     );
 
     @SuppressWarnings("unchecked")
-    private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> entityType, Pair<Integer, Integer> colors, SpawnEggFactory eggFactory) {
-        EntityType<T> builtEntityType = entityType.build();
+    private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> builder, Pair<Integer, Integer> colors, SpawnEggFactory eggFactory) {
+        EntityType<T> type = builder.build();
         if (eggFactory != null) {
-            Item.Settings settings = new FabricItemSettings().maxCount(64).group(Twigs.getItemGroup());
-            Item item = eggFactory.apply((EntityType<? extends MobEntity>) builtEntityType, colors.getLeft(), colors.getRight(), settings);
+            Item.Settings settings = new FabricItemSettings().maxCount(64).group(TwigsItemGroups.ALL);
+            Item item = eggFactory.apply((EntityType<? extends MobEntity>) type, colors.getLeft(), colors.getRight(), settings);
             Registry.register(Registry.ITEM,  new Identifier(Twigs.MOD_ID, "%s_spawn_egg".formatted(id)), item);
         }
-        return Registry.register(Registry.ENTITY_TYPE, new Identifier(Twigs.MOD_ID, id), builtEntityType);
+        return Registry.register(Registry.ENTITY_TYPE, new Identifier(Twigs.MOD_ID, id), type);
     }
 
-    private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> entityType, Pair<Integer, Integer> colors) {
-        return register(id, entityType, colors, SpawnEggItem::new);
+    private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> builder, Pair<Integer, Integer> colors) {
+        return register(id, builder, colors, SpawnEggItem::new);
     }
 
-    private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> entityType) {
-        return register(id, entityType, null, null);
+    private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> builder) {
+        return register(id, builder, null, null);
     }
 
     private static Pair<Integer, Integer> colors(int primary, int secondary) {

@@ -1,6 +1,5 @@
 package net.moddingplayground.twigs.api.world.gen.feature;
 
-import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -17,7 +16,7 @@ import java.util.List;
 import static net.minecraft.world.gen.YOffset.*;
 import static net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier.*;
 
-public interface TwigsPlacedFeatures extends ModInitializer {
+public interface TwigsPlacedFeatures {
     RegistryEntry<PlacedFeature> PATCH_TWIG = register("patch_twig", TwigsConfiguredFeatures.PATCH_TWIG, modifiers(2));
     RegistryEntry<PlacedFeature> PATCH_PEBBLE = register("patch_pebble", TwigsConfiguredFeatures.PATCH_PEBBLE, modifiers(2));
 

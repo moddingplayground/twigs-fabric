@@ -17,13 +17,11 @@ import net.moddingplayground.twigs.impl.client.render.entity.TwigsBoatEntityRend
 import net.moddingplayground.twigs.impl.entity.TwigsEntityType;
 
 @Environment(EnvType.CLIENT)
-public class TwigsClientImpl implements Twigs, ClientModInitializer {
-    private static TwigsClientImpl instance = null;
-    protected final InitializationLogger initializer;
+public final class TwigsClientImpl implements Twigs, ClientModInitializer {
+    private final InitializationLogger initializer;
 
     public TwigsClientImpl() {
         this.initializer = new InitializationLogger(LOGGER, MOD_NAME, EnvType.CLIENT);
-        instance = this;
     }
 
     @SuppressWarnings("UnstableApiUsage")
@@ -58,9 +56,5 @@ public class TwigsClientImpl implements Twigs, ClientModInitializer {
 
     public void woods(WoodSet... woods) {
         for (WoodSet wood : woods) wood.registerClient();
-    }
-
-    public static TwigsClientImpl getInstance() {
-        return instance;
     }
 }

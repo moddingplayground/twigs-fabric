@@ -19,6 +19,7 @@ import net.minecraft.util.Util;
 import net.minecraft.util.registry.Registry;
 import net.moddingplayground.twigs.api.Twigs;
 import net.moddingplayground.twigs.api.block.TableBlock;
+import net.moddingplayground.twigs.api.item.TwigsItemGroups;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -92,6 +93,6 @@ public class TwigsWoodSet extends WoodSet {
     }
 
     private static Block register(String id, Block block) {
-        return register(id, block, b -> new BlockItem(b, new FabricItemSettings().group(Twigs.getItemGroup())));
+        return register(id, block, b -> new BlockItem(b, new FabricItemSettings().group(TwigsItemGroups.ALL)));
     }
 }

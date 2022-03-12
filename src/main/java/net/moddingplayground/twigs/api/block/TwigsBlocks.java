@@ -1,7 +1,6 @@
 package net.moddingplayground.twigs.api.block;
 
 import com.google.common.collect.ImmutableList;
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.AbstractBlock;
@@ -28,6 +27,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 import net.moddingplayground.twigs.api.Twigs;
 import net.moddingplayground.twigs.api.item.FlintAndSteelBlockItem;
+import net.moddingplayground.twigs.api.item.TwigsItemGroups;
 import net.moddingplayground.twigs.impl.block.vanilla.PublicStairsBlock;
 import net.moddingplayground.twigs.impl.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.impl.block.wood.WoodBlock;
@@ -36,8 +36,7 @@ import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.ToIntFunction;
 
-@SuppressWarnings("unused")
-public interface TwigsBlocks extends ModInitializer {
+public interface TwigsBlocks {
     Block TWIG = register("twig", new FloorLayerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().sounds(BlockSoundGroup.WOOD).noCollision()), FlintAndSteelBlockItem::new);
     Block PEBBLE = register("pebble", new FloorLayerBlock(FabricBlockSettings.of(Material.STONE).breakInstantly().sounds(BlockSoundGroup.STONE).noCollision()));
 
@@ -55,7 +54,7 @@ public interface TwigsBlocks extends ModInitializer {
                            .sounds(BlockSoundGroup.AZALEA_LEAVES)
     ));
 
-    // paper lanterns
+    /* Paper Lanterns */
 
     Block PAPER_LANTERN = register("paper_lantern", new PaperLanternBlock(
         Blocks.AIR,
@@ -69,7 +68,7 @@ public interface TwigsBlocks extends ModInitializer {
     Block CRIMSON_ROOTS_PAPER_LANTERN = register("crimson_roots_paper_lantern", new PaperLanternBlock(Blocks.CRIMSON_ROOTS, FabricBlockSettings.copyOf(PAPER_LANTERN)));
     Block DANDELION_PAPER_LANTERN = register("dandelion_paper_lantern", new PaperLanternBlock(Blocks.DANDELION, FabricBlockSettings.copyOf(PAPER_LANTERN)));
 
-    // bamboo
+    /* Bamboo */
 
     Block BAMBOO_THATCH = register("bamboo_thatch", new Block(FabricBlockSettings.copyOf(Blocks.ACACIA_LEAVES).sounds(BlockSoundGroup.AZALEA_LEAVES)));
     Block BAMBOO_THATCH_STAIRS = register("bamboo_thatch_stairs", new PublicStairsBlock(BAMBOO_THATCH.getDefaultState(), FabricBlockSettings.copyOf(BAMBOO_THATCH)));
@@ -81,7 +80,7 @@ public interface TwigsBlocks extends ModInitializer {
     Block STRIPPED_BAMBOO = register("stripped_bamboo", new StrippedBambooBlock(FabricBlockSettings.copyOf(Blocks.BAMBOO)));
 
     TwigsWoodSet STRIPPED_BAMBOO_SET = new TwigsWoodSet(
-        Twigs.MOD_ID, "stripped_bamboo", Twigs.getItemGroup(), WoodBlock::isArtificial,
+        Twigs.MOD_ID, "stripped_bamboo", TwigsItemGroups.ALL, WoodBlock::isArtificial,
         new WoodBlock.MaterialSet(Material.WOOD, Material.PLANT, Material.LEAVES, Material.DECORATION),
         new WoodBlock.ColorSet(MapColor.PALE_YELLOW, MapColor.OFF_WHITE),
         new WoodBlock.SoundSet(BlockSoundGroup.BAMBOO, BlockSoundGroup.BAMBOO_SAPLING, BlockSoundGroup.GRASS),
@@ -90,7 +89,7 @@ public interface TwigsBlocks extends ModInitializer {
 
     Block STRIPPED_BAMBOO_MAT = register("stripped_bamboo_mat", new BambooMatBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CARPET).sounds(BlockSoundGroup.SCAFFOLDING)));
 
-    // wood sets
+    /* Wood Sets */
 
     TwigsWoodSet OAK = registerVanillaWood("oak");
     TwigsWoodSet SPRUCE = registerVanillaWood("spruce");
@@ -103,7 +102,7 @@ public interface TwigsBlocks extends ModInitializer {
 
     List<TwigsWoodSet> WOOD_SETS = ImmutableList.of(STRIPPED_BAMBOO_SET, OAK, SPRUCE, BIRCH, JUNGLE, ACACIA, DARK_OAK, CRIMSON, WARPED);
 
-    // lamps
+    /* Lamps */
 
     Block LAMP = register("lamp", new LampBlock(
         FabricBlockSettings.of(Material.METAL)
@@ -127,7 +126,7 @@ public interface TwigsBlocks extends ModInitializer {
                            .blockVision(AbstractBlock.AbstractBlockState::hasEmissiveLighting)
     ));
 
-    // calcite
+    /* Calcite */
 
     Block CALCITE_STAIRS = register("calcite_stairs", new PublicStairsBlock(Blocks.CALCITE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.CALCITE)));
     Block CALCITE_SLAB = register("calcite_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.CALCITE)));
@@ -141,7 +140,7 @@ public interface TwigsBlocks extends ModInitializer {
     Block POLISHED_CALCITE_BRICK_WALL = register("polished_calcite_brick_wall", new WallBlock(FabricBlockSettings.copyOf(POLISHED_CALCITE_BRICKS)));
     Block CRACKED_POLISHED_CALCITE_BRICKS = register("cracked_polished_calcite_bricks", new Block(FabricBlockSettings.copyOf(POLISHED_CALCITE_BRICKS)));
 
-    // schist
+    /* Schist */
 
     Block SCHIST = register("schist", new Block(FabricBlockSettings.copyOf(Blocks.CALCITE)));
     Block SCHIST_STAIRS = register("schist_stairs", new PublicStairsBlock(SCHIST.getDefaultState(), FabricBlockSettings.copyOf(SCHIST)));
@@ -156,7 +155,7 @@ public interface TwigsBlocks extends ModInitializer {
     Block POLISHED_SCHIST_BRICK_WALL = register("polished_schist_brick_wall", new WallBlock(FabricBlockSettings.copyOf(POLISHED_SCHIST_BRICKS)));
     Block CRACKED_POLISHED_SCHIST_BRICKS = register("cracked_polished_schist_bricks", new Block(FabricBlockSettings.copyOf(POLISHED_SCHIST_BRICKS)));
 
-    // cobblestone bricks
+    /* Cobblestone Bricks */
 
     Block ROCKY_DIRT = register("rocky_dirt", new Block(FabricBlockSettings.copyOf(Blocks.DIRT).strength(2.5F).sounds(BlockSoundGroup.TUFF).requiresTool()));
 
@@ -170,7 +169,7 @@ public interface TwigsBlocks extends ModInitializer {
     Block MOSSY_COBBLESTONE_BRICK_SLAB = register("mossy_cobblestone_brick_slab", new SlabBlock(FabricBlockSettings.copyOf(COBBLESTONE_BRICKS)));
     Block MOSSY_COBBLESTONE_BRICK_WALL = register("mossy_cobblestone_brick_wall", new WallBlock(FabricBlockSettings.copyOf(COBBLESTONE_BRICKS)));
 
-    // tuff
+    /* Tuff */
 
     Block TUFF_STAIRS = register("tuff_stairs", new PublicStairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.BASALT)));
     Block TUFF_SLAB = register("tuff_slab", new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF)));
@@ -184,7 +183,7 @@ public interface TwigsBlocks extends ModInitializer {
     Block POLISHED_TUFF_BRICK_WALL = register("polished_tuff_brick_wall", new WallBlock(FabricBlockSettings.copyOf(POLISHED_TUFF_BRICKS)));
     Block CRACKED_POLISHED_TUFF_BRICKS = register("cracked_polished_tuff_bricks", new Block(FabricBlockSettings.copyOf(POLISHED_TUFF_BRICKS)));
 
-    // basalt
+    /* Basalt */
 
     Block POLISHED_BASALT_BRICKS = register("polished_basalt_bricks", new PillarBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_BASALT)));
     Block SMOOTH_BASALT_BRICKS = register("smooth_basalt_bricks", new Block(FabricBlockSettings.copyOf(Blocks.SMOOTH_BASALT)));
@@ -192,7 +191,7 @@ public interface TwigsBlocks extends ModInitializer {
     Block SMOOTH_BASALT_BRICK_SLAB = register("smooth_basalt_brick_slab", new SlabBlock(FabricBlockSettings.copyOf(SMOOTH_BASALT_BRICKS)));
     Block SMOOTH_BASALT_BRICK_WALL = register("smooth_basalt_brick_wall", new WallBlock(FabricBlockSettings.copyOf(SMOOTH_BASALT_BRICKS)));
 
-    // bloodstone
+    /* Bloodstone */
 
     Block BLOODSTONE = register("bloodstone", new Block(FabricBlockSettings.copyOf(Blocks.BASALT)));
     Block BLOODSTONE_STAIRS = register("bloodstone_stairs", new PublicStairsBlock(BLOODSTONE.getDefaultState(), FabricBlockSettings.copyOf(BLOODSTONE)));
@@ -207,7 +206,7 @@ public interface TwigsBlocks extends ModInitializer {
     Block POLISHED_BLOODSTONE_BRICK_WALL = register("polished_bloodstone_brick_wall", new WallBlock(FabricBlockSettings.copyOf(POLISHED_BLOODSTONE_BRICKS)));
     Block CRACKED_POLISHED_BLOODSTONE_BRICKS = register("cracked_polished_bloodstone_bricks", new Block(FabricBlockSettings.copyOf(POLISHED_BLOODSTONE_BRICKS)));
 
-    // twisting/weeping blackstone bricks
+    /* Twisting/Weeping Blackstone Bricks */
 
     Block TWISTING_POLISHED_BLACKSTONE_BRICKS = register("twisting_polished_blackstone_bricks", new Block(FabricBlockSettings.copyOf(Blocks.POLISHED_BLACKSTONE_BRICKS)));
     Block TWISTING_POLISHED_BLACKSTONE_BRICK_STAIRS = register("twisting_polished_blackstone_brick_stairs", new PublicStairsBlock(TWISTING_POLISHED_BLACKSTONE_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(TWISTING_POLISHED_BLACKSTONE_BRICKS)));
@@ -218,7 +217,7 @@ public interface TwigsBlocks extends ModInitializer {
     Block WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB = register("weeping_polished_blackstone_brick_slab", new SlabBlock(FabricBlockSettings.copyOf(WEEPING_POLISHED_BLACKSTONE_BRICKS)));
     Block WEEPING_POLISHED_BLACKSTONE_BRICK_WALL = register("weeping_polished_blackstone_brick_wall", new WallBlock(FabricBlockSettings.copyOf(WEEPING_POLISHED_BLACKSTONE_BRICKS)));
 
-    // rhyolite
+    /* Rhyolite */
 
     Block RHYOLITE = register("rhyolite", new PillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE)));
     Block RHYOLITE_STAIRS = register("rhyolite_stairs", new PublicStairsBlock(RHYOLITE.getDefaultState(), FabricBlockSettings.copyOf(RHYOLITE)));
@@ -233,7 +232,7 @@ public interface TwigsBlocks extends ModInitializer {
     Block POLISHED_RHYOLITE_BRICK_WALL = register("polished_rhyolite_brick_wall", new WallBlock(FabricBlockSettings.copyOf(POLISHED_RHYOLITE_BRICKS)));
     Block CRACKED_POLISHED_RHYOLITE_BRICKS = register("cracked_polished_rhyolite_bricks", new Block(FabricBlockSettings.copyOf(POLISHED_RHYOLITE_BRICKS)));
 
-    // bricks
+    /* Bricks */
 
     Block CHISELED_BRICKS = register("chiseled_bricks", new Block(FabricBlockSettings.copyOf(Blocks.BRICKS)));
     Block CRACKED_BRICKS = register("cracked_bricks", new Block(FabricBlockSettings.copyOf(Blocks.BRICKS)));
@@ -242,7 +241,7 @@ public interface TwigsBlocks extends ModInitializer {
     Block MOSSY_BRICK_SLAB = register("mossy_brick_slab", new SlabBlock(FabricBlockSettings.copyOf(MOSSY_BRICKS)));
     Block MOSSY_BRICK_WALL = register("mossy_brick_wall", new WallBlock(FabricBlockSettings.copyOf(MOSSY_BRICKS)));
 
-    // copper
+    /* Copper */
 
     Block COPPER_PILLAR = register("copper_pillar", new PillarOxidizableBlock(Oxidizable.OxidationLevel.UNAFFECTED, FabricBlockSettings.copyOf(Blocks.CUT_COPPER)));
     Block EXPOSED_COPPER_PILLAR = register("exposed_copper_pillar", new PillarOxidizableBlock(Oxidizable.OxidationLevel.EXPOSED, FabricBlockSettings.copyOf(Blocks.EXPOSED_CUT_COPPER)));
@@ -253,7 +252,7 @@ public interface TwigsBlocks extends ModInitializer {
     Block WAXED_WEATHERED_COPPER_PILLAR = register("waxed_weathered_copper_pillar", new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_WEATHERED_CUT_COPPER)));
     Block WAXED_OXIDIZED_COPPER_PILLAR = register("waxed_oxidized_copper_pillar", new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_OXIDIZED_CUT_COPPER)));
 
-    // amethyst
+    /* Amethyst */
 
     Block POLISHED_AMETHYST = register("polished_amethyst", new Block(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)));
     Block POLISHED_AMETHYST_STAIRS = register("polished_amethyst_stairs", new PublicStairsBlock(POLISHED_AMETHYST.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_AMETHYST)));
@@ -287,7 +286,7 @@ public interface TwigsBlocks extends ModInitializer {
 
     private static Block register(String id, Block block, BiFunction<Block, Item.Settings, Item> item) {
         Identifier identifier = new Identifier(Twigs.MOD_ID, id);
-        if (item != null) Registry.register(Registry.ITEM, identifier, item.apply(block, new FabricItemSettings().group(Twigs.getItemGroup())));
+        if (item != null) Registry.register(Registry.ITEM, identifier, item.apply(block, new FabricItemSettings().group(TwigsItemGroups.ALL)));
         return Registry.register(Registry.BLOCK, identifier, block);
     }
 
@@ -296,7 +295,7 @@ public interface TwigsBlocks extends ModInitializer {
     }
 
     private static TwigsWoodSet registerVanillaWood(String id, boolean flammable) {
-        return new TwigsWoodSet(Twigs.MOD_ID, id, Twigs.getItemGroup(), flammable).register();
+        return new TwigsWoodSet(Twigs.MOD_ID, id, TwigsItemGroups.ALL, flammable).register();
     }
 
     private static TwigsWoodSet registerVanillaWood(String id) {

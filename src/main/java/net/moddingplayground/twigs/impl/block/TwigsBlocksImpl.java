@@ -1,6 +1,7 @@
 package net.moddingplayground.twigs.impl.block;
 
 import com.google.common.collect.Maps;
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -31,7 +32,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 
-public class TwigsBlocksImpl implements TwigsBlocks {
+public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
     @Override
     public void onInitialize() {
         UseBlockCallback.EVENT.register((player, world, hand, hit) -> {

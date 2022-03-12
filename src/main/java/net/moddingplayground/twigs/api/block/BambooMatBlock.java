@@ -15,7 +15,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
 public class BambooMatBlock extends Block {
