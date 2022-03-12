@@ -45,17 +45,19 @@ public class PaperLanternBlock extends LanternBlock {
     );
 
     private final Block content;
-    private final Text text;
 
     public PaperLanternBlock(Block content, Settings settings) {
         super(settings);
         this.content = content;
-        this.text = this.content.getName().copy().formatted(Formatting.GRAY);
         this.setDefaultState(this.stateManager.getDefaultState().with(HANGING, false).with(WATERLOGGED, false));
     }
 
     public Direction getHangingDirection(BlockState state) {
         return state.get(HANGING) ? Direction.DOWN : Direction.UP;
+    }
+
+    public Text createContentTooltip() {
+        return this.content.getName().formatted(Formatting.GRAY);
     }
 
     @Override
@@ -116,6 +118,6 @@ public class PaperLanternBlock extends LanternBlock {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        if (this.content != Blocks.AIR) tooltip.add(text);
+        if (this.content != Blocks.AIR) tooltip.add(this.createContentTooltip());
     }
 }
