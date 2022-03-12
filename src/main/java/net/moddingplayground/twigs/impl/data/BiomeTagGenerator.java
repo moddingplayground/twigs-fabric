@@ -1,6 +1,5 @@
 package net.moddingplayground.twigs.impl.data;
 
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.world.biome.Biome;
 import net.moddingplayground.frame.api.toymaker.v0.generator.tag.AbstractTagGenerator;
@@ -57,10 +56,5 @@ public class BiomeTagGenerator extends AbstractTagGenerator<Biome> {
                 if (category == Category.MOUNTAIN) this.add(SPAWNS_SCHIST, biome);
             });
         }
-    }
-
-    @Override
-    public Identifier getId(Identifier id) {
-        return new Identifier(id.getNamespace(), String.format("%s/%s", this.tagDir, id.getPath()));
     }
 }

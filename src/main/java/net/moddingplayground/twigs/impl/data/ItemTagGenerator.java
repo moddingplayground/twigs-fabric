@@ -12,7 +12,10 @@ import net.moddingplayground.twigs.impl.block.wood.WoodBlock;
 import net.moddingplayground.twigs.impl.block.wood.WoodSet;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 import static net.moddingplayground.twigs.api.block.TwigsBlocks.*;
+import static net.moddingplayground.twigs.impl.data.TwigsToymakerImpl.*;
 
 public class ItemTagGenerator extends AbstractTagGenerator<Item> {
     public ItemTagGenerator(String modId) {
@@ -118,9 +121,9 @@ public class ItemTagGenerator extends AbstractTagGenerator<Item> {
             this.wood(set, logs, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
 
             if (set.isFlammable()) {
-                if (logs != null && TwigsToymakerImpl.containsItem(logs)) this.add(ItemTags.LOGS_THAT_BURN, logs);
+                Optional.ofNullable(logs).ifPresent(tag -> { if (containsItem(logs)) this.add(ItemTags.LOGS_THAT_BURN, tag); });
             } else {
-                if (logs != null && TwigsToymakerImpl.containsItem(logs)) this.add(ItemTags.LOGS, logs);
+                Optional.ofNullable(logs).ifPresent(tag -> { if (containsItem(logs)) this.add(ItemTags.LOGS, tag); });
                 this.wood(set, ItemTags.NON_FLAMMABLE_WOOD, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
             }
 
