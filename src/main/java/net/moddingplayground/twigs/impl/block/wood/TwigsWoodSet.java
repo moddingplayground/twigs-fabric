@@ -20,7 +20,9 @@ import net.minecraft.util.registry.Registry;
 import net.moddingplayground.twigs.api.Twigs;
 import net.moddingplayground.twigs.api.block.TableBlock;
 import net.moddingplayground.twigs.api.item.TwigsItemGroups;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -94,5 +96,11 @@ public class TwigsWoodSet extends WoodSet {
 
     private static Block register(String id, Block block) {
         return register(id, block, b -> new BlockItem(b, new FabricItemSettings().group(TwigsItemGroups.ALL)));
+    }
+
+    @Override
+    public void forEach(BiConsumer<@Nullable WoodBlock, Block> action) {
+        super.forEach(action);
+        action.accept(null, this.getTable());
     }
 }

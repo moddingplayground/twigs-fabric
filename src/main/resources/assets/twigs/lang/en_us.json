@@ -1,7 +1,13 @@
 {
   "mod.twigs.name": "Twigs",
   "mod.twigs.contact.discord": "Discord",
+
   "itemGroup.twigs.item_group": "Twigs",
+  "itemGroup.twigs.item_group.tab": "§7Twigs > §8%s",
+  "itemGroup.twigs.item_group.tab.woods_and_plants": "Natural",
+  "itemGroup.twigs.item_group.tab.stones": "Stone",
+  "itemGroup.twigs.item_group.tab.decoration": "Decoration",
+  "itemGroup.twigs.item_group.tab.miscellaneous": "Miscellaneous",
 
   "subtitles.block.twigs.lamp.light": "Lamp lit",
   "subtitles.block.twigs.lamp.extinguish": "Lamp extinguished",
