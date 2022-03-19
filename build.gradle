@@ -1,6 +1,4 @@
-buildscript {
-  dependencies { classpath 'org.kohsuke:github-api:1.301' }
-}
+buildscript { dependencies { classpath 'org.kohsuke:github-api:1.301' } }
 
 plugins {
   id 'java-library'
@@ -30,11 +28,6 @@ group = project.maven_group
 
 repositories {
   maven {
-    name = 'Terraformers'
-    url  = 'https://maven.terraformersmc.com/releases/'
-  }
-
-  maven {
     name = 'Modding Playground'
     url  = 'https://raw.githubusercontent.com/moddingplayground/maven/main/'
   }
@@ -42,6 +35,11 @@ repositories {
   maven {
     name = 'Shedaniel'
     url  = 'https://maven.shedaniel.me/'
+  }
+
+  maven {
+    name = 'Terraformers'
+    url  = 'https://maven.terraformersmc.com/releases/'
   }
 }
 
@@ -60,6 +58,8 @@ dependencies {
 
 /* Data Generation */
 
+def dataOutput = 'src/generated/resources'
+
 loom {
   runtimeOnlyLog4j = true
 
@@ -69,22 +69,24 @@ loom {
       vmArgs(
               "-Dtoymaker.datagen=true",
               "-Dtoymaker.datagen.modid=${project.mod_id}",
-              "-Dtoymaker.datagen.path=\"${project.file("src/generated/resources")};${project.file("$buildDir/resources/main")}\""
+              "-Dtoymaker.datagen.path=\"${project.file(dataOutput)};${project.file("$buildDir/resources/main")}\""
       )
     }
   }
 }
 
-sourceSets.main.resources { srcDirs += 'src/generated/resources' }
+sourceSets.main.resources { srcDirs += dataOutput }
 
 /* Resource Processing */
 
 import groovy.json.*
 processResources {
+  // populate fabric.mod.json with defined version property
   inputs.property 'version', version
   filesMatching('fabric.mod.json') { expand 'version': version }
 
   doLast {
+    // minify json files
     def start = System.currentTimeMillis()
     def minif = 0
     def bytes = 0
@@ -99,13 +101,17 @@ processResources {
   }
 }
 
+// add/remove files in jar
 jar { from('README.md', 'LICENSE', 'LICENSE_ASSETS') exclude('.cache') }
 
 /* Publishing */
 
 publishing { publications { mavenJava(MavenPublication) { from components.java } } }
 
-task releaseVersion(dependsOn: [ build, 'github', 'modrinth', 'curseforge' ])
+/* Releasing */
+
+def VER_NAME = "[$project.github_branch] $project.mod_name $project.version_id"
+def CHANGELOG = new File("./gradle", "CHANGELOG.md").text
 
 import org.kohsuke.github.*
 task github(dependsOn: build) {
@@ -115,8 +121,8 @@ task github(dependsOn: build) {
     def repository = github.getRepository(project.github_repository)
 
     def builder = new GHReleaseBuilder(repository, version)
-    builder.name("[$project.github_branch] $project.mod_name $project.version_id")
-    builder.body(new File("./gradle", "CHANGELOG.md").text)
+    builder.name(VER_NAME)
+    builder.body(CHANGELOG)
     builder.commitish(project.github_branch)
     builder.prerelease(project.release_type == 'beta')
     builder.create().uploadAsset(file("${project.buildDir}/libs/${archivesBaseName}-${version}.jar"), "application/java-archive");
@@ -128,14 +134,12 @@ if (ENV.MODRINTH_TOKEN) modrinth {
   token = ENV.MODRINTH_TOKEN
   projectId = project.modrinth_id
   versionNumber = version
-  versionName = "[$project.github_branch] $project.mod_name $project.version_id"
+  versionName = VER_NAME
   versionType = project.release_type
-  changelog = new File("./gradle", "CHANGELOG.md").text
+  changelog = CHANGELOG
   uploadFile = remapJar
   gameVersions = [ project.ver_minecraft ]
-  dependencies = [
-          new ModDependency("P7dR8mSH", DependencyType.REQUIRED)
-  ]
+  dependencies = [ new ModDependency("P7dR8mSH", DependencyType.REQUIRED) ]
 }
 
 if (ENV.CURSEFORGE_API_KEY) curseforge {
@@ -146,11 +150,11 @@ if (ENV.CURSEFORGE_API_KEY) curseforge {
     addGameVersion project.curseforge_version
     addGameVersion 'Fabric'
 
-    changelog = new File("./gradle", "CHANGELOG.md").text
+    changelog = CHANGELOG
     releaseType = project.release_type
 
     mainArtifact(remapJar) {
-      displayName = "[$project.github_branch] $project.mod_name $project.version_id"
+      displayName = VER_NAME
       relations { requiredLibrary 'fabric-api' }
     }
 
@@ -159,3 +163,5 @@ if (ENV.CURSEFORGE_API_KEY) curseforge {
 
   options { forgeGradleIntegration = false }
 }
+
+task releaseVersion(dependsOn: [ build, 'github', 'modrinth', 'curseforge' ])
