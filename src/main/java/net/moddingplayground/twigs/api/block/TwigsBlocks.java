@@ -37,8 +37,17 @@ import java.util.function.BiFunction;
 import java.util.function.ToIntFunction;
 
 public interface TwigsBlocks {
-    Block TWIG = register("twig", new FloorLayerBlock(FabricBlockSettings.of(Material.WOOD).breakInstantly().sounds(BlockSoundGroup.WOOD).noCollision()), FlintAndSteelBlockItem::new);
-    Block PEBBLE = register("pebble", new FloorLayerBlock(FabricBlockSettings.of(Material.STONE).breakInstantly().sounds(BlockSoundGroup.STONE).noCollision()));
+    Block TWIG = register("twig", new FloorLayerBlock(
+        FabricBlockSettings.of(TwigsMaterial.FLOOR_LAYER.apply(MapColor.OAK_TAN))
+                           .breakInstantly().noCollision()
+                           .sounds(BlockSoundGroup.WOOD)
+    ), FlintAndSteelBlockItem::new);
+
+    Block PEBBLE = register("pebble", new FloorLayerBlock(
+        FabricBlockSettings.of(TwigsMaterial.FLOOR_LAYER.apply(MapColor.STONE_GRAY))
+                           .breakInstantly().noCollision()
+                           .sounds(BlockSoundGroup.STONE)
+    ));
 
     Block AZALEA_FLOWERS = register("azalea_flowers", new GlowLichenBlock(
         FabricBlockSettings.of(Material.PLANT)

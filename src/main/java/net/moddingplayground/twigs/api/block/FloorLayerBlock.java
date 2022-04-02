@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.PlantBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
+import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -89,7 +90,17 @@ public class FloorLayerBlock extends PlantBlock implements Waterloggable {
     }
 
     @Override
+    public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
+        return state.getFluidState().isEmpty();
+    }
+
+    @Override
     public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+    }
+
+    @Override
+    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+        return (type == NavigationType.AIR && !this.collidable) || super.canPathfindThrough(state, world, pos, type);
     }
 }
