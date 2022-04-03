@@ -3,8 +3,8 @@ package net.moddingplayground.twigs.api.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.LanternBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.Waterloggable;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ai.pathing.NavigationType;
@@ -29,7 +29,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PaperLanternBlock extends LanternBlock {
+@SuppressWarnings("deprecation")
+public class PaperLanternBlock extends Block implements Waterloggable {
     public static final BooleanProperty HANGING = Properties.HANGING;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
