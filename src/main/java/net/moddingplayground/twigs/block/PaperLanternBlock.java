@@ -22,7 +22,8 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
-public class PaperLanternBlock extends LanternBlock {
+@SuppressWarnings("deprecation")
+public class PaperLanternBlock extends Block {
     public static final BooleanProperty HANGING;
     public static final BooleanProperty WATERLOGGED;
     protected static final VoxelShape STANDING_SHAPE;
