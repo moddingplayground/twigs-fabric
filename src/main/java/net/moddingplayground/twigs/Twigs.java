@@ -39,7 +39,6 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.ConfiguredFeatures;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.OrePlacedFeatures;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.PlacedFeatures;
 import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
@@ -57,6 +56,7 @@ import net.moddingplayground.twigs.block.vanilla.PublicWoodenButtonBlock;
 import net.moddingplayground.twigs.entity.CustomBoatItem;
 import net.moddingplayground.twigs.init.TwigsBlocks;
 import net.moddingplayground.twigs.init.TwigsItems;
+import net.moddingplayground.twigs.mixin.OrePlacedFeaturesInvoker;
 import net.moddingplayground.twigs.mixin.SignTypeAccessor;
 
 import java.util.List;
@@ -132,7 +132,7 @@ public class Twigs implements ModInitializer {
 
 	public static final RegistryEntry<PlacedFeature> ORE_RHYOLITE_LOWER = PlacedFeatures.register("ore_rhyolite_lower", ORE_RHYOLITE, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(16))));
 	public static final RegistryEntry<PlacedFeature> ORE_SCHIST_UPPER = PlacedFeatures.register("ore_schist_upper", ORE_SCHIST, modifiersWithRarity(6, HeightRangePlacementModifier.uniform(YOffset.fixed(64), YOffset.fixed(128))));
-	public static final RegistryEntry<PlacedFeature> ORE_SCHIST_LOWER = PlacedFeatures.register("ore_schist_lower", ORE_SCHIST, OrePlacedFeatures.modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(60))));
+	public static final RegistryEntry<PlacedFeature> ORE_SCHIST_LOWER = PlacedFeatures.register("ore_schist_lower", ORE_SCHIST, OrePlacedFeaturesInvoker.invokeModifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(60))));
 	public static final RegistryEntry<PlacedFeature> ORE_BLOODSTONE_NETHER = PlacedFeatures.register("ore_bloodstone_nether", ORE_BLOODSTONE, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(5), YOffset.fixed(225))));
 	//signs
 	public static final SignType STRIPPED_BAMBOO_SIGN_TYPE = SignTypeAccessor.registerNew(SignTypeAccessor.newSignType("stripped_bamboo"));

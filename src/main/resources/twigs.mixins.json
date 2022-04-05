@@ -8,6 +8,7 @@
     "BoatDropsMixin",
     "BoatTypeMixin",
     "DefaultBiomeFeaturesMixin",
+    "OrePlacedFeaturesInvoker",
     "SignTypeAccessor"
   ],
   "client": [],
