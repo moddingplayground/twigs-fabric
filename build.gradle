@@ -19,7 +19,7 @@ def ENV = System.getenv()
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 tasks.withType(JavaCompile).configureEach { it.options.release = 17 }
 
-String ver = "${project.version_id}+${project.github_branch}"
+String ver = "${project.version_id}+${project.major_version}"
 version = ENV.GITHUB_ACTIONS ? "${ver}.build.${ENV.GITHUB_RUN_NUMBER}" : ver
 
 group = project.maven_group
@@ -110,7 +110,7 @@ publishing { publications { mavenJava(MavenPublication) { from components.java }
 
 /* Releasing */
 
-def VER_NAME = "[$project.github_branch] $project.mod_name $project.version_id"
+def VER_NAME = "[$project.major_version] $project.mod_name $project.version_id"
 def CHANGELOG = new File("./gradle", "CHANGELOG.md").text
 
 import org.kohsuke.github.*
@@ -139,7 +139,10 @@ if (ENV.MODRINTH_TOKEN) modrinth {
   changelog = CHANGELOG
   uploadFile = remapJar
   gameVersions = [ project.ver_minecraft ]
-  dependencies = [ new ModDependency("P7dR8mSH", DependencyType.REQUIRED) ]
+  dependencies = [
+          new ModDependency("P7dR8mSH", DependencyType.REQUIRED),
+          new ModDependency("dY183GiL", DependencyType.REQUIRED)
+  ]
 }
 
 if (ENV.CURSEFORGE_API_KEY) curseforge {
@@ -155,7 +158,10 @@ if (ENV.CURSEFORGE_API_KEY) curseforge {
 
     mainArtifact(remapJar) {
       displayName = VER_NAME
-      relations { requiredLibrary 'fabric-api' }
+      relations {
+        requiredLibrary 'fabric-api'
+        requiredLibrary 'frame-api'
+      }
     }
 
     afterEvaluate { uploadTask.dependsOn(remapJar) }
