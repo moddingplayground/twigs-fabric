@@ -57,6 +57,7 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
         String misc = baseFolder("misc");
         this.add(misc + path(ROCKY_DIRT), chequer2x2(DIRT, PEBBLE, ROCKY_DIRT, 2));
         this.add(misc + path(TWIG), shapeless(TWIG, STICK, 2).group("sticks"));
+        this.add(misc + path(PEBBLE), generic2x2(PEBBLE, COBBLESTONE, 1));
 
         String floweringAzalea = path(FLOWERING_AZALEA);
         this.add(baseFolder(floweringAzalea) + floweringAzalea, shapeless(AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA, FLOWERING_AZALEA, 1));

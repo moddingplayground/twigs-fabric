@@ -6,19 +6,13 @@ import net.minecraft.block.PlantBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -26,7 +20,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
-import net.moddingplayground.twigs.api.sound.TwigsSoundEvents;
 
 @SuppressWarnings("deprecation")
 public class FloorLayerBlock extends PlantBlock implements Waterloggable {
@@ -71,22 +64,6 @@ public class FloorLayerBlock extends PlantBlock implements Waterloggable {
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return (!floor.getCollisionShape(world, pos).getFace(Direction.UP).isEmpty() || floor.isSideSolidFullSquare(world, pos, Direction.UP)) && !floor.isIn(BlockTags.LEAVES);
-    }
-
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult result) {
-        if (!world.isClient) {
-            ItemStack stack = player.getStackInHand(hand);
-            if (stack.isEmpty() || stack.isOf(this.asItem())) {
-                if (player.getInventory().insertStack(new ItemStack(this))) {
-                    world.removeBlock(pos, false);
-                    world.playSoundFromEntity(null, player, TwigsSoundEvents.BLOCK_FLOOR_LAYER_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                    return ActionResult.SUCCESS;
-                }
-            }
-        }
-
-        return ActionResult.PASS;
     }
 
     @Override
