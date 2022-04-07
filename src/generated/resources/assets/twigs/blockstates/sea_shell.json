@@ -75,6 +75,36 @@
       {
         "model": "twigs:block/sea_shell4",
         "y": 270
+      },
+      {
+        "model": "twigs:block/sea_shell5"
+      },
+      {
+        "model": "twigs:block/sea_shell5",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/sea_shell5",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/sea_shell5",
+        "y": 270
+      },
+      {
+        "model": "twigs:block/sea_shell6"
+      },
+      {
+        "model": "twigs:block/sea_shell6",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/sea_shell6",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/sea_shell6",
+        "y": 270
       }
     ]
   }

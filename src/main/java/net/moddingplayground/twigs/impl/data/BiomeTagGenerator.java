@@ -51,16 +51,7 @@ public class BiomeTagGenerator extends AbstractTagGenerator<Biome> {
         this.add(SPAWNS_SEA_SHELL,
             BEACH,
             SNOWY_BEACH,
-            STONY_SHORE,
-            WARM_OCEAN,
-            LUKEWARM_OCEAN,
-            DEEP_LUKEWARM_OCEAN,
-            OCEAN,
-            DEEP_OCEAN,
-            COLD_OCEAN,
-            DEEP_COLD_OCEAN ,
-            FROZEN_OCEAN,
-            DEEP_FROZEN_OCEAN
+            STONY_SHORE
         );
 
         for (Biome biome : BuiltinRegistries.BIOME) {
