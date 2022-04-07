@@ -275,7 +275,7 @@ public class StateModelGenerator extends AbstractStateModelGenerator {
         for (Block block : blocks) {
             this.add(block, b -> {
                 ArrayList<StateModelInfo> list = new ArrayList<>();
-                for (int i = 0; i < 2; i++) {
+                for (int i = 0; i <= 2; i++) {
                     Identifier n = Identifier.tryParse(name(b) + String.valueOf(i));
                     ModelGen model = floorLayer(n);
                     list.add(StateModelInfo.create(n, model));
