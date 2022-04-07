@@ -54,63 +54,53 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
                          this.family(f, this.stonecuttingVariantFactories, true);
                      });
 
-        String misc = baseFolder("misc");
-        this.add(misc + path(ROCKY_DIRT), chequer2x2(DIRT, PEBBLE, ROCKY_DIRT, 2));
-        this.add(misc + path(TWIG), shapeless(TWIG, STICK, 2).group("sticks"));
-        this.add(misc + path(COBBLESTONE) + "_from_" + path(PEBBLE), generic2x2(PEBBLE, COBBLESTONE, 1));
+        // miscellaneous
+        add(b("misc") + p(ROCKY_DIRT), chequer2x2(DIRT, PEBBLE, ROCKY_DIRT, 2));
+        add(b("misc") + p(TWIG), shapeless(TWIG, STICK, 2).group("sticks"));
+        add(b("misc") + p(COBBLESTONE) + "_from_" + p(PEBBLE), generic2x2(PEBBLE, COBBLESTONE, 1));
 
-        String floweringAzalea = path(FLOWERING_AZALEA);
-        this.add(baseFolder(floweringAzalea) + floweringAzalea, shapeless(AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA, FLOWERING_AZALEA, 1));
+        // azalea
+        add(b(FLOWERING_AZALEA) + p(FLOWERING_AZALEA), shapeless(AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA, FLOWERING_AZALEA, 1));
+        add(b(FLOWERING_AZALEA_LEAVES) +  p(FLOWERING_AZALEA_LEAVES), shapeless(AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES, 1));
 
-        String floweringAzaleaLeaves = path(FLOWERING_AZALEA_LEAVES);
-        this.add(baseFolder(floweringAzaleaLeaves) + floweringAzaleaLeaves, shapeless(AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES, 1));
+        // mossy bricks
+        add(bp(MOSSY_BRICKS) + p(MOSSY_BRICKS), shapeless(VINE, BRICKS, MOSSY_BRICKS, 2));
+        add(bp(MOSSY_COBBLESTONE_BRICKS) + p(MOSSY_COBBLESTONE_BRICKS), shapeless(VINE, COBBLESTONE_BRICKS, MOSSY_COBBLESTONE_BRICKS, 2));
 
-        String mossyBrick = pathP(MOSSY_BRICKS);
-        this.add(baseFolder(mossyBrick) + path(MOSSY_BRICKS), shapeless(VINE, BRICKS, MOSSY_BRICKS, 2));
+        // blackstone bricks
+        add(bp(TWISTING_POLISHED_BLACKSTONE_BRICKS) + p(TWISTING_POLISHED_BLACKSTONE_BRICKS), shapeless(TWISTING_VINES, POLISHED_BLACKSTONE_BRICKS, TWISTING_POLISHED_BLACKSTONE_BRICKS, 1));
+        add(bp(WEEPING_POLISHED_BLACKSTONE_BRICKS) + p(WEEPING_POLISHED_BLACKSTONE_BRICKS), shapeless(WEEPING_VINES, POLISHED_BLACKSTONE_BRICKS, WEEPING_POLISHED_BLACKSTONE_BRICKS, 1));
 
-        String mossyCobblestoneBrick = pathP(MOSSY_COBBLESTONE_BRICKS);
-        this.add(baseFolder(mossyCobblestoneBrick) + path(MOSSY_COBBLESTONE_BRICKS), shapeless(VINE, COBBLESTONE_BRICKS, MOSSY_COBBLESTONE_BRICKS, 2));
+        // stones
+        add(b(RHYOLITE) + p(RHYOLITE), chequer2x2(RED_SAND, QUARTZ, RHYOLITE, 2));
+        add(b(SCHIST) + p(SCHIST), chequer2x2(QUARTZ, CLAY_BALL, SCHIST, 2));
+        add(b(BLOODSTONE) + p(BLOODSTONE), chequer2x2(QUARTZ, IRON_NUGGET, BLOODSTONE, 2));
 
-        String twistingPBB = pathP(TWISTING_POLISHED_BLACKSTONE_BRICKS);
-        this.add(baseFolder(twistingPBB) + path(TWISTING_POLISHED_BLACKSTONE_BRICKS), shapeless(TWISTING_VINES, POLISHED_BLACKSTONE_BRICKS, TWISTING_POLISHED_BLACKSTONE_BRICKS, 1));
+        // paper lanterns
+        add(b(PAPER_LANTERN) +  p(PAPER_LANTERN), ringSurrounding(PAPER, TORCH, PAPER_LANTERN, 2));
+        paperLantern(ALLIUM, ALLIUM_PAPER_LANTERN);
+        paperLantern(BLUE_ORCHID, BLUE_ORCHID_PAPER_LANTERN);
+        paperLantern(CRIMSON_ROOTS, CRIMSON_ROOTS_PAPER_LANTERN);
+        paperLantern(DANDELION, DANDELION_PAPER_LANTERN);
 
-        String weepingPBB = pathP(WEEPING_POLISHED_BLACKSTONE_BRICKS);
-        this.add(baseFolder(weepingPBB) + path(WEEPING_POLISHED_BLACKSTONE_BRICKS), shapeless(WEEPING_VINES, POLISHED_BLACKSTONE_BRICKS, WEEPING_POLISHED_BLACKSTONE_BRICKS, 1));
+        // lamps
+        lamp(TORCH, LAMP);
+        lamp(SOUL_TORCH, SOUL_LAMP);
 
-        String rhyolite = path(RHYOLITE);
-        this.add(baseFolder(rhyolite) + rhyolite, chequer2x2(RED_SAND, QUARTZ, RHYOLITE, 2));
+        // shroomlamps
+        add(b("shroomlamp") + p(CRIMSON_SHROOMLAMP), this.sandwich(CRIMSON_PLANKS, SHROOMLIGHT, CRIMSON_SHROOMLAMP, 3));
+        add(b("shroomlamp") + p(WARPED_SHROOMLAMP), this.sandwich(WARPED_PLANKS, SHROOMLIGHT, WARPED_SHROOMLAMP, 3));
 
-        String schist = path(SCHIST);
-        this.add(baseFolder(schist) + schist, chequer2x2(QUARTZ, CLAY_BALL, SCHIST, 2));
+        // bamboo
+        add(b(BAMBOO_THATCH) + p(BAMBOO_THATCH), generic2x2(BAMBOO_LEAVES, BAMBOO_THATCH, 2));
+        add(b(BUNDLED_BAMBOO) + p(BUNDLED_BAMBOO), generic3x3(BAMBOO, BUNDLED_BAMBOO, 3));
+        add(b(BUNDLED_BAMBOO) + p(BUNDLED_BAMBOO) + "_undo", shapeless(BUNDLED_BAMBOO, BAMBOO, 3));
+        add(b(BUNDLED_BAMBOO) + p(STRIPPED_BAMBOO) + "_from_stonecutting", stonecutting(BUNDLED_BAMBOO, STRIPPED_BUNDLED_BAMBOO));
 
-        String bloodstone = path(BLOODSTONE);
-        this.add(baseFolder(bloodstone) + bloodstone, chequer2x2(QUARTZ, IRON_NUGGET, BLOODSTONE, 2));
-
-        String bambooThatch = path(BAMBOO_THATCH);
-        this.add(baseFolder(bambooThatch) + bambooThatch, generic2x2(BAMBOO_LEAVES, BAMBOO_THATCH, 2));
-
-        String paperLantern = path(PAPER_LANTERN);
-        this.add(baseFolder(paperLantern) + paperLantern, ringSurrounding(PAPER, TORCH, PAPER_LANTERN, 2));
-        this.paperLantern(ALLIUM, ALLIUM_PAPER_LANTERN);
-        this.paperLantern(BLUE_ORCHID, BLUE_ORCHID_PAPER_LANTERN);
-        this.paperLantern(CRIMSON_ROOTS, CRIMSON_ROOTS_PAPER_LANTERN);
-        this.paperLantern(DANDELION, DANDELION_PAPER_LANTERN);
-
-        this.lamp(TORCH, LAMP);
-        this.lamp(SOUL_TORCH, SOUL_LAMP);
-
-        String shroomlamp = baseFolder("shroomlamp");
-        this.add(shroomlamp + path(CRIMSON_SHROOMLAMP), this.sandwich(CRIMSON_PLANKS, SHROOMLIGHT, CRIMSON_SHROOMLAMP, 3));
-        this.add(shroomlamp + path(WARPED_SHROOMLAMP), this.sandwich(WARPED_PLANKS, SHROOMLIGHT, WARPED_SHROOMLAMP, 3));
-
-        String bundledBamboo = path(BUNDLED_BAMBOO);
-        this.add(baseFolder(bundledBamboo) + bundledBamboo, generic3x3(BAMBOO, BUNDLED_BAMBOO, 3));
-        this.add(baseFolder(bundledBamboo) + bundledBamboo + "_undo", shapeless(BUNDLED_BAMBOO, BAMBOO, 3));
-        this.add(baseFolder(bundledBamboo) + path(STRIPPED_BAMBOO) + "_from_stonecutting", stonecutting(BUNDLED_BAMBOO, STRIPPED_BUNDLED_BAMBOO));
-
-        this.add(woodId(STRIPPED_BAMBOO_SET, "from_stonecutting"), stonecutting(BAMBOO, STRIPPED_BAMBOO));
-        this.add(woodId(STRIPPED_BAMBOO_SET,"planks"), planks(STRIPPED_BAMBOO, STRIPPED_BAMBOO_SET.get(PLANKS)));
-        this.add(woodId(STRIPPED_BAMBOO_SET, "mat"), generic3x1(STRIPPED_BAMBOO, STRIPPED_BAMBOO_MAT, 2));
+        // woods
+        add(woodId(STRIPPED_BAMBOO_SET, "from_stonecutting"), stonecutting(BAMBOO, STRIPPED_BAMBOO));
+        add(woodId(STRIPPED_BAMBOO_SET,"planks"), planks(STRIPPED_BAMBOO, STRIPPED_BAMBOO_SET.get(PLANKS)));
+        add(woodId(STRIPPED_BAMBOO_SET, "mat"), generic3x1(STRIPPED_BAMBOO, STRIPPED_BAMBOO_MAT, 2));
 
         this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
     }
@@ -121,7 +111,7 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
             Block input = this.getVariantRecipeInput(family, variant, stonecutting);
 
             Optional<String> group = family.getGroup();
-            String blockId = path(output);
+            String blockId = p(output);
             String id = group.map(s -> s + "/").orElse("") + blockId + (stonecutting ? "_from_stonecutting" : "");
 
             if (func != null) {
@@ -143,7 +133,7 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
 
     private void lamp(Item torch, Block lamp) {
         this.add(
-            baseFolder("lamp") + path(lamp),
+            b("lamp") + p(lamp),
             ShapedRecipeJsonBuilder.create(lamp)
                                    .group("lamp")
                                    .pattern("###")
@@ -162,7 +152,7 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
 
     private void table(ItemConvertible slab, ItemConvertible fence, ItemConvertible table) {
         this.add(
-            baseFolder("table") + path(table),
+            b("table") + p(table),
             ShapedRecipeJsonBuilder.create(table)
                                    .group("table")
                                    .pattern("###")
@@ -177,7 +167,7 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
 
     public void paperLantern(ItemConvertible content, ItemConvertible lantern) {
         this.add(
-            baseFolder("paper_lantern") + path(lantern),
+            b("paper_lantern") + p(lantern),
             ShapelessRecipeJsonBuilder.create(lantern)
                                       .group("paper_lantern")
                                       .input(content)
@@ -212,11 +202,19 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
 
     public String woodId(WoodSet set, String id) {
         String setId = set.getId();
-        return baseFolder(setId) + setId + "_" + id;
+        return b(setId) + setId + "_" + id;
     }
 
-    public String baseFolder(String folder) {
+    public String b(String folder) {
         return "%s/".formatted(folder);
+    }
+
+    public String b(ItemConvertible item) {
+        return b(p(item));
+    }
+
+    public String bp(ItemConvertible item) {
+        return b(pp(item));
     }
 
     public SingleItemRecipeJsonBuilder variantStonecutting(ItemConvertible to, ItemConvertible from) {
@@ -231,12 +229,12 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
         return family.getBaseBlock();
     }
 
-    public String path(ItemConvertible item) {
+    public String p(ItemConvertible item) {
         return Registry.ITEM.getId(item.asItem()).getPath();
     }
 
-    public String pathP(ItemConvertible item) {
-        String path = path(item);
+    public String pp(ItemConvertible item) {
+        String path = p(item);
         return path.substring(0, path.length() - 1);
     }
 }
