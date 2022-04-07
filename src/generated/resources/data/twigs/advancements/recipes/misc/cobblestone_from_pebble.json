@@ -2,7 +2,7 @@
   "parent": "twigs:recipes/root",
   "rewards": {
     "recipes": [
-      "twigs:misc/pebble"
+      "twigs:misc/cobblestone_from_pebble"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "twigs:misc/pebble"
+        "recipe": "twigs:misc/cobblestone_from_pebble"
       }
     }
   },
