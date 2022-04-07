@@ -49,6 +49,12 @@ public interface TwigsBlocks {
                            .sounds(BlockSoundGroup.STONE)
     ));
 
+    Block SEA_SHELL = register("sea_shell", new FloorLayerBlock(
+        FabricBlockSettings.of(TwigsMaterial.FLOOR_LAYER.apply(MapColor.ORANGE))
+                           .breakInstantly().noCollision()
+                           .sounds(BlockSoundGroup.BONE)
+    ));
+
     Block AZALEA_FLOWERS = register("azalea_flowers", new GlowLichenBlock(
         FabricBlockSettings.of(Material.PLANT)
                            .breakInstantly().noCollision()

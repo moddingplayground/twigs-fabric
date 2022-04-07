@@ -18,6 +18,7 @@ public final class TwigsPlacedFeaturesImpl implements TwigsPlacedFeatures, ModIn
     public void onInitialize() {
         tryPlace(PATCH_TWIG, TwigsBiomeTags.SPAWNS_TWIG, VEGETAL_DECORATION);
         tryPlace(PATCH_PEBBLE, TwigsBiomeTags.SPAWNS_PEBBLE, VEGETAL_DECORATION);
+        tryPlace(PATCH_SEA_SHELL, TwigsBiomeTags.SPAWNS_SEA_SHELL, VEGETAL_DECORATION);
         tryPlace(ORE_RHYOLITE_LOWER, TwigsBiomeTags.SPAWNS_RHYOLITE, UNDERGROUND_ORES);
         tryPlace(ORE_BLOODSTONE_NETHER, TwigsBiomeTags.SPAWNS_BLOODSTONE, UNDERGROUND_DECORATION);
         tryPlace(ORE_SCHIST_UPPER, TwigsBiomeTags.SPAWNS_SCHIST, UNDERGROUND_ORES);

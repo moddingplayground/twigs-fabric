@@ -1,0 +1,81 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "twigs:block/sea_shell0"
+      },
+      {
+        "model": "twigs:block/sea_shell0",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/sea_shell0",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/sea_shell0",
+        "y": 270
+      },
+      {
+        "model": "twigs:block/sea_shell1"
+      },
+      {
+        "model": "twigs:block/sea_shell1",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/sea_shell1",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/sea_shell1",
+        "y": 270
+      },
+      {
+        "model": "twigs:block/sea_shell2"
+      },
+      {
+        "model": "twigs:block/sea_shell2",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/sea_shell2",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/sea_shell2",
+        "y": 270
+      },
+      {
+        "model": "twigs:block/sea_shell3"
+      },
+      {
+        "model": "twigs:block/sea_shell3",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/sea_shell3",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/sea_shell3",
+        "y": 270
+      },
+      {
+        "model": "twigs:block/sea_shell4"
+      },
+      {
+        "model": "twigs:block/sea_shell4",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/sea_shell4",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/sea_shell4",
+        "y": 270
+      }
+    ]
+  }
+}

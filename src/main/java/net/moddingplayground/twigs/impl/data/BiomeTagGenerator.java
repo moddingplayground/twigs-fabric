@@ -48,6 +48,21 @@ public class BiomeTagGenerator extends AbstractTagGenerator<Biome> {
             SWAMP
         );
 
+        this.add(SPAWNS_SEA_SHELL,
+            BEACH,
+            SNOWY_BEACH,
+            STONY_SHORE,
+            WARM_OCEAN,
+            LUKEWARM_OCEAN,
+            DEEP_LUKEWARM_OCEAN,
+            OCEAN,
+            DEEP_OCEAN,
+            COLD_OCEAN,
+            DEEP_COLD_OCEAN ,
+            FROZEN_OCEAN,
+            DEEP_FROZEN_OCEAN
+        );
+
         for (Biome biome : BuiltinRegistries.BIOME) {
             BuiltinRegistries.BIOME.getKey(biome).flatMap(BuiltinRegistries.BIOME::getEntry).ifPresent(entry -> {
                 Category category = Biome.getCategory(entry);

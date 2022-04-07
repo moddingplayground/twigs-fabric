@@ -9,6 +9,7 @@ import net.moddingplayground.twigs.api.Twigs;
 public interface TwigsBiomeTags {
     TagKey<Biome> SPAWNS_TWIG = register("spawns_twig");
     TagKey<Biome> SPAWNS_PEBBLE = register("spawns_pebble");
+    TagKey<Biome> SPAWNS_SEA_SHELL = register("spawns_sea_shell");
     TagKey<Biome> SPAWNS_RHYOLITE = register("spawns_rholite");
     TagKey<Biome> SPAWNS_BLOODSTONE = register("spawns_bloodstone");
     TagKey<Biome> SPAWNS_SCHIST = register("spawns_schist");

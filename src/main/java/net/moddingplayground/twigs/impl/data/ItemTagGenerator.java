@@ -227,6 +227,7 @@ public class ItemTagGenerator extends AbstractTagGenerator<Item> {
 
         // miscellaneous
         this.add(TwigsItemGroups.createTabTag("miscellaneous"),
+            SEA_SHELL,
             CHISELED_BRICKS,
             CRACKED_BRICKS,
             MOSSY_BRICKS,

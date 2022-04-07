@@ -48,6 +48,7 @@ public class ItemModelGenerator extends AbstractItemModelGenerator {
         this.generatedItems(
             TWIG,
             PEBBLE,
+            SEA_SHELL,
             AZALEA_FLOWERS,
             BAMBOO_LEAVES,
             PAPER_LANTERN,

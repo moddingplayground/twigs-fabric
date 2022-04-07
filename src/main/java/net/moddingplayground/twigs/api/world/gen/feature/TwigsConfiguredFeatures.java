@@ -21,6 +21,7 @@ import static net.minecraft.world.gen.feature.OreConfiguredFeatures.*;
 public interface TwigsConfiguredFeatures {
     RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> PATCH_TWIG = register("patch_twig", Feature.RANDOM_PATCH, randomPatch(BlockStateProvider.of(States.TWIG), 3));
     RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> PATCH_PEBBLE = register("patch_pebble", Feature.RANDOM_PATCH, randomPatch(BlockStateProvider.of(States.PEBBLE), 2));
+    RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> PATCH_SEA_SHELL = register("patch_sea_shell", Feature.RANDOM_PATCH, randomPatch(BlockStateProvider.of(States.SEA_SHELL), 2));
 
     RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_RHYOLITE = register("ore_rhyolite", Feature.ORE, new OreFeatureConfig(BASE_STONE_OVERWORLD, States.RHYOLITE, 45));
     RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> ORE_SCHIST = register("ore_schist", Feature.ORE, new OreFeatureConfig(BASE_STONE_OVERWORLD, States.SCHIST, 64));
@@ -37,6 +38,7 @@ public interface TwigsConfiguredFeatures {
     class States {
         public static final BlockState TWIG = TwigsBlocks.TWIG.getDefaultState();
         public static final BlockState PEBBLE = TwigsBlocks.PEBBLE.getDefaultState();
+        public static final BlockState SEA_SHELL = TwigsBlocks.SEA_SHELL.getDefaultState();
         public static final BlockState RHYOLITE = TwigsBlocks.RHYOLITE.getDefaultState();
         public static final BlockState SCHIST = TwigsBlocks.SCHIST.getDefaultState();
         public static final BlockState BLOODSTONE = TwigsBlocks.BLOODSTONE.getDefaultState();

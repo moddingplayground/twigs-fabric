@@ -34,6 +34,7 @@ public final class TwigsClientImpl implements Twigs, ClientModInitializer {
 
             TwigsBlocks.AZALEA_FLOWERS,
             TwigsBlocks.PEBBLE,
+            TwigsBlocks.SEA_SHELL,
             TwigsBlocks.TWIG,
             TwigsBlocks.POTTED_AZALEA_FLOWERS,
 

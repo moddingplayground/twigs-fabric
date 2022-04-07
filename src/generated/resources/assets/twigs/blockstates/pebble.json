@@ -30,6 +30,21 @@
       {
         "model": "twigs:block/pebble1",
         "y": 270
+      },
+      {
+        "model": "twigs:block/pebble2"
+      },
+      {
+        "model": "twigs:block/pebble2",
+        "y": 90
+      },
+      {
+        "model": "twigs:block/pebble2",
+        "y": 180
+      },
+      {
+        "model": "twigs:block/pebble2",
+        "y": 270
       }
     ]
   }

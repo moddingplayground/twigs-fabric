@@ -40,6 +40,7 @@ public class BlockLootTableGenerator extends AbstractBlockLootTableGenerator {
             TWIG,
             ROCKY_DIRT,
             PEBBLE,
+            SEA_SHELL,
             PAPER_LANTERN,
             ALLIUM_PAPER_LANTERN,
             BLUE_ORCHID_PAPER_LANTERN,

@@ -58,6 +58,7 @@ public class RecipeGenerator extends AbstractRecipeGenerator {
         add(b("misc") + p(ROCKY_DIRT), chequer2x2(DIRT, PEBBLE, ROCKY_DIRT, 2));
         add(b("misc") + p(TWIG), shapeless(TWIG, STICK, 2).group("sticks"));
         add(b("misc") + p(COBBLESTONE) + "_from_" + p(PEBBLE), generic2x2(PEBBLE, COBBLESTONE, 1));
+        add(b("misc") + p(BONE_MEAL) + "_from_" + p(SEA_SHELL), shapeless(SEA_SHELL, BONE_MEAL, 2));
 
         // azalea
         add(b(FLOWERING_AZALEA) + p(FLOWERING_AZALEA), shapeless(AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA_FLOWERS, AZALEA, FLOWERING_AZALEA, 1));
