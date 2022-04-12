@@ -2,18 +2,18 @@
   "variants": {
     "": [
       {
-        "model": "twigs:block/twig0"
+        "model": "twigs:block/twig"
       },
       {
-        "model": "twigs:block/twig0",
+        "model": "twigs:block/twig",
         "y": 90
       },
       {
-        "model": "twigs:block/twig0",
+        "model": "twigs:block/twig",
         "y": 180
       },
       {
-        "model": "twigs:block/twig0",
+        "model": "twigs:block/twig",
         "y": 270
       },
       {

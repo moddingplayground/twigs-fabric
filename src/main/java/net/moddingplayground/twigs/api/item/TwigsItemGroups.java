@@ -16,10 +16,10 @@ import java.util.function.Supplier;
 
 public interface TwigsItemGroups {
     TabbedItemGroup ALL = TabbedItemGroup.builder()
-                                         .tab(tab("woods_and_plants", () -> TwigsBlocks.BAMBOO_LEAVES))
-                                         .tab(tab("stones",           () -> TwigsBlocks.COBBLESTONE_BRICKS))
-                                         .tab(tab("decoration",       () -> TwigsBlocks.PAPER_LANTERN))
-                                         .tab(tab("miscellaneous",    () -> TwigsBlocks.POLISHED_AMETHYST))
+                                         .tab(tab("natural",       () -> TwigsBlocks.BAMBOO_LEAVES))
+                                         .tab(tab("stones",        () -> TwigsBlocks.COBBLESTONE_BRICKS))
+                                         .tab(tab("decoration",    () -> TwigsBlocks.PAPER_LANTERN))
+                                         .tab(tab("miscellaneous", () -> TwigsBlocks.POLISHED_AMETHYST))
                                          .build(new Identifier(Twigs.MOD_ID, "item_group"), t -> GUIIcon.of(() -> new ItemStack(TwigsBlocks.TWIG)));
 
     static TagKey<Item> createTabTag(String id) {

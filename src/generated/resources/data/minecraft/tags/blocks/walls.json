@@ -1,22 +1,22 @@
 {
   "replace": false,
   "values": [
-    "twigs:mossy_brick_wall",
-    "twigs:cobblestone_brick_wall",
-    "twigs:mossy_cobblestone_brick_wall",
-    "twigs:smooth_basalt_brick_wall",
-    "twigs:polished_amethyst_brick_wall",
-    "twigs:twisting_polished_blackstone_brick_wall",
-    "twigs:weeping_polished_blackstone_brick_wall",
-    "twigs:tuff_wall",
-    "twigs:polished_tuff_brick_wall",
-    "twigs:calcite_wall",
-    "twigs:polished_calcite_brick_wall",
-    "twigs:rhyolite_wall",
-    "twigs:polished_rhyolite_brick_wall",
-    "twigs:schist_wall",
-    "twigs:polished_schist_brick_wall",
+    "twigs:polished_bloodstone_brick_wall",
     "twigs:bloodstone_wall",
-    "twigs:polished_bloodstone_brick_wall"
+    "twigs:polished_schist_brick_wall",
+    "twigs:schist_wall",
+    "twigs:polished_rhyolite_brick_wall",
+    "twigs:rhyolite_wall",
+    "twigs:polished_calcite_brick_wall",
+    "twigs:calcite_wall",
+    "twigs:polished_tuff_brick_wall",
+    "twigs:tuff_wall",
+    "twigs:weeping_polished_blackstone_brick_wall",
+    "twigs:twisting_polished_blackstone_brick_wall",
+    "twigs:polished_amethyst_brick_wall",
+    "twigs:smooth_basalt_brick_wall",
+    "twigs:mossy_cobblestone_brick_wall",
+    "twigs:cobblestone_brick_wall",
+    "twigs:mossy_brick_wall"
   ]
 }

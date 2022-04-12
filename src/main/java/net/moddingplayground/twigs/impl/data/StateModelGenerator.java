@@ -190,8 +190,9 @@ public class StateModelGenerator extends AbstractStateModelGenerator {
 
         this.add(CHISELED_BRICKS, b -> simple(name(b), cubeColumn(Identifier.tryParse(name(b) + "_top"), name(b))));
         this.lamps(LAMP, SOUL_LAMP);
+
         this.varyingFloorLayer(TWIG, PEBBLE);
-        this.moreVariedFloorLayer(SEA_SHELL);
+        this.varyingFloorLayer(6, SEA_SHELL);
     }
 
     public void woods(WoodSet... sets) {
@@ -272,12 +273,12 @@ public class StateModelGenerator extends AbstractStateModelGenerator {
             .texture("side", side);
     }
 
-    public void varyingFloorLayer(Block... blocks) {
+    public void varyingFloorLayer(int variants, Block... blocks) {
         for (Block block : blocks) {
             this.add(block, b -> {
                 ArrayList<StateModelInfo> list = new ArrayList<>();
-                for (int i = 0; i <= 2; i++) {
-                    Identifier n = Identifier.tryParse(name(b) + String.valueOf(i));
+                for (int i = 0; i <= variants; i++) {
+                    Identifier n = Identifier.tryParse(name(b) + (i == 0 ? "" : String.valueOf(i)));
                     ModelGen model = floorLayer(n);
                     list.add(StateModelInfo.create(n, model));
                     list.add(StateModelInfo.create(n, model).rotate(0, 90));
@@ -289,21 +290,8 @@ public class StateModelGenerator extends AbstractStateModelGenerator {
         }
     }
 
-    public void moreVariedFloorLayer(Block... blocks) {
-        for (Block block : blocks) {
-            this.add(block, b -> {
-                ArrayList<StateModelInfo> list = new ArrayList<>();
-                for (int i = 0; i <= 6; i++) {
-                    Identifier n = Identifier.tryParse(name(b) + String.valueOf(i));
-                    ModelGen model = floorLayer(n);
-                    list.add(StateModelInfo.create(n, model));
-                    list.add(StateModelInfo.create(n, model).rotate(0, 90));
-                    list.add(StateModelInfo.create(n, model).rotate(0, 180));
-                    list.add(StateModelInfo.create(n, model).rotate(0, 270));
-                }
-                return VariantsStateGen.variants(list.toArray(StateModelInfo[]::new));
-            });
-        }
+    public void varyingFloorLayer(Block... blocks) {
+        varyingFloorLayer(2, blocks);
     }
 
     public static InheritingModelGen floorLayer(Identifier texture) {

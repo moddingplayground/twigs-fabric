@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "twigs:schist",
-    "twigs:rhyolite"
+    "twigs:rhyolite",
+    "twigs:schist"
   ]
 }

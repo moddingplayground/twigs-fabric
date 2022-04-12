@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "minecraft:panda",
-    "minecraft:bee",
+    "minecraft:ocelot",
     "minecraft:parrot",
-    "minecraft:ocelot"
+    "minecraft:bee",
+    "minecraft:panda"
   ]
 }

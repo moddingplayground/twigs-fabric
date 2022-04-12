@@ -2,18 +2,18 @@
   "variants": {
     "": [
       {
-        "model": "twigs:block/sea_shell0"
+        "model": "twigs:block/sea_shell"
       },
       {
-        "model": "twigs:block/sea_shell0",
+        "model": "twigs:block/sea_shell",
         "y": 90
       },
       {
-        "model": "twigs:block/sea_shell0",
+        "model": "twigs:block/sea_shell",
         "y": 180
       },
       {
-        "model": "twigs:block/sea_shell0",
+        "model": "twigs:block/sea_shell",
         "y": 270
       },
       {

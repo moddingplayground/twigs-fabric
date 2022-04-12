@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "minecraft:plains",
-    "minecraft:sunflower_plains",
-    "minecraft:meadow",
-    "minecraft:river",
-    "minecraft:mushroom_fields",
-    "minecraft:stony_shore",
-    "minecraft:taiga",
-    "minecraft:old_growth_pine_taiga",
-    "minecraft:old_growth_spruce_taiga",
-    "minecraft:windswept_forest",
-    "minecraft:windswept_hills",
-    "minecraft:windswept_gravelly_hills",
-    "minecraft:windswept_savanna",
-    "minecraft:savanna",
+    "minecraft:swamp",
     "minecraft:savanna_plateau",
-    "minecraft:swamp"
+    "minecraft:savanna",
+    "minecraft:windswept_savanna",
+    "minecraft:windswept_gravelly_hills",
+    "minecraft:windswept_hills",
+    "minecraft:windswept_forest",
+    "minecraft:old_growth_spruce_taiga",
+    "minecraft:old_growth_pine_taiga",
+    "minecraft:taiga",
+    "minecraft:stony_shore",
+    "minecraft:mushroom_fields",
+    "minecraft:river",
+    "minecraft:meadow",
+    "minecraft:sunflower_plains",
+    "minecraft:plains"
   ]
 }

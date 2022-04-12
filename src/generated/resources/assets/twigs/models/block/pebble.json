@@ -1,6 +1,6 @@
 {
   "parent": "twigs:block/template_floor_layer",
   "textures": {
-    "texture": "twigs:block/twig0"
+    "texture": "twigs:block/pebble"
   }
 }

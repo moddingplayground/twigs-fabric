@@ -119,15 +119,15 @@ public class ItemTagGenerator extends AbstractTagGenerator<Item> {
         /* Item Group */
 
         // woods and plants
-        this.add(TwigsItemGroups.createTabTag("woods_and_plants"),
-            TWIG, PEBBLE, AZALEA_FLOWERS, BAMBOO_LEAVES,
+        this.add(TwigsItemGroups.createTabTag("natural"),
+            TWIG, PEBBLE, SEA_SHELL, AZALEA_FLOWERS, BAMBOO_LEAVES,
             BAMBOO_THATCH, BAMBOO_THATCH_SLAB, BAMBOO_THATCH_STAIRS,
             BUNDLED_BAMBOO, STRIPPED_BUNDLED_BAMBOO,
             STRIPPED_BAMBOO, STRIPPED_BAMBOO_MAT,
             ROCKY_DIRT, CRIMSON_SHROOMLAMP, WARPED_SHROOMLAMP
         );
 
-        WOOD_SETS.forEach(set -> set.forEach((element, block) -> this.add(TwigsItemGroups.createTabTag("woods_and_plants"), block)));
+        WOOD_SETS.forEach(set -> set.forEach((element, block) -> this.add(TwigsItemGroups.createTabTag("natural"), block)));
 
         // stones
         this.add(TwigsItemGroups.createTabTag("stones"),
@@ -227,7 +227,6 @@ public class ItemTagGenerator extends AbstractTagGenerator<Item> {
 
         // miscellaneous
         this.add(TwigsItemGroups.createTabTag("miscellaneous"),
-            SEA_SHELL,
             CHISELED_BRICKS,
             CRACKED_BRICKS,
             MOSSY_BRICKS,
