@@ -74,22 +74,23 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
 
         LootTableAdditions.of(Blocks.BAMBOO).defaulted(Twigs.MOD_ID).register();
 
-        FlammableBlockRegistry flamReg = FlammableBlockRegistry.getDefaultInstance();
-        flamReg.add(AZALEA_FLOWERS,30, 60);
-        flamReg.add(TWIG,30, 60);
-        flamReg.add(BAMBOO_LEAVES,30, 60);
-        flamReg.add(BAMBOO_THATCH,30, 60);
-        flamReg.add(BAMBOO_THATCH_SLAB, 30, 60);
-        flamReg.add(BAMBOO_THATCH_STAIRS, 30, 60);
-        flamReg.add(STRIPPED_BAMBOO, 5, 20);
+        FlammableBlockRegistry flammables = FlammableBlockRegistry.getDefaultInstance();
+        flammables.add(AZALEA_FLOWERS,30, 60);
+        flammables.add(TWIG,30, 60);
+        flammables.add(BAMBOO_LEAVES,30, 60);
+        flammables.add(BAMBOO_THATCH,30, 60);
+        flammables.add(BAMBOO_THATCH_SLAB, 30, 60);
+        flammables.add(BAMBOO_THATCH_STAIRS, 30, 60);
+        flammables.add(STRIPPED_BAMBOO, 5, 20);
 
-        FuelRegistry fuelReg = FuelRegistry.INSTANCE;
-        fuelReg.add(STRIPPED_BAMBOO, 50);
-        fuelReg.add(BUNDLED_BAMBOO, 450);
-        fuelReg.add(STRIPPED_BUNDLED_BAMBOO, 450);
+        FuelRegistry fuels = FuelRegistry.INSTANCE;
+        fuels.add(STRIPPED_BAMBOO, 50);
+        fuels.add(BUNDLED_BAMBOO, 450);
+        fuels.add(STRIPPED_BUNDLED_BAMBOO, 450);
 
-        CompostingChanceRegistry compReg = CompostingChanceRegistry.INSTANCE;
-        compReg.add(BAMBOO_LEAVES, 0.5F);
+        CompostingChanceRegistry composting = CompostingChanceRegistry.INSTANCE;
+        composting.add(BAMBOO_LEAVES, 0.5F);
+        composting.add(TWIG, 0.3F);
 
         TillableBlockRegistry.register(ROCKY_DIRT, ctx -> true, Blocks.COARSE_DIRT.getDefaultState(), PEBBLE);
         StrippableBlockRegistry.register(BUNDLED_BAMBOO, STRIPPED_BUNDLED_BAMBOO);
