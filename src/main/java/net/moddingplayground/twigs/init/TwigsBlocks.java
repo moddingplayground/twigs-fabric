@@ -43,8 +43,8 @@ import java.util.function.ToIntFunction;
 public final class TwigsBlocks {
 
     //lamps
-    public static final Block LAMP = register("lamp", new LampBlock(AbstractBlock.Settings.of(Material.METAL).requiresTool().strength(4.5F).sounds(BlockSoundGroup.LANTERN).luminance(createLightLevelFromLitBlockState(18))));
-    public static final Block SOUL_LAMP = register("soul_lamp", new LampBlock(FabricBlockSettings.copyOf(TwigsBlocks.LAMP).luminance(createLightLevelFromLitBlockState(17))));
+    public static final Block LAMP = register("lamp", new LampBlock(AbstractBlock.Settings.of(Material.METAL).requiresTool().strength(4.5F).sounds(BlockSoundGroup.LANTERN).luminance(createLightLevelFromLitBlockState(15))));
+    public static final Block SOUL_LAMP = register("soul_lamp", new LampBlock(FabricBlockSettings.copyOf(TwigsBlocks.LAMP).luminance(createLightLevelFromLitBlockState(15))));
     public static final Block CRIMSON_SHROOMLAMP = register("crimson_shroomlamp", new Block(AbstractBlock.Settings.of(Material.NETHER_WOOD).strength(3.5F).sounds(BlockSoundGroup.SHROOMLIGHT).blockVision(AbstractBlock.AbstractBlockState::hasEmissiveLighting).luminance(value -> 15).nonOpaque()));
     public static final Block WARPED_SHROOMLAMP = register("warped_shroomlamp", new Block(AbstractBlock.Settings.of(Material.NETHER_WOOD).strength(3.5F).sounds(BlockSoundGroup.SHROOMLIGHT).blockVision(AbstractBlock.AbstractBlockState::hasEmissiveLighting).luminance(value -> 15).nonOpaque()));
 
