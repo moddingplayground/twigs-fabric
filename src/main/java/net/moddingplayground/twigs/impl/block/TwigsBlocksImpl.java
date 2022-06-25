@@ -3,9 +3,7 @@ package net.moddingplayground.twigs.impl.block;
 import com.google.common.collect.Maps;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.fabricmc.fabric.api.registry.TillableBlockRegistry;
@@ -22,8 +20,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
-import net.moddingplayground.frame.api.loottables.v0.LootTableAdditions;
-import net.moddingplayground.twigs.api.Twigs;
 import net.moddingplayground.twigs.api.block.StrippedBambooBlock;
 import net.moddingplayground.twigs.api.block.TwigsBlocks;
 import net.moddingplayground.twigs.api.sound.TwigsSoundEvents;
@@ -72,8 +68,6 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
             return ActionResult.PASS;
         });
 
-        LootTableAdditions.of(Blocks.BAMBOO).defaulted(Twigs.MOD_ID).register();
-
         FlammableBlockRegistry flammables = FlammableBlockRegistry.getDefaultInstance();
         flammables.add(AZALEA_FLOWERS,30, 60);
         flammables.add(TWIG,30, 60);
@@ -82,15 +76,6 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
         flammables.add(BAMBOO_THATCH_SLAB, 30, 60);
         flammables.add(BAMBOO_THATCH_STAIRS, 30, 60);
         flammables.add(STRIPPED_BAMBOO, 5, 20);
-
-        FuelRegistry fuels = FuelRegistry.INSTANCE;
-        fuels.add(STRIPPED_BAMBOO, 50);
-        fuels.add(BUNDLED_BAMBOO, 450);
-        fuels.add(STRIPPED_BUNDLED_BAMBOO, 450);
-
-        CompostingChanceRegistry composting = CompostingChanceRegistry.INSTANCE;
-        composting.add(BAMBOO_LEAVES, 0.5F);
-        composting.add(TWIG, 0.3F);
 
         TillableBlockRegistry.register(ROCKY_DIRT, ctx -> true, Blocks.COARSE_DIRT.getDefaultState(), PEBBLE);
         StrippableBlockRegistry.register(BUNDLED_BAMBOO, STRIPPED_BUNDLED_BAMBOO);

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "twigs:sea_shell"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "minecraft:bone_meal"
+  }
+}

@@ -19,7 +19,7 @@ public final class TwigsEntityModelLayers implements ClientModInitializer {
         Identifier id = TwigsRegistry.WOOD.getId(set);
         Identifier identifier = new Identifier(id.getNamespace(), "boat/%s".formatted(id.getPath()));
         EntityModelLayer ret = new EntityModelLayer(identifier, "main");
-        EntityModelLayerRegistry.registerModelLayer(ret, BoatEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ret, () -> BoatEntityModel.getTexturedModelData(false));
         return ret;
     });
 

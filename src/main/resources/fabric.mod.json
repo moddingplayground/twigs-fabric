@@ -23,11 +23,7 @@
     "issues": "https://github.com/moddingplayground/twigs-fabric/issues"
   },
   "custom": {
-    "modmenu": {
-      "links": {
-        "mod.twigs.contact.discord": "https://discord.moddingplayground.net"
-      }
-    }
+    "modmenu": { "links": { "mod.twigs.contact.discord": "https://discord.moddingplayground.net" } }
   },
 
   "environment": "*",
@@ -35,22 +31,23 @@
     "main":     [
       "net.moddingplayground.twigs.impl.TwigsImpl",
       "net.moddingplayground.twigs.impl.block.TwigsBlocksImpl",
+      "net.moddingplayground.twigs.impl.item.TwigsItemsImpl",
       "net.moddingplayground.twigs.impl.world.gen.feature.TwigsPlacedFeaturesImpl"
     ],
-    "toymaker": [ "net.moddingplayground.twigs.impl.data.TwigsToymakerImpl" ],
-
     "client":   [
       "net.moddingplayground.twigs.impl.client.TwigsClientImpl",
       "net.moddingplayground.twigs.impl.client.model.TwigsEntityModelLayers"
-    ]
+    ],
+
+    "fabric-datagen": [ "net.moddingplayground.twigs.impl.data.TwigsDataGeneratorImpl" ]
   },
   "mixins": [ "twigs.mixins.json" ],
 
   "depends": {
     "java": ">=17",
-    "minecraft": ">=1.18.2",
-    "fabricloader": ">=0.13",
-    "fabric": ">=0.50",
-    "frame": ">=0.16"
+    "minecraft": ">=1.19",
+    "fabricloader": ">=0.14",
+    "fabric": ">=0.56",
+    "frame": ">=0.18"
   }
 }

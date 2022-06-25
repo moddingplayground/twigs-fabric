@@ -5,8 +5,7 @@ import net.minecraft.block.Oxidizable;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 @SuppressWarnings("deprecation")
 public class PillarOxidizableBlock extends PillarBlock implements Oxidizable {

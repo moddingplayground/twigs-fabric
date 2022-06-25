@@ -5,7 +5,7 @@ plugins {
   id 'idea'
   id 'eclipse'
 
-  id 'fabric-loom' version '0.11-SNAPSHOT'
+  id 'fabric-loom' version '0.12-SNAPSHOT'
   id 'maven-publish'
 
   id 'com.modrinth.minotaur' version '2.0.2'
@@ -58,24 +58,26 @@ dependencies {
 
 /* Data Generation */
 
+def devDataGen = false
 def dataOutput = 'src/generated/resources'
 
 loom {
   runtimeOnlyLog4j = true
 
   runs {
-    data {
+    datagen {
       server()
-      vmArgs(
-              "-Dtoymaker.datagen=true",
-              "-Dtoymaker.datagen.modid=${project.mod_id}",
-              "-Dtoymaker.datagen.path=\"${project.file(dataOutput)};${project.file("$buildDir/resources/main")}\""
-      )
+
+      name "Data Generation"
+      vmArg "-Dfabric-api.datagen"
+      vmArg "-Dfabric-api.datagen.output-dir=${file(dataOutput)}"
+
+      runDir "build/datagen"
     }
   }
 }
 
-sourceSets.main.resources { srcDirs += dataOutput }
+sourceSets { main { resources { srcDirs += devDataGen ? dataOutput : 'src/oldgenerated/resources' } } }
 
 /* Resource Processing */
 

@@ -1,6 +1,5 @@
 package net.moddingplayground.twigs.api.block;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -35,10 +34,5 @@ public class StrippedBambooBlock extends QuadPoleBlock {
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext ctx) {
         Vec3d offset = state.getModelOffset(world, pos);
         return super.getCollisionShape(state, world, pos, ctx).offset(offset.x, offset.y, offset.z);
-    }
-
-    @Override
-    public AbstractBlock.OffsetType getOffsetType() {
-        return OffsetType.XZ;
     }
 }

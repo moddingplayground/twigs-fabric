@@ -9,6 +9,7 @@
     "BoatItemAccessor",
     "EntityPredicateMixin",
     "OrePlacedFeaturesAccessor",
+    "RecipeProviderAccessor",
     "SignTypeInvoker"
   ],
   "client": [],

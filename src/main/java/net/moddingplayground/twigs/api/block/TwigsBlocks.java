@@ -1,7 +1,6 @@
 package net.moddingplayground.twigs.api.block;
 
 import com.google.common.collect.ImmutableList;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -17,8 +16,6 @@ import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.entity.EntityType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
@@ -26,14 +23,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 import net.moddingplayground.twigs.api.Twigs;
-import net.moddingplayground.twigs.api.item.FlintAndSteelBlockItem;
 import net.moddingplayground.twigs.api.item.TwigsItemGroups;
 import net.moddingplayground.twigs.impl.block.vanilla.PublicStairsBlock;
 import net.moddingplayground.twigs.impl.block.wood.TwigsWoodSet;
 import net.moddingplayground.twigs.impl.block.wood.WoodBlock;
 
 import java.util.List;
-import java.util.function.BiFunction;
 import java.util.function.ToIntFunction;
 
 public interface TwigsBlocks {
@@ -41,7 +36,7 @@ public interface TwigsBlocks {
         FabricBlockSettings.of(TwigsMaterial.FLOOR_LAYER.apply(MapColor.OAK_TAN))
                            .breakInstantly().noCollision()
                            .sounds(BlockSoundGroup.WOOD)
-    ), FlintAndSteelBlockItem::new);
+    ));
 
     Block PEBBLE = register("pebble", new FloorLayerBlock(
         FabricBlockSettings.of(TwigsMaterial.FLOOR_LAYER.apply(MapColor.STONE_GRAY))
@@ -61,7 +56,7 @@ public interface TwigsBlocks {
                            .sounds(BlockSoundGroup.AZALEA)
     ));
 
-    Block POTTED_AZALEA_FLOWERS = register("potted_azalea_flowers", new FlowerPotBlock(AZALEA_FLOWERS, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()), null);
+    Block POTTED_AZALEA_FLOWERS = register("potted_azalea_flowers", new FlowerPotBlock(AZALEA_FLOWERS, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));
 
     Block BAMBOO_LEAVES = register("bamboo_leaves", new BambooLeavesBlock(
         FabricBlockSettings.copyOf(Blocks.ACACIA_LEAVES)
@@ -299,14 +294,8 @@ public interface TwigsBlocks {
         return false;
     }
 
-    private static Block register(String id, Block block, BiFunction<Block, Item.Settings, Item> item) {
-        Identifier identifier = new Identifier(Twigs.MOD_ID, id);
-        if (item != null) Registry.register(Registry.ITEM, identifier, item.apply(block, new FabricItemSettings().group(TwigsItemGroups.ALL)));
-        return Registry.register(Registry.BLOCK, identifier, block);
-    }
-
     private static Block register(String id, Block block) {
-        return register(id, block, BlockItem::new);
+        return Registry.register(Registry.BLOCK, new Identifier(Twigs.MOD_ID, id), block);
     }
 
     private static TwigsWoodSet registerVanillaWood(String id, boolean flammable) {

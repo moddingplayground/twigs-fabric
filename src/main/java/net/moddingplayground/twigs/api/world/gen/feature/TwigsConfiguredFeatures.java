@@ -32,7 +32,7 @@ public interface TwigsConfiguredFeatures {
     }
 
     private static <C extends FeatureConfig, F extends Feature<C>> RegistryEntry<ConfiguredFeature<C, ?>> register(String id, F feature, C config) {
-        return BuiltinRegistries.method_40360(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(Twigs.MOD_ID, id).toString(), new ConfiguredFeature<>(feature, config));
+        return BuiltinRegistries.addCasted(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(Twigs.MOD_ID, id).toString(), new ConfiguredFeature<>(feature, config));
     }
 
     class States {

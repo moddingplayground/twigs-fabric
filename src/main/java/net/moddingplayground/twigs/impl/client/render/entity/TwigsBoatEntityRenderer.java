@@ -78,7 +78,7 @@ public class TwigsBoatEntityRenderer<T extends TwigsBoatEntity> extends EntityRe
     public static BoatEntityModel modelLayer(EntityRendererFactory.Context ctx, Identifier id) {
         WoodSet set = TwigsRegistry.WOOD.get(id);
         EntityModelLayer layer = TwigsEntityModelLayers.BOAT_LAYERS.apply(set);
-        return new BoatEntityModel(ctx.getPart(layer));
+        return new BoatEntityModel(ctx.getPart(layer), false);
     }
 
     public BoatEntityModel getModelLayer(T entity) {

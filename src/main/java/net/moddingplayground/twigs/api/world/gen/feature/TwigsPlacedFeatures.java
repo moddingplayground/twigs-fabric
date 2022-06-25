@@ -21,7 +21,7 @@ public interface TwigsPlacedFeatures {
     RegistryEntry<PlacedFeature> PATCH_PEBBLE = register("patch_pebble", TwigsConfiguredFeatures.PATCH_PEBBLE, modifiers(2));
     RegistryEntry<PlacedFeature> PATCH_SEA_SHELL = register("patch_sea_shell", TwigsConfiguredFeatures.PATCH_SEA_SHELL, modifiers(2));
 
-    RegistryEntry<PlacedFeature> ORE_RHYOLITE_LOWER = register("ore_rhyolite_lower", TwigsConfiguredFeatures.ORE_RHYOLITE, countOre(2, uniform(getBottom(), fixed(16))));
+    RegistryEntry<PlacedFeature> ORE_RHYOLITE = register("ore_rhyolite", TwigsConfiguredFeatures.ORE_RHYOLITE, countOre(2, uniform(getBottom(), fixed(16))));
 
     RegistryEntry<PlacedFeature> ORE_BLOODSTONE_NETHER = register("ore_bloodstone_nether", TwigsConfiguredFeatures.ORE_BLOODSTONE, countOre(2, uniform(fixed(5), getTop())));
 

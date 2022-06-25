@@ -10,9 +10,9 @@ public interface TwigsBiomeTags {
     TagKey<Biome> SPAWNS_TWIG = register("spawns_twig");
     TagKey<Biome> SPAWNS_PEBBLE = register("spawns_pebble");
     TagKey<Biome> SPAWNS_SEA_SHELL = register("spawns_sea_shell");
-    TagKey<Biome> SPAWNS_RHYOLITE = register("spawns_rholite");
     TagKey<Biome> SPAWNS_BLOODSTONE = register("spawns_bloodstone");
     TagKey<Biome> SPAWNS_SCHIST = register("spawns_schist");
+    TagKey<Biome> DOES_NOT_SPAWN_RHYOLITE = register("does_not_spawn_rhyolite");
 
     private static TagKey<Biome> register(String id) {
         return TagKey.of(Registry.BIOME_KEY, new Identifier(Twigs.MOD_ID, id));
