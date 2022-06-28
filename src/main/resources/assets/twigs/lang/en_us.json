@@ -13,8 +13,6 @@
   "subtitles.block.twigs.lamp.extinguish": "Lamp extinguished",
   "subtitles.block.twigs.floor_layer.pickup": "Block picked up",
 
-  "entity.twigs.boat": "Boat",
-
   "block.twigs.azalea_flowers": "Azalea Flowers",
   "block.twigs.oak_table": "Oak Table",
   "block.twigs.spruce_table": "Spruce Table",
@@ -102,6 +100,7 @@
   "block.twigs.stripped_bamboo_fence": "Stripped Bamboo Fence",
   "block.twigs.stripped_bamboo_fence_gate": "Stripped Bamboo Fence Gate",
   "item.twigs.stripped_bamboo_boat": "Stripped Bamboo Boat",
+  "item.twigs.stripped_bamboo_chest_boat": "Stripped Bamboo Chest Boat",
   "block.twigs.rocky_dirt": "Rocky Dirt",
   "block.twigs.crimson_shroomlamp": "Crimson Shroomlamp",
   "block.twigs.warped_shroomlamp": "Warped Shroomlamp",

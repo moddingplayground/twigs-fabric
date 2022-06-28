@@ -36,8 +36,9 @@
     ],
     "client":   [
       "net.moddingplayground.twigs.impl.client.TwigsClientImpl",
-      "net.moddingplayground.twigs.impl.client.model.TwigsEntityModelLayers"
+      "net.moddingplayground.twigs.impl.client.block.TwigsBlocksClientImpl"
     ],
+    "frame-woods": [ "net.moddingplayground.twigs.impl.entity.TwigsBoatTypesImpl" ],
 
     "fabric-datagen": [ "net.moddingplayground.twigs.impl.data.TwigsDataGeneratorImpl" ]
   },
@@ -48,6 +49,6 @@
     "minecraft": ">=1.19",
     "fabricloader": ">=0.14",
     "fabric": ">=0.56",
-    "frame": ">=0.18"
+    "frame": ">=0.19"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "parent": "toymaker:block/template_wall_sided_side_tall",
+  "parent": "twigs:block/template_wall_sided_side_tall",
   "textures": {
     "bottom": "twigs:block/rhyolite_top",
     "top": "twigs:block/rhyolite_top",

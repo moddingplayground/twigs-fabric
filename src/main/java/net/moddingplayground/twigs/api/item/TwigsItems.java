@@ -3,20 +3,23 @@ package net.moddingplayground.twigs.api.item;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.BoatItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.SignItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.moddingplayground.twigs.api.Twigs;
 import net.moddingplayground.twigs.api.block.TwigsBlocks;
+import net.moddingplayground.twigs.api.entity.TwigsBoatTypes;
 
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public interface TwigsItems {
     Item TWIG = register(TwigsBlocks.TWIG, FlintAndSteelBlockItem::new);
     Item PEBBLE = register(TwigsBlocks.PEBBLE);
     Item SEA_SHELL = register(TwigsBlocks.SEA_SHELL);
     Item AZALEA_FLOWERS = register(TwigsBlocks.AZALEA_FLOWERS);
-    Item BAMBOO_LEAVES = register(TwigsBlocks.BAMBOO_LEAVES);
 
     Item PAPER_LANTERN = register(TwigsBlocks.PAPER_LANTERN);
     Item ALLIUM_PAPER_LANTERN = register(TwigsBlocks.ALLIUM_PAPER_LANTERN);
@@ -24,13 +27,39 @@ public interface TwigsItems {
     Item CRIMSON_ROOTS_PAPER_LANTERN = register(TwigsBlocks.CRIMSON_ROOTS_PAPER_LANTERN);
     Item DANDELION_PAPER_LANTERN = register(TwigsBlocks.DANDELION_PAPER_LANTERN);
 
+    Item BAMBOO_LEAVES = register(TwigsBlocks.BAMBOO_LEAVES);
+
     Item BAMBOO_THATCH = register(TwigsBlocks.BAMBOO_THATCH);
     Item BAMBOO_THATCH_STAIRS = register(TwigsBlocks.BAMBOO_THATCH_STAIRS);
     Item BAMBOO_THATCH_SLAB = register(TwigsBlocks.BAMBOO_THATCH_SLAB);
+
     Item BUNDLED_BAMBOO = register(TwigsBlocks.BUNDLED_BAMBOO);
     Item STRIPPED_BUNDLED_BAMBOO = register(TwigsBlocks.STRIPPED_BUNDLED_BAMBOO);
+
     Item STRIPPED_BAMBOO = register(TwigsBlocks.STRIPPED_BAMBOO);
+    Item STRIPPED_BAMBOO_PLANKS = register(TwigsBlocks.STRIPPED_BAMBOO_PLANKS);
+    Item STRIPPED_BAMBOO_SLAB = register(TwigsBlocks.STRIPPED_BAMBOO_SLAB);
+    Item STRIPPED_BAMBOO_FENCE = register(TwigsBlocks.STRIPPED_BAMBOO_FENCE);
+    Item STRIPPED_BAMBOO_FENCE_GATE = register(TwigsBlocks.STRIPPED_BAMBOO_FENCE_GATE);
+    Item STRIPPED_BAMBOO_STAIRS = register(TwigsBlocks.STRIPPED_BAMBOO_STAIRS);
+    Item STRIPPED_BAMBOO_BUTTON = register(TwigsBlocks.STRIPPED_BAMBOO_BUTTON);
+    Item STRIPPED_BAMBOO_PRESSURE_PLATE = register(TwigsBlocks.STRIPPED_BAMBOO_PRESSURE_PLATE);
+    Item STRIPPED_BAMBOO_DOOR = register(TwigsBlocks.STRIPPED_BAMBOO_DOOR);
+    Item STRIPPED_BAMBOO_TRAPDOOR = register(TwigsBlocks.STRIPPED_BAMBOO_TRAPDOOR);
+    Item STRIPPED_BAMBOO_SIGN = register(TwigsBlocks.STRIPPED_BAMBOO_SIGN, (block, settings) -> new SignItem(settings.maxCount(16), block, TwigsBlocks.STRIPPED_BAMBOO_WALL_SIGN));
     Item STRIPPED_BAMBOO_MAT = register(TwigsBlocks.STRIPPED_BAMBOO_MAT);
+    Item STRIPPED_BAMBOO_BOAT = unstackable("stripped_bamboo_boat", settings -> new BoatItem(false, TwigsBoatTypes.STRIPPED_BAMBOO, settings));
+    Item STRIPPED_BAMBOO_CHEST_BOAT = unstackable("stripped_bamboo_chest_boat", settings -> new BoatItem(true, TwigsBoatTypes.STRIPPED_BAMBOO, settings));
+    Item STRIPPED_BAMBOO_TABLE = register(TwigsBlocks.STRIPPED_BAMBOO_TABLE);
+
+    Item OAK_TABLE = register(TwigsBlocks.OAK_TABLE);
+    Item SPRUCE_TABLE = register(TwigsBlocks.SPRUCE_TABLE);
+    Item BIRCH_TABLE = register(TwigsBlocks.BIRCH_TABLE);
+    Item JUNGLE_TABLE = register(TwigsBlocks.JUNGLE_TABLE);
+    Item ACACIA_TABLE = register(TwigsBlocks.ACACIA_TABLE);
+    Item DARK_OAK_TABLE = register(TwigsBlocks.DARK_OAK_TABLE);
+    Item CRIMSON_TABLE = register(TwigsBlocks.CRIMSON_TABLE);
+    Item WARPED_TABLE = register(TwigsBlocks.WARPED_TABLE);
 
     Item LAMP = register(TwigsBlocks.LAMP);
     Item SOUL_LAMP = register(TwigsBlocks.SOUL_LAMP);
@@ -156,16 +185,23 @@ public interface TwigsItems {
     Item CRACKED_POLISHED_AMETHYST_BRICKS = register(TwigsBlocks.CRACKED_POLISHED_AMETHYST_BRICKS);
 
     private static Item register(String id, Item item) {
-        Identifier identifier = new Identifier(Twigs.MOD_ID, id);
-        return Registry.register(Registry.ITEM, identifier, item);
+        return Registry.register(Registry.ITEM, new Identifier(Twigs.MOD_ID, id), item);
     }
 
-    private static Item register(Block block, BiFunction<Block, Item.Settings, Item> item) {
+    private static Item register(String id, Function<FabricItemSettings, Item> item) {
+        return register(id, item.apply(new FabricItemSettings().group(TwigsItemGroups.ALL)));
+    }
+
+    private static Item register(Block block, BiFunction<Block, FabricItemSettings, Item> item) {
         Identifier id = Registry.BLOCK.getId(block);
         return Registry.register(Registry.ITEM, id, item.apply(block, new FabricItemSettings().group(TwigsItemGroups.ALL)));
     }
 
     private static Item register(Block block) {
         return register(block, BlockItem::new);
+    }
+
+    private static Item unstackable(String id, Function<FabricItemSettings, Item> item) {
+        return register(id, settings -> item.apply(settings.maxCount(1)));
     }
 }

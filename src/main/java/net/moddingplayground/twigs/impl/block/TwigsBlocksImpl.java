@@ -11,6 +11,7 @@ import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
@@ -20,6 +21,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.moddingplayground.frame.api.contentregistries.v0.StateRegistry;
 import net.moddingplayground.twigs.api.block.StrippedBambooBlock;
 import net.moddingplayground.twigs.api.block.TwigsBlocks;
 import net.moddingplayground.twigs.api.sound.TwigsSoundEvents;
@@ -31,6 +33,11 @@ import java.util.Optional;
 public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
     @Override
     public void onInitialize() {
+        StateRegistry.BLOCK_ENTITY_SUPPORTS.apply(BlockEntityType.SIGN).add(
+            STRIPPED_BAMBOO_SIGN,
+            STRIPPED_BAMBOO_WALL_SIGN
+        );
+
         UseBlockCallback.EVENT.register((player, world, hand, hit) -> {
             ItemStack stack = player.getStackInHand(hand);
             BlockPos pos = hit.getBlockPos();

@@ -6,11 +6,8 @@
   "mixins": [
     "AbstractBlockStateMixin",
     "BlocksInvoker",
-    "BoatItemAccessor",
-    "EntityPredicateMixin",
     "OrePlacedFeaturesAccessor",
-    "RecipeProviderAccessor",
-    "SignTypeInvoker"
+    "RecipeProviderAccessor"
   ],
   "client": [],
   "injectors": {

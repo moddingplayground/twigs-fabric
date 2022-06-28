@@ -33,10 +33,6 @@ import net.moddingplayground.twigs.api.tag.TwigsBiomeTags;
 import net.moddingplayground.twigs.api.tag.TwigsBlockTags;
 import net.moddingplayground.twigs.api.tag.TwigsEntityTypeTags;
 import net.moddingplayground.twigs.api.tag.TwigsItemTags;
-import net.moddingplayground.twigs.impl.block.wood.TwigsWoodSet;
-import net.moddingplayground.twigs.impl.block.wood.WoodBlock;
-import net.moddingplayground.twigs.impl.block.wood.WoodSet;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.Optional;
@@ -370,8 +366,6 @@ public final class TwigsDataGeneratorImpl implements Twigs, DataGeneratorEntrypo
                 CRACKED_POLISHED_AMETHYST_BRICKS
             );
 
-            this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
-
             this.getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(
                 STRIPPED_BAMBOO,
                 STRIPPED_BUNDLED_BAMBOO,
@@ -496,43 +490,6 @@ public final class TwigsDataGeneratorImpl implements Twigs, DataGeneratorEntrypo
                 WAXED_OXIDIZED_COPPER_PILLAR
             );
         }
-
-        public void wood(WoodSet set, @Nullable TagKey<Block> logs) {
-            if (!set.isVanilla()) {
-                this.wood(set, BlockTags.PLANKS, WoodBlock.PLANKS);
-                this.wood(set, BlockTags.SAPLINGS, WoodBlock.SAPLING);
-                this.wood(set, BlockTags.FLOWER_POTS, WoodBlock.POTTED_SAPLING);
-                this.wood(set, logs, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
-
-                if (set.isFlammable()) {
-                    Optional.ofNullable(logs).ifPresent(tag -> { if (containsBlock(logs)) this.getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).addTag(tag); });
-                } else {
-                    Optional.ofNullable(logs).ifPresent(tag -> { if (containsBlock(logs)) this.getOrCreateTagBuilder(BlockTags.LOGS).addTag(tag); });
-                    this.wood(set, BlockTags.NON_FLAMMABLE_WOOD, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
-                }
-
-                this.wood(set, BlockTags.LEAVES, WoodBlock.LEAVES);
-                this.wood(set, BlockTags.WOODEN_SLABS, WoodBlock.SLAB);
-                this.wood(set, BlockTags.WOODEN_PRESSURE_PLATES, WoodBlock.PRESSURE_PLATE);
-                this.wood(set, BlockTags.WOODEN_FENCES, WoodBlock.FENCE);
-                this.wood(set, BlockTags.WOODEN_TRAPDOORS, WoodBlock.TRAPDOOR);
-                this.wood(set, BlockTags.FENCE_GATES, WoodBlock.FENCE_GATE);
-                this.wood(set, BlockTags.WOODEN_STAIRS, WoodBlock.STAIRS);
-                this.wood(set, BlockTags.WOODEN_BUTTONS, WoodBlock.BUTTON);
-                this.wood(set, BlockTags.WOODEN_DOORS, WoodBlock.DOOR);
-                this.wood(set, BlockTags.STANDING_SIGNS, WoodBlock.SIGN);
-                this.wood(set, BlockTags.WALL_SIGNS, WoodBlock.WALL_SIGN);
-            }
-            if (set instanceof TwigsWoodSet twigs) this.getOrCreateTagBuilder(TwigsBlockTags.TABLES).add(twigs.getTable());
-        }
-
-        public void woods(WoodSet... sets) {
-            for (WoodSet set : sets) this.wood(set, null);
-        }
-
-        public void wood(WoodSet set, @Nullable TagKey<Block> tag, WoodBlock... woods) {
-            for (WoodBlock wood : woods) { if (set.contains(wood)) this.getOrCreateTagBuilder(tag).add(set.get(wood)); }
-        }
     }
 
     private static class ItemTagProvider extends FabricTagProvider.ItemTagProvider {
@@ -629,8 +586,6 @@ public final class TwigsDataGeneratorImpl implements Twigs, DataGeneratorEntrypo
                 TwigsItems.DANDELION_PAPER_LANTERN
             );
 
-            this.woods(WOOD_SETS.toArray(TwigsWoodSet[]::new));
-
             /* Item Group */
 
             // woods and plants
@@ -651,8 +606,6 @@ public final class TwigsDataGeneratorImpl implements Twigs, DataGeneratorEntrypo
                 TwigsItems.CRIMSON_SHROOMLAMP,
                 TwigsItems.WARPED_SHROOMLAMP
             );
-
-            WOOD_SETS.forEach(set -> set.forEach((element, block) -> this.getOrCreateTagBuilder(TwigsItemGroups.createTabTag("natural")).add(block.asItem())));
 
             // stones
             this.getOrCreateTagBuilder(TwigsItemGroups.createTabTag("stones")).add(
@@ -776,40 +729,6 @@ public final class TwigsDataGeneratorImpl implements Twigs, DataGeneratorEntrypo
                 TwigsItems.POLISHED_AMETHYST_BRICK_WALL,
                 TwigsItems.CRACKED_POLISHED_AMETHYST_BRICKS
             );
-        }
-
-        public void wood(WoodSet set, @Nullable TagKey<Item> logs) {
-            if (!set.isVanilla()) {
-                this.wood(set, ItemTags.PLANKS, WoodBlock.PLANKS);
-                this.wood(set, ItemTags.SAPLINGS, WoodBlock.SAPLING);
-                this.wood(set, logs, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
-
-                if (set.isFlammable()) {
-                    Optional.ofNullable(logs).ifPresent(tag -> { if (containsItem(logs)) this.getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).addTag(tag); });
-                } else {
-                    Optional.ofNullable(logs).ifPresent(tag -> { if (containsItem(logs)) this.getOrCreateTagBuilder(ItemTags.LOGS).addTag(tag); });
-                    this.wood(set, ItemTags.NON_FLAMMABLE_WOOD, WoodBlock.LOG, WoodBlock.STRIPPED_LOG, WoodBlock.WOOD, WoodBlock.STRIPPED_WOOD);
-                }
-
-                this.wood(set, ItemTags.LEAVES, WoodBlock.LEAVES);
-                this.wood(set, ItemTags.WOODEN_SLABS, WoodBlock.SLAB);
-                this.wood(set, ItemTags.WOODEN_PRESSURE_PLATES, WoodBlock.PRESSURE_PLATE);
-                this.wood(set, ItemTags.WOODEN_FENCES, WoodBlock.FENCE);
-                this.wood(set, ItemTags.WOODEN_TRAPDOORS, WoodBlock.TRAPDOOR);
-                this.wood(set, ItemTags.WOODEN_STAIRS, WoodBlock.STAIRS);
-                this.wood(set, ItemTags.WOODEN_BUTTONS, WoodBlock.BUTTON);
-                this.wood(set, ItemTags.WOODEN_DOORS, WoodBlock.DOOR);
-                this.wood(set, ItemTags.SIGNS, WoodBlock.SIGN);
-            }
-            if (set instanceof TwigsWoodSet twigs) this.getOrCreateTagBuilder(TwigsItemTags.TABLES).add(twigs.getTable().asItem());
-        }
-
-        public void woods(WoodSet... sets) {
-            for (WoodSet set : sets) this.wood(set, null);
-        }
-
-        public void wood(WoodSet set, @Nullable TagKey<Item> tag, WoodBlock... woods) {
-            for (WoodBlock wood : woods) { if (set.contains(wood)) this.getOrCreateTagBuilder(tag).add(set.get(wood).asItem()); }
         }
     }
 
