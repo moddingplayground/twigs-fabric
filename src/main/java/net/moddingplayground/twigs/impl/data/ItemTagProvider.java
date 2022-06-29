@@ -22,18 +22,15 @@ class ItemTagProvider extends FabricTagProvider.ItemTagProvider {
     protected void generateTags() {
         TagHelpers.copyAll(this.blockTagProvider, this);
 
-        this.getOrCreateTagBuilder(ItemTags.PIGLIN_REPELLENTS).add(SOUL_LAMP);
-        this.getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(
-            SCHIST,
-            RHYOLITE
-        );
-        this.getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS).add(
-            SCHIST,
-            RHYOLITE
-        );
-
         this.copy(TwigsBlockTags.TABLES, TwigsItemTags.TABLES);
         this.copy(TwigsBlockTags.PAPER_LANTERNS, TwigsItemTags.PAPER_LANTERNS);
+
+        this.getOrCreateTagBuilder(ItemTags.PIGLIN_REPELLENTS).add(SOUL_LAMP);
+        this.getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(SCHIST, RHYOLITE);
+        this.getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS).add(SCHIST, RHYOLITE);
+
+        this.getOrCreateTagBuilder(ItemTags.BOATS).add(STRIPPED_BAMBOO_BOAT);
+        this.getOrCreateTagBuilder(ItemTags.CHEST_BOATS).add(STRIPPED_BAMBOO_CHEST_BOAT);
 
         /* Item Group */
 
