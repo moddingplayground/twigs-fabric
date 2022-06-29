@@ -16,19 +16,28 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.enums.BambooLeaves;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
 import net.minecraft.loot.condition.InvertedLootCondition;
+import net.minecraft.loot.condition.MatchToolLootCondition;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.StatePredicate;
+import net.minecraft.predicate.item.EnchantmentPredicate;
+import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.moddingplayground.frame.api.contentregistries.v0.StateRegistry;
 import net.moddingplayground.twigs.api.block.StrippedBambooBlock;
@@ -85,7 +94,7 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
         });
 
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-            if (id.equals(Blocks.BAMBOO.getLootTableId())) {
+            if (this.equals(id, Blocks.BAMBOO)) {
                 tableBuilder.pool(
                     LootPool.builder()
                             .with(
@@ -97,6 +106,20 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
                                              )
                                          ).build()
                             )
+                );
+            } else if (this.equals(id, Blocks.GRAVEL)) {
+                tableBuilder.pool(
+                    LootPool.builder()
+                            .with(
+                                ItemEntry.builder(PEBBLE)
+                                         .conditionally(InvertedLootCondition.builder(
+                                             MatchToolLootCondition.builder(
+                                                 ItemPredicate.Builder.create()
+                                                                      .enchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, NumberRange.IntRange.ANY)))
+                                         ))
+                                         .conditionally(RandomChanceLootCondition.builder(0.2F))
+                                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
+                            ).build()
                 );
             }
         });
@@ -132,5 +155,9 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
 
         List<Block> unwaxedCopperPillars = List.copyOf(copperPillars.keySet());
         for (int i = 0, l = copperPillars.size() - 1; i < l; i++) OxidizableBlocksRegistry.registerOxidizableBlockPair(unwaxedCopperPillars.get(i), unwaxedCopperPillars.get(i + 1));
+    }
+
+    public boolean equals(Identifier id, Block block) {
+        return id.equals(block.getLootTableId());
     }
 }
