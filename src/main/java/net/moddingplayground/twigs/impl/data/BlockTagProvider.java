@@ -107,7 +107,10 @@ class BlockTagProvider extends FabricTagProvider.BlockTagProvider {
         // mineable hoe
         this.getOrCreateTagBuilder(BlockTags.HOE_MINEABLE).add(
             CRIMSON_SHROOMLAMP,
-            WARPED_SHROOMLAMP
+            WARPED_SHROOMLAMP,
+            BAMBOO_THATCH,
+            BAMBOO_THATCH_STAIRS,
+            BAMBOO_THATCH_SLAB
         );
 
         // mineable pickaxe
