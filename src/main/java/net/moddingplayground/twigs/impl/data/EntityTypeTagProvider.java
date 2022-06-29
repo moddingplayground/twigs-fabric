@@ -13,7 +13,6 @@ class EntityTypeTagProvider extends FabricTagProvider.EntityTypeTagProvider {
 
     @Override
     protected void generateTags() {
-        // twigs
         this.getOrCreateTagBuilder(TwigsEntityTypeTags.BAMBOO_LEAVES_SLOW_IMMUNE).add(
             PANDA,
             BEE,

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lamp",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "tag": "minecraft:coals"
+    },
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "T": {
+      "item": "minecraft:soul_torch"
+    }
+  },
+  "pattern": [
+    "###",
+    "NTN",
+    "NCN"
+  ],
+  "result": {
+    "item": "twigs:soul_lamp"
+  }
+}
