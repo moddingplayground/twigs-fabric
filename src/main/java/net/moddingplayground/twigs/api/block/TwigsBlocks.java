@@ -78,7 +78,7 @@ public interface TwigsBlocks {
     Block STRIPPED_BAMBOO_SIGN = register("stripped_bamboo_sign", new SignBlock(FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0F).sounds(BlockSoundGroup.SCAFFOLDING), TwigsSignTypes.STRIPPED_BAMBOO));
     Block STRIPPED_BAMBOO_WALL_SIGN = register("stripped_bamboo_wall_sign", new WallSignBlock(FabricBlockSettings.copyOf(STRIPPED_BAMBOO_SIGN), TwigsSignTypes.STRIPPED_BAMBOO));
 
-    Block STRIPPED_BAMBOO_MAT = register("stripped_bamboo_mat", new BambooMatBlock(FabricBlockSettings.of(Material.CARPET, MapColor.SPRUCE_BROWN).strength(0.1F).sounds(BlockSoundGroup.SCAFFOLDING)));
+    Block STRIPPED_BAMBOO_MAT = register("stripped_bamboo_mat", new BambooMatBlock(FabricBlockSettings.of(Material.WOOD, MapColor.SPRUCE_BROWN).strength(0.1F).sounds(BlockSoundGroup.SCAFFOLDING)));
     Block STRIPPED_BAMBOO_TABLE = registerTable("stripped_bamboo_table", STRIPPED_BAMBOO_PLANKS);
 
     /* Tables */

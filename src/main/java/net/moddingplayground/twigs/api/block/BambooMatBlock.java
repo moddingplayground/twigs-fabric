@@ -3,6 +3,7 @@ package net.moddingplayground.twigs.api.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.Waterloggable;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -17,7 +18,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 
 @SuppressWarnings("deprecation")
-public class BambooMatBlock extends Block {
+public class BambooMatBlock extends Block implements Waterloggable {
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     public static final VoxelShape SHAPE = createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D);
 
