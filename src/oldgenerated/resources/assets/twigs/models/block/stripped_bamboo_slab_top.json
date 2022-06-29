@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "twigs:block/stripped_bamboo_planks",
-    "top": "twigs:block/stripped_bamboo_planks",
-    "side": "twigs:block/stripped_bamboo_planks"
-  }
-}

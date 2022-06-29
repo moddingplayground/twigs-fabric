@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "twigs:block/rhyolite_slab"
+    },
+    "type=double": {
+      "model": "twigs:block/rhyolite"
+    },
+    "type=top": {
+      "model": "twigs:block/rhyolite_slab_top"
+    }
+  }
+}

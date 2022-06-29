@@ -1,0 +1,8 @@
+{
+  "parent": "twigs:block/template_table",
+  "textures": {
+    "bottom": "twigs:block/dark_oak_table_bottom",
+    "side": "twigs:block/dark_oak_table_side",
+    "top": "twigs:block/dark_oak_table_top"
+  }
+}

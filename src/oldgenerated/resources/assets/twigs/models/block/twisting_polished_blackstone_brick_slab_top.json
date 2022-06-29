@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "twigs:block/twisting_polished_blackstone_bricks",
-    "top": "twigs:block/twisting_polished_blackstone_bricks",
-    "side": "twigs:block/twisting_polished_blackstone_bricks"
-  }
-}

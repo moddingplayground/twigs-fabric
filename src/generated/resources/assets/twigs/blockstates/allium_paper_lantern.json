@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "twigs:block/allium_paper_lantern"
+    },
+    "hanging=true": {
+      "model": "twigs:block/allium_paper_lantern_hanging"
+    }
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "twigs:block/bundled_bamboo_top",
-    "side": "twigs:block/bundled_bamboo"
-  }
-}

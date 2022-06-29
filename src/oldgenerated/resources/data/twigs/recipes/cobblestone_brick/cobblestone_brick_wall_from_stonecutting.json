@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "cobblestone_brick_wall",
-  "ingredient": {
-    "item": "twigs:cobblestone_bricks"
-  },
-  "result": "twigs:cobblestone_brick_wall",
-  "count": 1
-}

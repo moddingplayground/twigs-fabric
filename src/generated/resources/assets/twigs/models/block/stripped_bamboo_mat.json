@@ -1,0 +1,6 @@
+{
+  "parent": "twigs:block/template_mat",
+  "textures": {
+    "texture": "twigs:block/stripped_bamboo_mat"
+  }
+}

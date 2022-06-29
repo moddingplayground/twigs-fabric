@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/template_wall_post",
-  "textures": {
-    "wall": "twigs:block/polished_calcite_bricks"
-  }
-}

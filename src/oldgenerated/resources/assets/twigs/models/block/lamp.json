@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "twigs:block/lamp_bottom",
-    "top": "twigs:block/lamp_top",
-    "side": "twigs:block/lamp_side"
-  }
-}

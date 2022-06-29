@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "twigs:block/stripped_bundled_bamboo",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "twigs:block/stripped_bundled_bamboo"
+    },
+    "axis=z": {
+      "model": "twigs:block/stripped_bundled_bamboo",
+      "x": 90
+    }
+  }
+}

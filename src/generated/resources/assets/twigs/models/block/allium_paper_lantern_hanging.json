@@ -1,0 +1,8 @@
+{
+  "parent": "twigs:block/template_paper_lantern_hanging",
+  "textures": {
+    "bottom": "twigs:block/paper_lantern_bottom",
+    "side": "twigs:block/allium_paper_lantern_side",
+    "top": "twigs:block/paper_lantern_top"
+  }
+}

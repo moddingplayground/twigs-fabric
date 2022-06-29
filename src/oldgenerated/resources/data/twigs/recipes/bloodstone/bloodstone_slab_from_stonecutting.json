@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "bloodstone_slab",
-  "ingredient": {
-    "item": "twigs:bloodstone"
-  },
-  "result": "twigs:bloodstone_slab",
-  "count": 2
-}

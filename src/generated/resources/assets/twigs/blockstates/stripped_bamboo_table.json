@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "twigs:block/stripped_bamboo_table"
+    },
+    "facing=north": {
+      "model": "twigs:block/stripped_bamboo_table",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "twigs:block/stripped_bamboo_table",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "twigs:block/stripped_bamboo_table",
+      "y": 180
+    }
+  }
+}

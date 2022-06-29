@@ -5,11 +5,8 @@
   "package": "net.moddingplayground.twigs.mixin",
   "mixins": [
     "AbstractBlockStateMixin",
-    "BlocksInvoker",
-    "OrePlacedFeaturesAccessor",
-    "RecipeProviderAccessor"
+    "OrePlacedFeaturesAccessor"
   ],
-  "client": [],
   "injectors": {
     "defaultRequire": 1
   }

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "twigs:block/blue_orchid_paper_lantern"
+    },
+    "hanging=true": {
+      "model": "twigs:block/blue_orchid_paper_lantern_hanging"
+    }
+  }
+}

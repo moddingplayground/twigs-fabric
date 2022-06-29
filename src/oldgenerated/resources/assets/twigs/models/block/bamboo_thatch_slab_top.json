@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "twigs:block/bamboo_thatch",
-    "top": "twigs:block/bamboo_thatch",
-    "side": "twigs:block/bamboo_thatch"
-  }
-}

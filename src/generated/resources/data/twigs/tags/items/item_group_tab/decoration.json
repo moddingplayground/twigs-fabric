@@ -1,23 +1,16 @@
 {
   "replace": false,
   "values": [
+    "twigs:twig",
+    "twigs:pebble",
+    "twigs:sea_shell",
+    "twigs:azalea_flowers",
+    "twigs:bamboo_leaves",
     "twigs:lamp",
     "twigs:soul_lamp",
     "twigs:crimson_shroomlamp",
     "twigs:warped_shroomlamp",
-    "twigs:paper_lantern",
-    "twigs:allium_paper_lantern",
-    "twigs:blue_orchid_paper_lantern",
-    "twigs:crimson_roots_paper_lantern",
-    "twigs:dandelion_paper_lantern",
-    "twigs:stripped_bamboo_table",
-    "twigs:oak_table",
-    "twigs:spruce_table",
-    "twigs:birch_table",
-    "twigs:jungle_table",
-    "twigs:acacia_table",
-    "twigs:dark_oak_table",
-    "twigs:crimson_table",
-    "twigs:warped_table"
+    "#twigs:paper_lanterns",
+    "#twigs:tables"
   ]
 }

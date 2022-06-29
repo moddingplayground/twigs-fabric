@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "twigs:block/rhyolite_top",
+    "side": "twigs:block/rhyolite_side",
+    "top": "twigs:block/rhyolite_top"
+  }
+}

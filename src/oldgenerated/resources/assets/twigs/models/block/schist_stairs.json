@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "twigs:block/schist",
-    "top": "twigs:block/schist",
-    "side": "twigs:block/schist"
-  }
-}

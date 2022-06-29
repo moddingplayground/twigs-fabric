@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "brick_chiseled",
-  "ingredient": {
-    "item": "minecraft:bricks"
-  },
-  "result": "twigs:chiseled_bricks",
-  "count": 1
-}

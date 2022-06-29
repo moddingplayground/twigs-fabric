@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "twigs:block/polished_calcite",
-    "top": "twigs:block/polished_calcite",
-    "side": "twigs:block/polished_calcite"
-  }
-}

@@ -35,7 +35,8 @@ public final class TwigsBlocksClientImpl implements TwigsBlocks, ClientModInitia
             TwigsBlocks.ACACIA_TABLE,
             TwigsBlocks.DARK_OAK_TABLE,
             TwigsBlocks.CRIMSON_TABLE,
-            TwigsBlocks.WARPED_TABLE
+            TwigsBlocks.WARPED_TABLE,
+            TwigsBlocks.STRIPPED_BAMBOO_TABLE
         );
     }
 }

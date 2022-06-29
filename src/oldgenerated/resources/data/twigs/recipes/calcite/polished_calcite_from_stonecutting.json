@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "calcite_polished",
-  "ingredient": {
-    "item": "minecraft:calcite"
-  },
-  "result": "twigs:polished_calcite",
-  "count": 1
-}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "copper_slab",
-  "ingredient": {
-    "item": "minecraft:oxidized_copper"
-  },
-  "result": "minecraft:oxidized_cut_copper_slab",
-  "count": 2
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "twigs:block/rhyolite_top",
-    "top": "twigs:block/rhyolite_top",
-    "side": "twigs:block/rhyolite"
-  }
-}

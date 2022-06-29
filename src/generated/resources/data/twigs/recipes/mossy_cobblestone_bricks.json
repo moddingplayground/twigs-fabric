@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:vine"
+    },
+    {
+      "item": "twigs:cobblestone_bricks"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "twigs:mossy_cobblestone_bricks"
+  }
+}

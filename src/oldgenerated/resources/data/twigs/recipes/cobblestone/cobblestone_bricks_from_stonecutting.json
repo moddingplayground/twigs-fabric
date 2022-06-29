@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "cobblestone_polished",
-  "ingredient": {
-    "item": "minecraft:cobblestone"
-  },
-  "result": "twigs:cobblestone_bricks",
-  "count": 1
-}

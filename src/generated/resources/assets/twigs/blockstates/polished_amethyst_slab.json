@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "twigs:block/polished_amethyst_slab"
+    },
+    "type=double": {
+      "model": "twigs:block/polished_amethyst"
+    },
+    "type=top": {
+      "model": "twigs:block/polished_amethyst_slab_top"
+    }
+  }
+}

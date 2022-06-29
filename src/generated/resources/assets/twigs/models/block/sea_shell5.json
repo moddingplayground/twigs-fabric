@@ -1,0 +1,6 @@
+{
+  "parent": "twigs:block/template_floor_layer",
+  "textures": {
+    "texture": "twigs:block/sea_shell5"
+  }
+}

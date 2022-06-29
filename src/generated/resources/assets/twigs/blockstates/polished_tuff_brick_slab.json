@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "twigs:block/polished_tuff_brick_slab"
+    },
+    "type=double": {
+      "model": "twigs:block/polished_tuff_bricks"
+    },
+    "type=top": {
+      "model": "twigs:block/polished_tuff_brick_slab_top"
+    }
+  }
+}

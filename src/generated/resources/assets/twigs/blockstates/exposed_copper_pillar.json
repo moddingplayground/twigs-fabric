@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "twigs:block/exposed_copper_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "twigs:block/exposed_copper_pillar"
+    },
+    "axis=z": {
+      "model": "twigs:block/exposed_copper_pillar",
+      "x": 90
+    }
+  }
+}

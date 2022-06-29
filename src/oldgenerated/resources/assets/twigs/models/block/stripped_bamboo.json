@@ -1,6 +1,0 @@
-{
-  "parent": "twigs:block/template_quad_pole",
-  "textures": {
-    "texture": "twigs:block/stripped_bamboo_stalk"
-  }
-}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "twigs:block/bloodstone_slab"
+    },
+    "type=double": {
+      "model": "twigs:block/bloodstone"
+    },
+    "type=top": {
+      "model": "twigs:block/bloodstone_slab_top"
+    }
+  }
+}

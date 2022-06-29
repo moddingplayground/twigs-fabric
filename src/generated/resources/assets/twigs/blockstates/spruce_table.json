@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "twigs:block/spruce_table"
+    },
+    "facing=north": {
+      "model": "twigs:block/spruce_table",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "twigs:block/spruce_table",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "twigs:block/spruce_table",
+      "y": 180
+    }
+  }
+}

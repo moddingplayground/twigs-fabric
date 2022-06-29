@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "twigs:block/polished_schist",
-    "top": "twigs:block/polished_schist",
-    "side": "twigs:block/polished_schist"
-  }
-}

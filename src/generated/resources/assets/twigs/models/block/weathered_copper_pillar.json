@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "twigs:block/weathered_copper_pillar_top",
+    "side": "twigs:block/weathered_copper_pillar_side"
+  }
+}

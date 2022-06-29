@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "amethyst_polished",
-  "ingredient": {
-    "item": "minecraft:amethyst_block"
-  },
-  "result": "twigs:polished_amethyst",
-  "count": 1
-}
