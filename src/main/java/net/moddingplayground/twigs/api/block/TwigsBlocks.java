@@ -55,7 +55,7 @@ public interface TwigsBlocks {
 
     /* Bamboo */
 
-    Block BAMBOO_LEAVES = register("bamboo_leaves", new BambooLeavesBlock(FabricBlockSettings.copyOf(ACACIA_LEAVES).breakInstantly().noCollision().sounds(BlockSoundGroup.AZALEA_LEAVES)));
+    Block BAMBOO_LEAVES = register("bamboo_leaves", new BambooLeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.2F).nonOpaque().breakInstantly().noCollision().sounds(BlockSoundGroup.AZALEA_LEAVES)));
 
     Block BAMBOO_THATCH = register("bamboo_thatch", new Block(FabricBlockSettings.of(Material.SOLID_ORGANIC, MapColor.GREEN).strength(0.2F).sounds(BlockSoundGroup.AZALEA_LEAVES)));
     Block BAMBOO_THATCH_STAIRS = registerStairs("bamboo_thatch_stairs", BAMBOO_THATCH);
