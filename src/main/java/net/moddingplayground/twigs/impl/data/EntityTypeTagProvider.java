@@ -6,7 +6,7 @@ import net.moddingplayground.twigs.api.tag.TwigsEntityTypeTags;
 
 import static net.minecraft.entity.EntityType.*;
 
-class EntityTypeTagProvider extends FabricTagProvider.EntityTypeTagProvider {
+public class EntityTypeTagProvider extends FabricTagProvider.EntityTypeTagProvider {
     public EntityTypeTagProvider(FabricDataGenerator gen) {
         super(gen);
     }

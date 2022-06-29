@@ -12,6 +12,9 @@
   "subtitles.block.twigs.lamp.light": "Lamp lit",
   "subtitles.block.twigs.lamp.extinguish": "Lamp extinguished",
   "subtitles.block.twigs.floor_layer.pickup": "Block picked up",
+  "subtitles.entity.twigs.pebble.throw": "Pebble flies",
+
+  "entity.twigs.pebble": "Pebble",
 
   "block.twigs.azalea_flowers": "Azalea Flowers",
   "block.twigs.oak_table": "Oak Table",

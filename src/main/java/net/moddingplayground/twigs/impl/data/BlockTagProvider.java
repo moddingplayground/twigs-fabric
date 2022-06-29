@@ -15,7 +15,7 @@ import net.moddingplayground.twigs.api.tag.TwigsBlockTags;
 
 import static net.moddingplayground.twigs.api.block.TwigsBlocks.*;
 
-class BlockTagProvider extends FabricTagProvider.BlockTagProvider {
+public class BlockTagProvider extends FabricTagProvider.BlockTagProvider {
     public BlockTagProvider(FabricDataGenerator gen) {
         super(gen);
     }

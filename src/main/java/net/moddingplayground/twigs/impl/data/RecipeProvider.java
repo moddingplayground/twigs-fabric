@@ -14,7 +14,7 @@ import static net.minecraft.item.Items.*;
 import static net.moddingplayground.frame.api.toymaker.v0.RecipeJsonBuilders.*;
 import static net.moddingplayground.twigs.api.item.TwigsItems.*;
 
-class RecipeProvider extends FabricRecipeProvider {
+public class RecipeProvider extends FabricRecipeProvider {
     public RecipeProvider(FabricDataGenerator gen) {
         super(gen);
     }

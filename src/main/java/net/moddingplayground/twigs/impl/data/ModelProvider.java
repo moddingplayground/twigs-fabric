@@ -44,7 +44,7 @@ import static net.minecraft.data.client.BlockStateModelGenerator.*;
 import static net.minecraft.data.client.VariantSettings.*;
 import static net.moddingplayground.twigs.api.block.TwigsBlocks.*;
 
-class ModelProvider extends FabricModelProvider {
+public class ModelProvider extends FabricModelProvider {
     private BlockStateModelGenerator blockGen;
     private ItemModelGenerator itemGen;
 

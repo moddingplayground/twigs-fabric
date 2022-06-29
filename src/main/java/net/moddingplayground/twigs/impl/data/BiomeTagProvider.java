@@ -9,7 +9,7 @@ import net.moddingplayground.twigs.api.tag.TwigsBiomeTags;
 
 import static net.minecraft.world.biome.BiomeKeys.*;
 
-class BiomeTagProvider extends FabricTagProvider.DynamicRegistryTagProvider<Biome> {
+public class BiomeTagProvider extends FabricTagProvider.DynamicRegistryTagProvider<Biome> {
     public BiomeTagProvider(FabricDataGenerator gen) {
         super(gen, Registry.BIOME_KEY);
     }

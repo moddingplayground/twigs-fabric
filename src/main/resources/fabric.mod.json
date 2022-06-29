@@ -36,7 +36,9 @@
     ],
     "client":   [
       "net.moddingplayground.twigs.impl.client.TwigsClientImpl",
-      "net.moddingplayground.twigs.impl.client.block.TwigsBlocksClientImpl"
+      "net.moddingplayground.twigs.impl.client.block.TwigsBlocksClientImpl",
+      "net.moddingplayground.twigs.impl.client.entity.TwigsEntityTypeClientImpl",
+      "net.moddingplayground.twigs.impl.client.particle.TwigsParticleTypesClientImpl"
     ],
     "frame-woods": [ "net.moddingplayground.twigs.impl.entity.TwigsBoatTypesImpl" ],
 

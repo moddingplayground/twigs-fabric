@@ -11,6 +11,7 @@ public final class TwigsDataGeneratorImpl implements Twigs, DataGeneratorEntrypo
         gen.addProvider(RecipeProvider::new);
 
         gen.addProvider(BlockLootTableProvider::new);
+        gen.addProvider(EntityLootTableProvider::new);
 
         BlockTagProvider blockTagProvider = gen.addProvider(BlockTagProvider::new);
         gen.addProvider(g -> new ItemTagProvider(g, blockTagProvider));

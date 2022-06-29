@@ -10,7 +10,7 @@ import net.moddingplayground.twigs.api.tag.TwigsItemTags;
 
 import static net.moddingplayground.twigs.api.item.TwigsItems.*;
 
-class ItemTagProvider extends FabricTagProvider.ItemTagProvider {
+public class ItemTagProvider extends FabricTagProvider.ItemTagProvider {
     private final BlockTagProvider blockTagProvider;
 
     public ItemTagProvider(FabricDataGenerator gen, BlockTagProvider blockTagProvider) {

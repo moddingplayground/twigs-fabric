@@ -17,7 +17,7 @@ import java.util.function.Function;
 
 public interface TwigsItems {
     Item TWIG = register(TwigsBlocks.TWIG, FlintAndSteelBlockItem::new);
-    Item PEBBLE = register(TwigsBlocks.PEBBLE);
+    Item PEBBLE = register(TwigsBlocks.PEBBLE, PebbleItem::new);
     Item SEA_SHELL = register(TwigsBlocks.SEA_SHELL);
     Item AZALEA_FLOWERS = register(TwigsBlocks.AZALEA_FLOWERS);
 

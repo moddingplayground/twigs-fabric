@@ -12,9 +12,10 @@ public interface TwigsSoundEvents {
         return block("lamp", id);
     }
 
-    SoundEvent BLOCK_FLOOR_LAYER_PICKUP = block("floor_layer", "pickup");
     SoundEvent BLOCK_FLOWERING_AZALEA_SHEAR = block("flowering_azalea", "shear");
     SoundEvent BLOCK_BAMBOO_STRIP_SHEAR = block("bamboo", "strip_shear");
+
+    SoundEvent ENTITY_PEBBLE_THROW = register("entity.pebble.throw");
 
     private static SoundEvent block(String block, String id) {
         return register("block.%s.%s".formatted(block, id));
