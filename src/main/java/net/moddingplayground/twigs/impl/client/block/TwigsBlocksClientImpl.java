@@ -11,32 +11,34 @@ import net.moddingplayground.twigs.api.block.TwigsBlocks;
 public final class TwigsBlocksClientImpl implements TwigsBlocks, ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        BlockRenderLayerMap.INSTANCE.putBlocks(
-            RenderLayer.getCutout(),
+        BlockRenderLayerMap renderLayers = BlockRenderLayerMap.INSTANCE;
+        renderLayers.putBlocks(RenderLayer.getCutout(),
+            AZALEA_FLOWERS,
+            PEBBLE,
+            SEA_SHELL,
+            TWIG,
+            POTTED_AZALEA_FLOWERS,
 
-            TwigsBlocks.AZALEA_FLOWERS,
-            TwigsBlocks.PEBBLE,
-            TwigsBlocks.SEA_SHELL,
-            TwigsBlocks.TWIG,
-            TwigsBlocks.POTTED_AZALEA_FLOWERS,
+            PAPER_LANTERN,
+            ALLIUM_PAPER_LANTERN,
+            BLUE_ORCHID_PAPER_LANTERN,
+            DANDELION_PAPER_LANTERN,
+            CRIMSON_ROOTS_PAPER_LANTERN,
 
-            TwigsBlocks.PAPER_LANTERN,
-            TwigsBlocks.ALLIUM_PAPER_LANTERN,
-            TwigsBlocks.BLUE_ORCHID_PAPER_LANTERN,
-            TwigsBlocks.DANDELION_PAPER_LANTERN,
-            TwigsBlocks.CRIMSON_ROOTS_PAPER_LANTERN,
+            BAMBOO_LEAVES,
 
-            TwigsBlocks.BAMBOO_LEAVES,
+            OAK_TABLE,
+            SPRUCE_TABLE,
+            BIRCH_TABLE,
+            JUNGLE_TABLE,
+            ACACIA_TABLE,
+            DARK_OAK_TABLE,
+            CRIMSON_TABLE,
+            WARPED_TABLE,
+            STRIPPED_BAMBOO_TABLE,
 
-            TwigsBlocks.OAK_TABLE,
-            TwigsBlocks.SPRUCE_TABLE,
-            TwigsBlocks.BIRCH_TABLE,
-            TwigsBlocks.JUNGLE_TABLE,
-            TwigsBlocks.ACACIA_TABLE,
-            TwigsBlocks.DARK_OAK_TABLE,
-            TwigsBlocks.CRIMSON_TABLE,
-            TwigsBlocks.WARPED_TABLE,
-            TwigsBlocks.STRIPPED_BAMBOO_TABLE
+            STRIPPED_BAMBOO_DOOR,
+            STRIPPED_BAMBOO_TRAPDOOR
         );
     }
 }

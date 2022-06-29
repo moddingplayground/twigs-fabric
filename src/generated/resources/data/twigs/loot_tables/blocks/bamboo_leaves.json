@@ -1,0 +1,64 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "functions": [
+                {
+                  "add": true,
+                  "conditions": [
+                    {
+                      "block": "twigs:bamboo_leaves",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "layers": "2"
+                      }
+                    }
+                  ],
+                  "count": 1.0,
+                  "function": "minecraft:set_count"
+                },
+                {
+                  "add": true,
+                  "conditions": [
+                    {
+                      "block": "twigs:bamboo_leaves",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "layers": "3"
+                      }
+                    }
+                  ],
+                  "count": 2.0,
+                  "function": "minecraft:set_count"
+                },
+                {
+                  "add": true,
+                  "conditions": [
+                    {
+                      "block": "twigs:bamboo_leaves",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "layers": "4"
+                      }
+                    }
+                  ],
+                  "count": 3.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "twigs:bamboo_leaves"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

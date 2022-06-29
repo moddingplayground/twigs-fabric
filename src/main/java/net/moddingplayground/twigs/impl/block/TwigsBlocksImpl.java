@@ -3,18 +3,27 @@ package net.moddingplayground.twigs.impl.block;
 import com.google.common.collect.Maps;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.fabricmc.fabric.api.registry.TillableBlockRegistry;
 import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.block.BambooBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.enums.BambooLeaves;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
+import net.minecraft.loot.condition.InvertedLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.predicate.StatePredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -75,14 +84,40 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
             return ActionResult.PASS;
         });
 
-        FlammableBlockRegistry flammables = FlammableBlockRegistry.getDefaultInstance();
-        flammables.add(AZALEA_FLOWERS,30, 60);
-        flammables.add(TWIG,30, 60);
-        flammables.add(BAMBOO_LEAVES,30, 60);
-        flammables.add(BAMBOO_THATCH,30, 60);
-        flammables.add(BAMBOO_THATCH_SLAB, 30, 60);
-        flammables.add(BAMBOO_THATCH_STAIRS, 30, 60);
-        flammables.add(STRIPPED_BAMBOO, 5, 20);
+        LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
+            if (id.equals(Blocks.BAMBOO.getLootTableId())) {
+                tableBuilder.pool(
+                    LootPool.builder()
+                            .with(
+                                ItemEntry.builder(BAMBOO_LEAVES)
+                                         .conditionally(
+                                             InvertedLootCondition.builder(
+                                                 BlockStatePropertyLootCondition.builder(Blocks.BAMBOO)
+                                                                                .properties(StatePredicate.Builder.create().exactMatch(BambooBlock.LEAVES, BambooLeaves.NONE))
+                                             )
+                                         ).build()
+                            )
+                );
+            }
+        });
+
+        FlammableBlockRegistry flammableRegistry = FlammableBlockRegistry.getDefaultInstance();
+        flammableRegistry.add(AZALEA_FLOWERS,30, 60);
+        flammableRegistry.add(TWIG,30, 60);
+        flammableRegistry.add(BAMBOO_LEAVES,30, 60);
+        flammableRegistry.add(BAMBOO_THATCH,30, 60);
+        flammableRegistry.add(BAMBOO_THATCH_SLAB, 30, 60);
+        flammableRegistry.add(BAMBOO_THATCH_STAIRS, 30, 60);
+        flammableRegistry.add(STRIPPED_BAMBOO, 5, 20);
+        flammableRegistry.add(STRIPPED_BAMBOO_PLANKS, 5, 20);
+        flammableRegistry.add(STRIPPED_BAMBOO_SLAB, 5, 20);
+        flammableRegistry.add(STRIPPED_BAMBOO_FENCE_GATE, 5, 20);
+        flammableRegistry.add(STRIPPED_BAMBOO_FENCE, 5, 20);
+        flammableRegistry.add(STRIPPED_BAMBOO_STAIRS, 5, 20);
+
+        FuelRegistry fuelRegistry = FuelRegistry.INSTANCE;
+        fuelRegistry.add(STRIPPED_BAMBOO_FENCE, 300);
+        fuelRegistry.add(STRIPPED_BAMBOO_FENCE_GATE, 300);
 
         TillableBlockRegistry.register(ROCKY_DIRT, ctx -> true, Blocks.COARSE_DIRT.getDefaultState(), PEBBLE);
         StrippableBlockRegistry.register(BUNDLED_BAMBOO, STRIPPED_BUNDLED_BAMBOO);
