@@ -13,7 +13,7 @@ public class TwigsBoatTypesImpl implements FrameWoodsEntrypoint {
     @Override
     public void registerBoatTypes(FrameBoatTypeManager manager) {
         manager.register(new FrameBoatTypeData(
-            new Identifier(Twigs.MOD_ID, "stripped_bamboo"), TwigsBlocks.STRIPPED_BAMBOO,
+            new Identifier(Twigs.MOD_ID, "stripped_bamboo"), () -> TwigsBlocks.STRIPPED_BAMBOO,
             () -> TwigsItems.STRIPPED_BAMBOO_BOAT, () -> TwigsItems.STRIPPED_BAMBOO_CHEST_BOAT,
             type -> TwigsBoatTypes.STRIPPED_BAMBOO = type
         ));
