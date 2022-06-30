@@ -129,7 +129,7 @@ task github(dependsOn: build) {
     builder.name(VER_NAME)
     builder.body(CHANGELOG)
     builder.commitish(project.github_branch)
-    builder.prerelease(project.release_type == 'beta')
+    builder.prerelease(project.release_type != 'release')
     builder.create().uploadAsset(file("${project.buildDir}/libs/${archivesBaseName}-${version}.jar"), "application/java-archive");
   }
 }
