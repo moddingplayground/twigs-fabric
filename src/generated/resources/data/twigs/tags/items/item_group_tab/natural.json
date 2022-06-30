@@ -11,10 +11,18 @@
     "twigs:bamboo_thatch_stairs",
     "twigs:bundled_bamboo",
     "twigs:stripped_bundled_bamboo",
-    "twigs:stripped_bamboo",
-    "twigs:stripped_bamboo_mat",
     "twigs:rocky_dirt",
-    "twigs:crimson_shroomlamp",
-    "twigs:warped_shroomlamp"
+    "twigs:stripped_bamboo",
+    "twigs:stripped_bamboo_planks",
+    "twigs:stripped_bamboo_slab",
+    "twigs:stripped_bamboo_fence",
+    "twigs:stripped_bamboo_fence_gate",
+    "twigs:stripped_bamboo_stairs",
+    "twigs:stripped_bamboo_button",
+    "twigs:stripped_bamboo_pressure_plate",
+    "twigs:stripped_bamboo_door",
+    "twigs:stripped_bamboo_trapdoor",
+    "twigs:stripped_bamboo_sign",
+    "twigs:stripped_bamboo_mat"
   ]
 }

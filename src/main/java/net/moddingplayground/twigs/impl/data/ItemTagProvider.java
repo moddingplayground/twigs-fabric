@@ -46,11 +46,19 @@ public class ItemTagProvider extends FabricTagProvider.ItemTagProvider {
             BAMBOO_THATCH_STAIRS,
             BUNDLED_BAMBOO,
             STRIPPED_BUNDLED_BAMBOO,
-            STRIPPED_BAMBOO,
-            STRIPPED_BAMBOO_MAT,
             ROCKY_DIRT,
-            CRIMSON_SHROOMLAMP,
-            WARPED_SHROOMLAMP
+            STRIPPED_BAMBOO,
+            STRIPPED_BAMBOO_PLANKS,
+            STRIPPED_BAMBOO_SLAB,
+            STRIPPED_BAMBOO_FENCE,
+            STRIPPED_BAMBOO_FENCE_GATE,
+            STRIPPED_BAMBOO_STAIRS,
+            STRIPPED_BAMBOO_BUTTON,
+            STRIPPED_BAMBOO_PRESSURE_PLATE,
+            STRIPPED_BAMBOO_DOOR,
+            STRIPPED_BAMBOO_TRAPDOOR,
+            STRIPPED_BAMBOO_SIGN,
+            STRIPPED_BAMBOO_MAT
         );
 
         // stones
