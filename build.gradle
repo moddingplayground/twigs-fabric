@@ -145,8 +145,10 @@ if (ENV.MODRINTH_TOKEN) modrinth {
   uploadFile = remapJar
   gameVersions = [ project.ver_minecraft ]
   dependencies = [
-          new ModDependency("P7dR8mSH", DependencyType.REQUIRED),
-          new ModDependency("dY183GiL", DependencyType.REQUIRED)
+          new ModDependency("fabric-api", DependencyType.REQUIRED),
+          new ModDependency("frame-api", DependencyType.REQUIRED),
+
+          new ModDependency("presence-footsteps", DependencyType.OPTIONAL)
   ]
 }
 
@@ -164,8 +166,10 @@ if (ENV.CURSEFORGE_API_KEY) curseforge {
     mainArtifact(remapJar) {
       displayName = VER_NAME
       relations {
-        requiredLibrary 'fabric-api'
-        requiredLibrary 'frame-api'
+        requiredDependency 'fabric-api'
+        requiredDependency 'frame-api'
+
+        optionalDependency 'presence-footsteps'
       }
     }
 
