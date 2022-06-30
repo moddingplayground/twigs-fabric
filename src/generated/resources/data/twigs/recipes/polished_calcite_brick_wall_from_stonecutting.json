@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "twigs:polished_calcite_bricks"
+  },
+  "result": "twigs:polished_calcite_brick_wall"
+}

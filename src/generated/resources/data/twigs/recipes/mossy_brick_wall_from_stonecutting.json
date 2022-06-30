@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "twigs:mossy_bricks"
+  },
+  "result": "twigs:mossy_brick_wall"
+}

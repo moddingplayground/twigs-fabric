@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_item": {
+    "has_schist": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:bamboo"
+              "twigs:schist"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "twigs:stripped_bamboo"
+        "recipe": "twigs:polished_schist"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_item",
+      "has_schist",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "twigs:stripped_bamboo"
+      "twigs:polished_schist"
     ]
   }
 }

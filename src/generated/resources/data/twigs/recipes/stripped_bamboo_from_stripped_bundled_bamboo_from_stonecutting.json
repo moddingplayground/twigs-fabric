@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 4,
+  "ingredient": {
+    "item": "twigs:stripped_bundled_bamboo"
+  },
+  "result": "twigs:stripped_bamboo"
+}
