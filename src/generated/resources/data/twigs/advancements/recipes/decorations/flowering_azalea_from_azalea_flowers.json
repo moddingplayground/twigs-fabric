@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:flowering_azalea_from_azalea_flowers"
+        "recipe": "twigs:flowering_azalea_from_azalea_flowers"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:flowering_azalea_from_azalea_flowers"
+      "twigs:flowering_azalea_from_azalea_flowers"
     ]
   }
 }

@@ -2,11 +2,14 @@ package net.moddingplayground.twigs.impl.data;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.data.server.recipe.CraftingRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.tag.ItemTags;
+import net.minecraft.util.Identifier;
+import net.moddingplayground.twigs.api.Twigs;
 
 import java.util.function.Consumer;
 
@@ -22,18 +25,18 @@ public class RecipeProvider extends FabricRecipeProvider {
     @Override
     protected void generateRecipes(Consumer<RecipeJsonProvider> gen) {
         // cobblestone from pebbles
-        generic2x2(PEBBLE, COBBLESTONE, 1).offerTo(gen, convertBetween(COBBLESTONE, PEBBLE));
+        offer(gen, generic2x2(PEBBLE, COBBLESTONE, 1), convertBetween(COBBLESTONE, PEBBLE));
         // rocky dirt from dirt/pebbles
         offer(gen, chequer2x2(DIRT, PEBBLE, ROCKY_DIRT, 2));
 
         // sticks from twig
-        offerShapelessRecipe(gen, STICK, TWIG, "sticks", 2);
+        offer(gen, shapeless(TWIG, STICK, 2).group("sticks"), convertBetween(STICK, TWIG));
         // bone meal from sea shell
-        offerShapelessRecipe(gen, BONE_MEAL, SEA_SHELL, null, 2);
+        offer(gen, shapeless(SEA_SHELL, BONE_MEAL, 2), convertBetween(BONE_MEAL, SEA_SHELL));
 
         // azalea
-        offerAzaleaConversion(gen, FLOWERING_AZALEA, AZALEA);
-        offerAzaleaConversion(gen, FLOWERING_AZALEA_LEAVES, AZALEA_LEAVES);
+        offer(gen, azaleaConversion(FLOWERING_AZALEA, AZALEA), convertBetween(FLOWERING_AZALEA, AZALEA_FLOWERS));
+        offer(gen, azaleaConversion(FLOWERING_AZALEA_LEAVES, AZALEA_LEAVES), convertBetween(FLOWERING_AZALEA_LEAVES, AZALEA_FLOWERS));
 
         // mossy bricks
         offer(gen, shapeless(VINE, BRICKS, MOSSY_BRICKS, 2));
@@ -77,8 +80,19 @@ public class RecipeProvider extends FabricRecipeProvider {
         // TODO wood set
     }
 
-    public static void offerAzaleaConversion(Consumer<RecipeJsonProvider> gen, Item output, Item input) {
-        ShapelessRecipeJsonBuilder.create(output).input(input).input(AZALEA_FLOWERS, 3).criterion("has_azalea_flowers", conditionsFromItem(AZALEA_FLOWERS)).offerTo(gen, convertBetween(output, AZALEA_FLOWERS));
+    protected void offer(Consumer<RecipeJsonProvider> exporter, CraftingRecipeJsonBuilder recipe, String id) {
+        recipe.offerTo(exporter, new Identifier(Twigs.MOD_ID, id));
+    }
+
+    protected void offer(Consumer<RecipeJsonProvider> exporter, CraftingRecipeJsonBuilder recipe) {
+        this.offer(exporter, recipe, RecipeProvider.getItemPath(recipe.getOutputItem()));
+    }
+
+    public static ShapelessRecipeJsonBuilder azaleaConversion(Item output, Item input) {
+        return ShapelessRecipeJsonBuilder.create(output)
+                                         .input(input)
+                                         .input(AZALEA_FLOWERS, 3)
+                                         .criterion("has_azalea_flowers", conditionsFromItem(AZALEA_FLOWERS));
     }
 
     public static ShapelessRecipeJsonBuilder paperLantern(Item content, Item lantern) {

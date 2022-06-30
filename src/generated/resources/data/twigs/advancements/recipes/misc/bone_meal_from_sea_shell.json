@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sea_shell": {
+    "has_ingredient": {
       "conditions": {
         "items": [
           {
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:bone_meal_from_sea_shell"
+        "recipe": "twigs:bone_meal_from_sea_shell"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_sea_shell",
+      "has_ingredient",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:bone_meal_from_sea_shell"
+      "twigs:bone_meal_from_sea_shell"
     ]
   }
 }
