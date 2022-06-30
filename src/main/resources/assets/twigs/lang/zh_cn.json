@@ -9,11 +9,10 @@
   "itemGroup.twigs.item_group.tab.decoration": "装饰方块",
   "itemGroup.twigs.item_group.tab.miscellaneous": "杂项",
 
+  
   "subtitles.block.twigs.lamp.light": "灯：点亮",
   "subtitles.block.twigs.lamp.extinguish": "灯：熄灭",
-  "subtitles.block.twigs.floor_layer.pickup": "方块：被拾取",
-
-  "entity.twigs.boat": "船",
+  "subtitles.entity.twigs.pebble.throw": "卵石：被掷出",
 
   "block.twigs.azalea_flowers": "杜鹃花",
   "block.twigs.oak_table": "橡木桌",
@@ -101,7 +100,8 @@
   "block.twigs.stripped_bamboo_button": "去皮竹按钮",
   "block.twigs.stripped_bamboo_fence": "去皮竹栅栏",
   "block.twigs.stripped_bamboo_fence_gate": "去皮竹栅栏门",
-  "item.twigs.stripped_bamboo_boat": "去皮竹船",
+  "item.twigs.stripped_bamboo_boat": "去皮竹船",,
+  "item.twigs.stripped_bamboo_chest_boat": "去皮竹运输船",
   "block.twigs.rocky_dirt": "砾石土",
   "block.twigs.crimson_shroomlamp": "绯红菌光灯",
   "block.twigs.warped_shroomlamp": "诡异菌光灯",
