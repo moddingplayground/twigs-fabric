@@ -1,0 +1,21 @@
+{
+  "twigs:twig": "NOT_EMITTER",
+  "twigs:twig.messy": "MESSY_GROUND",
+  "twigs:twig.foliage": "straw",
+
+  "twigs:pebble": "NOT_EMITTER",
+  "twigs:pebble.messy": "MESSY_GROUND",
+  "twigs:pebble.foliage": "stone",
+
+  "twigs:sea_shell": "NOT_EMITTER",
+  "twigs:sea_shell.messy": "MESSY_GROUND",
+  "twigs:sea_shell.foliage": "bone",
+
+  "twigs:azalea_flowers.foliage[down=true]": "grass",
+  "twigs:azalea_flowers.foliage": "NOT_EMITTER",
+
+  "twigs:bamboo_leaves.foliage": "grass",
+
+  "twigs:stripped_bamboo": "squeakywood",
+  "twigs:stripped_bamboo.foliage": "squeakywood"
+}
