@@ -50,11 +50,17 @@ public class PebbleEntity extends ThrownItemEntity {
 
         if (!this.world.isClient) {
             ItemStack stack = this.getItem();
-            this.dropStack(stack == ItemStack.EMPTY ? new ItemStack(this.getDefaultItem()) : stack);
+            this.dropStack(stack.isEmpty() ? new ItemStack(this.getDefaultItem()) : stack);
 
             this.world.sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
             this.discard();
         }
+    }
+
+    @Override
+    protected void onSwimmingStart() {
+        this.setVelocity(this.getVelocity().multiply(1.0D, -1 / 2.0D, 1.0D).multiply(0.932D));
+        super.onSwimmingStart();
     }
 
     @Override
