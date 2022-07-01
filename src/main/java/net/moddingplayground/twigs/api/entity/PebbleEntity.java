@@ -61,7 +61,7 @@ public class PebbleEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult hit) {
         super.onEntityHit(hit);
         Entity entity = hit.getEntity();
-        entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), 0.5F);
+        entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), 1.0F);
     }
 
     @Override
