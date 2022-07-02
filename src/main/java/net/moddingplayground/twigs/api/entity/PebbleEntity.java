@@ -5,6 +5,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
@@ -15,6 +16,7 @@ import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.moddingplayground.twigs.api.item.TwigsItems;
 import net.moddingplayground.twigs.api.particle.TwigsParticleTypes;
@@ -50,7 +52,15 @@ public class PebbleEntity extends ThrownItemEntity {
 
         if (!this.world.isClient) {
             ItemStack stack = this.getItem();
-            this.dropStack(stack.isEmpty() ? new ItemStack(this.getDefaultItem()) : stack);
+            Random random = this.world.random;
+            ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(),
+                stack.isEmpty() ? new ItemStack(this.getDefaultItem()) : stack,
+                random.nextDouble() * 0.2D - 0.1D,
+                this.isSubmergedInWater() ? 0.0D : 0.2D,
+                random.nextDouble() * 0.2D - 0.1D
+            );
+            itemEntity.setToDefaultPickupDelay();
+            this.world.spawnEntity(itemEntity);
 
             this.world.sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
             this.discard();
