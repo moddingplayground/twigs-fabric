@@ -102,7 +102,7 @@ processResources {
       file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
       bytes += oldLength - file.length()
     }
-    println('Minified ' + minif + ' json files. Saved ' + bytes + ' bytes. Took ' + (System.currentTimeMillis() - start) + 'ms.')
+    println("Minified $minif json files. Saved $bytes bytes. Took ${System.currentTimeMillis() - start} ms.")
   }
 }
 
@@ -111,7 +111,18 @@ jar { from('README.md', 'LICENSE', 'LICENSE_ASSETS') exclude('.cache') }
 
 /* Publishing */
 
-publishing { publications { mavenJava(MavenPublication) { from components.java } } }
+java { withSourcesJar() }
+
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      artifact(remapJar) { builtBy remapJar }
+      artifact(sourcesJar) { builtBy remapSourcesJar }
+    }
+  }
+}
+
+loom { disableDeprecatedPomGeneration(publishing.publications.mavenJava) }
 
 /* Releasing */
 
