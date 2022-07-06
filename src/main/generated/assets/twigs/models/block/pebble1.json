@@ -1,5 +1,5 @@
 {
-  "parent": "twigs:block/template_floor_layer",
+  "parent": "frame:block/template_floor_layer",
   "textures": {
     "texture": "twigs:block/pebble1"
   }

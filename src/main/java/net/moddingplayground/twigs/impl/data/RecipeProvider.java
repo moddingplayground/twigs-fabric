@@ -4,19 +4,16 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Block;
 import net.minecraft.data.family.BlockFamily;
-import net.minecraft.data.server.recipe.CookingRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.CraftingRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
-import net.minecraft.data.server.recipe.SingleItemRecipeJsonBuilder;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.moddingplayground.frame.api.toymaker.v0.RecipeJsonBuilders;
+import net.moddingplayground.frame.api.toymaker.v0.recipe.RecipeExporter;
+import net.moddingplayground.frame.api.toymaker.v0.recipe.RecipeJsonBuilders;
 import net.moddingplayground.twigs.api.Twigs;
 import net.moddingplayground.twigs.api.data.TwigsBlockFamilies;
 
@@ -26,123 +23,78 @@ import java.util.function.Consumer;
 
 import static net.minecraft.data.family.BlockFamily.Variant.*;
 import static net.minecraft.item.Items.*;
-import static net.moddingplayground.frame.api.toymaker.v0.RecipeJsonBuilders.*;
+import static net.moddingplayground.frame.api.toymaker.v0.recipe.RecipeJsonBuilders.*;
 import static net.moddingplayground.twigs.api.item.TwigsItems.*;
 
 public class RecipeProvider extends FabricRecipeProvider {
-    private Consumer<RecipeJsonProvider> exporter;
+    private RecipeExporter exporter;
 
     public RecipeProvider(FabricDataGenerator exporter) {
         super(exporter);
     }
 
     @Override
-    protected void generateRecipes(Consumer<RecipeJsonProvider> gen) {
-        this.exporter = gen;
+    protected void generateRecipes(Consumer<RecipeJsonProvider> exporterFunction) {
+        RecipeExporter exporter = this.exporter = RecipeExporter.of(exporterFunction, this);
 
         // cobblestone from pebbles
-        offer(generic2x2(PEBBLE, COBBLESTONE, 1), convertBetween(COBBLESTONE, PEBBLE));
+        exporter.export(generic2x2(PEBBLE, COBBLESTONE, 1), convertBetween(COBBLESTONE, PEBBLE));
         // rocky dirt from dirt/pebbles
-        offer(chequer2x2(DIRT, PEBBLE, ROCKY_DIRT, 2));
+        exporter.export(chequer2x2(DIRT, PEBBLE, ROCKY_DIRT, 2));
 
         // sticks from twig
-        offer(shapeless(TWIG, STICK, 2).group("sticks"), convertBetween(STICK, TWIG));
+        exporter.export(shapeless(TWIG, STICK, 2).group("sticks"), convertBetween(STICK, TWIG));
         // bone meal from sea shell
-        offer(shapeless(SEA_SHELL, BONE_MEAL, 2), convertBetween(BONE_MEAL, SEA_SHELL));
+        exporter.export(shapeless(SEA_SHELL, BONE_MEAL, 2), convertBetween(BONE_MEAL, SEA_SHELL));
 
         // azalea
-        offer(azaleaConversion(AZALEA, FLOWERING_AZALEA), convertBetween(FLOWERING_AZALEA, AZALEA_FLOWERS));
-        offer(azaleaConversion(AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES), convertBetween(FLOWERING_AZALEA_LEAVES, AZALEA_FLOWERS));
+        exporter.export(azaleaConversion(AZALEA, FLOWERING_AZALEA), convertBetween(FLOWERING_AZALEA, AZALEA_FLOWERS));
+        exporter.export(azaleaConversion(AZALEA_LEAVES, FLOWERING_AZALEA_LEAVES), convertBetween(FLOWERING_AZALEA_LEAVES, AZALEA_FLOWERS));
 
         // mossy bricks
-        offer(shapeless(VINE, BRICKS, MOSSY_BRICKS, 2));
-        offer(shapeless(VINE, COBBLESTONE_BRICKS, MOSSY_COBBLESTONE_BRICKS, 2));
+        exporter.export(shapeless(VINE, BRICKS, MOSSY_BRICKS, 2));
+        exporter.export(shapeless(VINE, COBBLESTONE_BRICKS, MOSSY_COBBLESTONE_BRICKS, 2));
 
         // blackstone bricks
-        offer(shapeless(POLISHED_BLACKSTONE_BRICKS, TWISTING_VINES, TWISTING_POLISHED_BLACKSTONE_BRICKS, 1));
-        offer(shapeless(POLISHED_BLACKSTONE_BRICKS, WEEPING_VINES, WEEPING_POLISHED_BLACKSTONE_BRICKS, 1));
+        exporter.export(shapeless(POLISHED_BLACKSTONE_BRICKS, TWISTING_VINES, TWISTING_POLISHED_BLACKSTONE_BRICKS, 1));
+        exporter.export(shapeless(POLISHED_BLACKSTONE_BRICKS, WEEPING_VINES, WEEPING_POLISHED_BLACKSTONE_BRICKS, 1));
 
         // stones
-        offer(chequer2x2(RED_SAND, QUARTZ, RHYOLITE, 2));
-        offer(chequer2x2(CLAY_BALL, QUARTZ, SCHIST, 2));
-        offer(chequer2x2(IRON_NUGGET, QUARTZ, BLOODSTONE, 2));
+        exporter.export(chequer2x2(RED_SAND, QUARTZ, RHYOLITE, 2));
+        exporter.export(chequer2x2(CLAY_BALL, QUARTZ, SCHIST, 2));
+        exporter.export(chequer2x2(IRON_NUGGET, QUARTZ, BLOODSTONE, 2));
 
         // paper lantern
-        offer(ringSurrounding(PAPER, TORCH, PAPER_LANTERN, 2).group("paper_lantern"));
-        offer(paperLantern(ALLIUM, ALLIUM_PAPER_LANTERN));
-        offer(paperLantern(BLUE_ORCHID, BLUE_ORCHID_PAPER_LANTERN));
-        offer(paperLantern(CRIMSON_ROOTS, CRIMSON_ROOTS_PAPER_LANTERN));
-        offer(paperLantern(DANDELION, DANDELION_PAPER_LANTERN));
+        exporter.export(ringSurrounding(PAPER, TORCH, PAPER_LANTERN, 2).group("paper_lantern"));
+        exporter.export(paperLantern(ALLIUM, ALLIUM_PAPER_LANTERN));
+        exporter.export(paperLantern(BLUE_ORCHID, BLUE_ORCHID_PAPER_LANTERN));
+        exporter.export(paperLantern(CRIMSON_ROOTS, CRIMSON_ROOTS_PAPER_LANTERN));
+        exporter.export(paperLantern(DANDELION, DANDELION_PAPER_LANTERN));
 
         // lamps
-        offer(lamp(TORCH, LAMP));
-        offer(lamp(SOUL_TORCH, SOUL_LAMP));
+        exporter.export(lamp(TORCH, LAMP));
+        exporter.export(lamp(SOUL_TORCH, SOUL_LAMP));
 
         // shroomlamps
-        offer(sandwich(CRIMSON_PLANKS, SHROOMLIGHT, CRIMSON_SHROOMLAMP, 3).group("shroomlamp"));
-        offer(sandwich(WARPED_PLANKS, SHROOMLIGHT, WARPED_SHROOMLAMP, 3).group("shroomlamp"));
+        exporter.export(sandwich(CRIMSON_PLANKS, SHROOMLIGHT, CRIMSON_SHROOMLAMP, 3).group("shroomlamp"));
+        exporter.export(sandwich(WARPED_PLANKS, SHROOMLIGHT, WARPED_SHROOMLAMP, 3).group("shroomlamp"));
 
         // bamboo
-        offer(generic2x2(BAMBOO_LEAVES, BAMBOO_THATCH, 2));
-        offer(generic3x3(BAMBOO, BUNDLED_BAMBOO, 3));
-        offer(shapeless(BUNDLED_BAMBOO, BAMBOO, 3));
-        offer(stonecutting(BUNDLED_BAMBOO, STRIPPED_BUNDLED_BAMBOO));
+        exporter.export(generic2x2(BAMBOO_LEAVES, BAMBOO_THATCH, 2));
+        exporter.export(generic3x3(BAMBOO, BUNDLED_BAMBOO, 3));
+        exporter.export(shapeless(BUNDLED_BAMBOO, BAMBOO, 3));
+        exporter.export(stonecutting(BUNDLED_BAMBOO, STRIPPED_BUNDLED_BAMBOO));
 
-        offer(stonecutting(BAMBOO, STRIPPED_BAMBOO));
+        exporter.export(stonecutting(BAMBOO, STRIPPED_BAMBOO));
 
-        offer(stonecutting(STRIPPED_BUNDLED_BAMBOO, STRIPPED_BAMBOO, 4), convertBetween(STRIPPED_BAMBOO, STRIPPED_BUNDLED_BAMBOO));
-        offer(stonecutting(BUNDLED_BAMBOO, STRIPPED_BAMBOO, 4), convertBetween(STRIPPED_BAMBOO, BUNDLED_BAMBOO));
+        exporter.export(stonecutting(STRIPPED_BUNDLED_BAMBOO, STRIPPED_BAMBOO, 4), convertBetween(STRIPPED_BAMBOO, STRIPPED_BUNDLED_BAMBOO));
+        exporter.export(stonecutting(BUNDLED_BAMBOO, STRIPPED_BAMBOO, 4), convertBetween(STRIPPED_BAMBOO, BUNDLED_BAMBOO));
 
-        offer(planks(STRIPPED_BAMBOO, STRIPPED_BAMBOO_PLANKS));
-        offer(generic3x1(STRIPPED_BAMBOO, STRIPPED_BAMBOO_MAT, 2));
+        exporter.export(planks(STRIPPED_BAMBOO, STRIPPED_BAMBOO_PLANKS));
+        exporter.export(generic3x1(STRIPPED_BAMBOO, STRIPPED_BAMBOO_MAT, 2));
 
         // families
         TwigsBlockFamilies.FAMILIES.forEach(this::generateFamilyRecipes);
-    }
-
-    protected void offer(CraftingRecipeJsonBuilder recipe, String id) {
-        recipe.offerTo(this.exporter, new Identifier(Twigs.MOD_ID, recipe instanceof SingleItemRecipeJsonBuilder ? id + "_from_stonecutting" : id));
-    }
-
-    protected void offer(CraftingRecipeJsonBuilder recipe) {
-        this.offer(recipe, getItemPath(recipe.getOutputItem()));
-    }
-
-    public static ShapedRecipeJsonBuilder condensing(ItemConvertible from, ItemConvertible to) {
-        return ShapedRecipeJsonBuilder.create(to, 4)
-                                      .input('S', from)
-                                      .pattern("SS")
-                                      .pattern("SS")
-                                      .criterion(hasItem(from), conditionsFromItem(from));
-    }
-
-    public static ShapedRecipeJsonBuilder chiselCrafting(ItemConvertible from, ItemConvertible to) {
-        return ShapedRecipeJsonBuilder.create(to)
-                                      .input('#', from)
-                                      .pattern("#")
-                                      .pattern("#")
-                                      .criterion(hasItem(from), conditionsFromItem(from));
-    }
-
-    public static ShapedRecipeJsonBuilder cutCrafting(ItemConvertible from, ItemConvertible to) {
-        return ShapedRecipeJsonBuilder.create(to, 4)
-                                      .input('#', from)
-                                      .pattern("##")
-                                      .pattern("##")
-                                      .criterion(hasItem(from), conditionsFromItem(from));
-    }
-
-    public static ShapedRecipeJsonBuilder wallCrafting(ItemConvertible from, ItemConvertible to) {
-        return ShapedRecipeJsonBuilder.create(to, 6)
-                                      .input('#', from)
-                                      .pattern("###")
-                                      .pattern("###")
-                                      .criterion(hasItem(from), conditionsFromItem(from));
-    }
-
-    public static CookingRecipeJsonBuilder cracking(ItemConvertible from, ItemConvertible to) {
-        return CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(from), to, 0.1F, 200)
-                                       .criterion(hasItem(from), conditionsFromItem(from));
     }
 
     public static ShapelessRecipeJsonBuilder azaleaConversion(Item from, Item to) {
@@ -190,6 +142,7 @@ public class RecipeProvider extends FabricRecipeProvider {
         private final Block base;
         private final BlockFamily family;
         private final boolean stone;
+        private final RecipeExporter exporter = RecipeProvider.this.exporter;
 
         public FamilyRecipes(Block base, BlockFamily family, boolean stone) {
             this.base = base;
@@ -226,71 +179,71 @@ public class RecipeProvider extends FabricRecipeProvider {
         }
 
         public void button(Block block) {
-            offer(processWooden(woodenButton(this.base, block)));
+            this.exporter.export(processWooden(woodenButton(this.base, block)));
         }
 
         public void chiseled(Block block) {
-            offer(chiselCrafting(this.family.getVariant(SLAB), block));
+            this.exporter.export(chiselCrafting(this.family.getVariant(SLAB), block));
         }
 
         public void cracked(Block block) {
-            offer(cracking(this.base, block));
+            this.exporter.export(cracking(this.base, block));
         }
 
         public void cut(Block block) {
-            offer(cutCrafting(this.base, block));
+            this.exporter.export(cutCrafting(this.base, block));
         }
 
         public void door(Block block) {
-            offer(processWooden(woodenDoor(this.base, block)));
+            this.exporter.export(processWooden(woodenDoor(this.base, block)));
         }
 
         public void fence(Block block) {
-            offer(processWooden(woodenFence(this.base, block)));
+            this.exporter.export(processWooden(woodenFence(this.base, block)));
         }
 
         public void fenceGate(Block block) {
-            offer(processWooden(woodenFenceGate(this.base, block)));
+            this.exporter.export(processWooden(woodenFenceGate(this.base, block)));
         }
 
         public void sign(Block block) {
-            offer(RecipeJsonBuilders.sign(this.base, block));
+            this.exporter.export(RecipeJsonBuilders.sign(this.base, block));
         }
 
         public void slab(Block block) {
-            offer(processWooden(woodenSlab(this.base, block)));
-            if (stone) offer(stonecutting(this.base, block, 2));
+            this.exporter.export(processWooden(woodenSlab(this.base, block)));
+            if (stone) this.exporter.export(stonecutting(this.base, block, 2));
         }
 
         public void stairs(Block block) {
-            offer(processWooden(woodenStairs(this.base, block)));
-            if (stone) offer(stonecutting(this.base, block));
+            this.exporter.export(processWooden(woodenStairs(this.base, block)));
+            if (stone) this.exporter.export(stonecutting(this.base, block));
         }
 
         public void pressurePlate(Block block) {
-            offer(processWooden(woodenPressurePlate(this.base, block)));
+            this.exporter.export(processWooden(woodenPressurePlate(this.base, block)));
         }
 
         public void polished(Block block) {
-            offer(condensing(this.base, block));
+            this.exporter.export(condensing(this.base, block));
 
             if (stone) {
-                offer(stonecutting(this.base, block));
+                this.exporter.export(stonecutting(this.base, block));
                 this.loopPolished(block);
             }
         }
 
         public void loopPolished(Block block) {
             Optional.ofNullable(TwigsBlockFamilies.FAMILIES.get(block)).ifPresent(family -> {
-                offerMaybe(family, SLAB, slab -> offer(stonecutting(this.base, slab, 2), convertBetween(slab, this.base)));
-                offerMaybe(family, STAIRS, stairs -> offer(stonecutting(this.base, stairs), convertBetween(stairs, this.base)));
-                offerMaybe(family, WALL, wall -> offer(stonecutting(this.base, wall), convertBetween(wall, this.base)));
+                offerMaybe(family, SLAB, slab -> this.exporter.export(stonecutting(this.base, slab, 2), convertBetween(slab, this.base)));
+                offerMaybe(family, STAIRS, stairs -> this.exporter.export(stonecutting(this.base, stairs), convertBetween(stairs, this.base)));
+                offerMaybe(family, WALL, wall -> this.exporter.export(stonecutting(this.base, wall), convertBetween(wall, this.base)));
                 offerMaybe(family, POLISHED, this::loopPolished);
             });
         }
 
         public void trapdoor(Block block) {
-            offer(processWooden(woodenTrapdoor(this.base, block)));
+            this.exporter.export(processWooden(woodenTrapdoor(this.base, block)));
         }
 
         private CraftingRecipeJsonBuilder processWooden(CraftingRecipeJsonBuilder recipe) {
@@ -299,8 +252,8 @@ public class RecipeProvider extends FabricRecipeProvider {
         }
 
         public void wall(Block block) {
-            offer(wallCrafting(this.base, block));
-            if (stone) offer(stonecutting(this.base, block));
+            this.exporter.export(wallCrafting(this.base, block));
+            if (stone) this.exporter.export(stonecutting(this.base, block));
         }
     }
 }
