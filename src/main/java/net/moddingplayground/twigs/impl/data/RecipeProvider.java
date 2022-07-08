@@ -93,6 +93,18 @@ public class RecipeProvider extends FabricRecipeProvider {
         exporter.export(planks(STRIPPED_BAMBOO, STRIPPED_BAMBOO_PLANKS));
         exporter.export(generic3x1(STRIPPED_BAMBOO, STRIPPED_BAMBOO_MAT, 2));
 
+        // table
+        exporter.export(table(OAK_TABLE, OAK_PLANKS, OAK_SLAB));
+        exporter.export(table(SPRUCE_TABLE, SPRUCE_PLANKS, SPRUCE_SLAB));
+        exporter.export(table(BIRCH_TABLE, BIRCH_PLANKS, BIRCH_SLAB));
+        exporter.export(table(JUNGLE_TABLE, JUNGLE_PLANKS, JUNGLE_SLAB));
+        exporter.export(table(ACACIA_TABLE, ACACIA_PLANKS, ACACIA_SLAB));
+        exporter.export(table(DARK_OAK_TABLE, DARK_OAK_PLANKS, DARK_OAK_SLAB));
+        exporter.export(table(MANGROVE_TABLE, MANGROVE_PLANKS, MANGROVE_SLAB));
+        exporter.export(table(CRIMSON_TABLE, CRIMSON_PLANKS, CRIMSON_SLAB));
+        exporter.export(table(WARPED_TABLE, WARPED_PLANKS, WARPED_SLAB));
+        exporter.export(table(STRIPPED_BAMBOO_TABLE, STRIPPED_BAMBOO_PLANKS, STRIPPED_BAMBOO_SLAB));
+
         // families
         TwigsBlockFamilies.FAMILIES.forEach(this::generateFamilyRecipes);
     }
@@ -127,6 +139,18 @@ public class RecipeProvider extends FabricRecipeProvider {
                                       .criterion("has_iron_nugget", conditionsFromItem(IRON_NUGGET))
                                       .criterion("has_torch", conditionsFromItem(torch))
                                       .criterion("has_coal", conditionsFromTag(ItemTags.COALS));
+    }
+
+    public static ShapedRecipeJsonBuilder table(Item table, Item planks, Item slab) {
+        return ShapedRecipeJsonBuilder.create(table)
+                                      .group("table")
+                                      .pattern("SSS")
+                                      .pattern("P P")
+                                      .pattern("P P")
+                                      .input('S', slab)
+                                      .input('P', planks)
+                                      .criterion("has_planks", conditionsFromItem(planks))
+                                      .criterion("has_slab", conditionsFromItem(slab));
     }
 
     public FamilyRecipes createFamilyRecipes(Block base, BlockFamily family) {
