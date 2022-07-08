@@ -58,7 +58,9 @@ public class ItemTagProvider extends FabricTagProvider.ItemTagProvider {
             STRIPPED_BAMBOO_DOOR,
             STRIPPED_BAMBOO_TRAPDOOR,
             STRIPPED_BAMBOO_SIGN,
-            STRIPPED_BAMBOO_MAT
+            STRIPPED_BAMBOO_MAT,
+            STRIPPED_BAMBOO_BOAT,
+            STRIPPED_BAMBOO_CHEST_BOAT
         );
 
         // stones

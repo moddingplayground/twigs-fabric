@@ -23,6 +23,8 @@
     "twigs:stripped_bamboo_door",
     "twigs:stripped_bamboo_trapdoor",
     "twigs:stripped_bamboo_sign",
-    "twigs:stripped_bamboo_mat"
+    "twigs:stripped_bamboo_mat",
+    "twigs:stripped_bamboo_boat",
+    "twigs:stripped_bamboo_chest_boat"
   ]
 }
