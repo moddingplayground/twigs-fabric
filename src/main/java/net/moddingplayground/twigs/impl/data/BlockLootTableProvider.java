@@ -146,6 +146,7 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider {
             JUNGLE_TABLE,
             ACACIA_TABLE,
             DARK_OAK_TABLE,
+            MANGROVE_TABLE,
             CRIMSON_TABLE,
             WARPED_TABLE,
             STRIPPED_BAMBOO_TABLE

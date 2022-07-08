@@ -58,6 +58,7 @@ public interface TwigsItems {
     Item JUNGLE_TABLE = register(TwigsBlocks.JUNGLE_TABLE);
     Item ACACIA_TABLE = register(TwigsBlocks.ACACIA_TABLE);
     Item DARK_OAK_TABLE = register(TwigsBlocks.DARK_OAK_TABLE);
+    Item MANGROVE_TABLE = register(TwigsBlocks.MANGROVE_TABLE);
     Item CRIMSON_TABLE = register(TwigsBlocks.CRIMSON_TABLE);
     Item WARPED_TABLE = register(TwigsBlocks.WARPED_TABLE);
 

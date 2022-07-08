@@ -89,6 +89,7 @@ public interface TwigsBlocks {
     Block JUNGLE_TABLE = registerTable("jungle_table", JUNGLE_PLANKS);
     Block ACACIA_TABLE = registerTable("acacia_table", ACACIA_PLANKS);
     Block DARK_OAK_TABLE = registerTable("dark_oak_table", DARK_OAK_PLANKS);
+    Block MANGROVE_TABLE = registerTable("mangrove_table", MANGROVE_PLANKS);
     Block CRIMSON_TABLE = registerTable("crimson_table", CRIMSON_PLANKS);
     Block WARPED_TABLE = registerTable("warped_table", WARPED_PLANKS);
 
