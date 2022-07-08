@@ -14,18 +14,23 @@ import net.minecraft.block.BambooBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.enums.BambooLeaves;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
 import net.minecraft.loot.condition.InvertedLootCondition;
+import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.MatchToolLootCondition;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LootPoolEntry;
+import net.minecraft.loot.function.LootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.NumberRange;
@@ -39,10 +44,13 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.moddingplayground.frame.api.contentregistries.v0.StateRegistry;
 import net.moddingplayground.twigs.api.block.StrippedBambooBlock;
 import net.moddingplayground.twigs.api.block.TwigsBlocks;
+import net.moddingplayground.twigs.api.item.TwigsItems;
 import net.moddingplayground.twigs.api.sound.TwigsSoundEvents;
+import net.moddingplayground.twigs.mixin.ItemEntryAccessor;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -94,7 +102,7 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
         });
 
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-            if (this.equals(id, Blocks.BAMBOO)) {
+            if (this.equals(id, Blocks.BAMBOO)) { // bamboo leaves with bamboo
                 tableBuilder.pool(
                     LootPool.builder()
                             .with(
@@ -107,7 +115,7 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
                                          ).build()
                             )
                 );
-            } else if (this.equals(id, Blocks.GRAVEL)) {
+            } else if (this.equals(id, Blocks.GRAVEL)) { // pebbles with gravel
                 tableBuilder.pool(
                     LootPool.builder()
                             .with(
@@ -121,6 +129,28 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
                                          .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
                             ).build()
                 );
+            } else {
+                // twigs replace sticks in leaves
+                List<Identifier> leafTables = Registry.BLOCK.stream()
+                                                            .filter(LeavesBlock.class::isInstance)
+                                                            .map(Block::getLootTableId)
+                                                            .toList();
+                if (leafTables.contains(id)) {
+                    tableBuilder.modifyPools(original -> {
+                        LootPool pool = original.build();
+                        LootPool.Builder builder = LootPool.builder();
+
+                        for (LootCondition condition : pool.conditions) builder.conditionally(condition);
+                        for (LootFunction function : pool.functions) builder.apply(function);
+                        builder.rolls(pool.rolls);
+                        builder.bonusRolls(pool.bonusRolls);
+
+                        for (LootPoolEntry entry : pool.entries) {
+                            if (entry instanceof ItemEntryAccessor itemEntry && itemEntry.getItem() == Items.STICK) itemEntry.setItem(TwigsItems.TWIG);
+                            builder.with(entry);
+                        }
+                    });
+                }
             }
         });
 

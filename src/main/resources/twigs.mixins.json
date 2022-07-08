@@ -5,6 +5,7 @@
   "package": "net.moddingplayground.twigs.mixin",
   "mixins": [
     "AbstractBlockStateMixin",
+    "ItemEntryAccessor",
     "OrePlacedFeaturesAccessor"
   ],
   "injectors": {
