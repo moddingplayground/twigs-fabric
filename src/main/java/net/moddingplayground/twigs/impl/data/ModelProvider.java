@@ -7,6 +7,7 @@ import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.BlockStateVariant;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Model;
+import net.minecraft.data.client.ModelIds;
 import net.minecraft.data.client.Models;
 import net.minecraft.data.client.TextureKey;
 import net.minecraft.data.client.TextureMap;
@@ -95,10 +96,10 @@ public class ModelProvider extends FabricModelProvider {
             OXIDIZED_COPPER_PILLAR
         );
 
-        gen.registerParented(COPPER_PILLAR, WAXED_COPPER_PILLAR);
-        gen.registerParented(EXPOSED_COPPER_PILLAR, WAXED_EXPOSED_COPPER_PILLAR);
-        gen.registerParented(WEATHERED_COPPER_PILLAR, WAXED_WEATHERED_COPPER_PILLAR);
-        gen.registerParented(OXIDIZED_COPPER_PILLAR, WAXED_OXIDIZED_COPPER_PILLAR);
+        this.registerAxisRotatedColumnParented(COPPER_PILLAR, WAXED_COPPER_PILLAR);
+        this.registerAxisRotatedColumnParented(EXPOSED_COPPER_PILLAR, WAXED_EXPOSED_COPPER_PILLAR);
+        this.registerAxisRotatedColumnParented(WEATHERED_COPPER_PILLAR, WAXED_WEATHERED_COPPER_PILLAR);
+        this.registerAxisRotatedColumnParented(OXIDIZED_COPPER_PILLAR, WAXED_OXIDIZED_COPPER_PILLAR);
 
         // varying floor layers
         this.blockUploader.registerVaryingFloorLayers(2,
@@ -177,6 +178,12 @@ public class ModelProvider extends FabricModelProvider {
 
     public void registerIfPresent(BlockFamily family, BlockFamily.Variant variant, Consumer<Block> action) {
         this.blockUploader.registerIfPresent(family, variant, ModelHelpers.namespacePredicate(Twigs.MOD_ID), action);
+    }
+
+    public void registerAxisRotatedColumnParented(Block parent, Block block) {
+        Identifier model = ModelIds.getBlockModelId(parent);
+        this.blockUploader.accept(BlockStateModelGenerator.createAxisRotatedBlockState(block, model));
+        this.blockGen.registerParentedItemModel(block, model);
     }
 
     public void registerTable(Block... blocks) {
