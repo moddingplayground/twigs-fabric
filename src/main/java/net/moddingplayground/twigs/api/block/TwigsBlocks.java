@@ -30,6 +30,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 import net.moddingplayground.twigs.api.Twigs;
 
+import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -241,6 +242,15 @@ public interface TwigsBlocks {
 
     Block CHISELED_POLISHED_AMETHYST = register("chiseled_polished_amethyst", AmethystBlock::new, POLISHED_AMETHYST);
     Block CRACKED_POLISHED_AMETHYST_BRICKS = register("cracked_polished_amethyst_bricks", AmethystBlock::new, POLISHED_AMETHYST);
+
+    /* Maps */
+
+    Map<Block, Block> MAP_AZALEA_SHEARING = Map.of(
+        FLOWERING_AZALEA, AZALEA,
+        FLOWERING_AZALEA_LEAVES, AZALEA_LEAVES
+    );
+
+    /* Registering */
 
     static ToIntFunction<BlockState> luminanceWhenLit(int lit) {
         return state -> luminanceWhenLit(state, lit);

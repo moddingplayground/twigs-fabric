@@ -12,7 +12,7 @@ public interface TwigsSoundEvents {
         return block("lamp", id);
     }
 
-    SoundEvent BLOCK_FLOWERING_AZALEA_SHEAR = block("flowering_azalea", "shear");
+    SoundEvent BLOCK_AZALEA_FLOWERS_SHEAR = block("azalea_flowers", "shear");
     SoundEvent BLOCK_BAMBOO_STRIP_SHEAR = block("bamboo", "strip_shear");
 
     SoundEvent ENTITY_PEBBLE_THROW = register("entity.pebble.throw");

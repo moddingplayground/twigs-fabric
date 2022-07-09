@@ -8,7 +8,7 @@
     "subtitle": "subtitles.block.twigs.lamp.extinguish"
   },
 
-  "block.flowering_azalea.shear": {
+  "block.azalea_flowers.shear": {
     "sounds": [ "minecraft:mob/sheep/shear" ],
     "subtitle": "subtitles.item.shears.shear"
   },
