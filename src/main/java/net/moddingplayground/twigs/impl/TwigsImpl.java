@@ -6,6 +6,7 @@ import net.moddingplayground.frame.api.util.InitializationLogger;
 import net.moddingplayground.twigs.api.Twigs;
 import net.moddingplayground.twigs.api.block.TwigsBlocks;
 import net.moddingplayground.twigs.api.block.TwigsSignTypes;
+import net.moddingplayground.twigs.api.config.TwigsWorldGenReplacementsConfig;
 import net.moddingplayground.twigs.api.entity.TwigsEntityType;
 import net.moddingplayground.twigs.api.item.TwigsItemGroups;
 import net.moddingplayground.twigs.api.item.TwigsItems;
@@ -29,7 +30,8 @@ public final class TwigsImpl implements Twigs, ModInitializer {
         Reflection.initialize(
             TwigsSoundEvents.class, TwigsItemGroups.class, TwigsSignTypes.class,
             TwigsBlocks.class, TwigsItems.class, TwigsEntityType.class,
-            TwigsConfiguredFeatures.class, TwigsPlacedFeatures.class, TwigsParticleTypes.class
+            TwigsConfiguredFeatures.class, TwigsPlacedFeatures.class, TwigsParticleTypes.class,
+            TwigsWorldGenReplacementsConfig.class
         );
 
         this.initializer.finish();

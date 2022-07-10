@@ -1,0 +1,6 @@
+{
+  "parent": "frame:block/template_wall_plant_thin",
+  "textures": {
+    "texture": "twigs:block/petrified_lichen"
+  }
+}

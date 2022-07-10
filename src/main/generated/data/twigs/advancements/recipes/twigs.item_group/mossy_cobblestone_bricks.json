@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_one": {
+    "has_cobblestone_bricks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:vine"
+              "twigs:cobblestone_bricks"
             ]
           }
         ]
@@ -19,12 +19,12 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_two": {
+    "has_vine": {
       "conditions": {
         "items": [
           {
             "items": [
-              "twigs:cobblestone_bricks"
+              "minecraft:vine"
             ]
           }
         ]
@@ -34,8 +34,8 @@
   },
   "requirements": [
     [
-      "has_one",
-      "has_two",
+      "has_vine",
+      "has_cobblestone_bricks",
       "has_the_recipe"
     ]
   ],

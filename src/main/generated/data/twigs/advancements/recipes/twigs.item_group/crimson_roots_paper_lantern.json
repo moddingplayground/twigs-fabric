@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_content": {
+    "has_crimson_roots": {
       "conditions": {
         "items": [
           {
@@ -13,7 +13,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_lantern": {
+    "has_paper_lantern": {
       "conditions": {
         "items": [
           {
@@ -34,8 +34,8 @@
   },
   "requirements": [
     [
-      "has_content",
-      "has_lantern",
+      "has_crimson_roots",
+      "has_paper_lantern",
       "has_the_recipe"
     ]
   ],

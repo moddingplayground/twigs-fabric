@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "twigs:block/ender_mesh"
+    }
+  }
+}

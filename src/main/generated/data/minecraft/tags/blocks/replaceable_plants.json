@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "twigs:azalea_flowers"
+    "twigs:azalea_flowers",
+    "twigs:petrified_lichen"
   ]
 }

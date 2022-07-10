@@ -106,6 +106,8 @@
     "twigs:weathered_copper_pillar",
     "twigs:waxed_weathered_copper_pillar",
     "twigs:oxidized_copper_pillar",
-    "twigs:waxed_oxidized_copper_pillar"
+    "twigs:waxed_oxidized_copper_pillar",
+    "twigs:ender_mesh",
+    "twigs:petrified_lichen"
   ]
 }

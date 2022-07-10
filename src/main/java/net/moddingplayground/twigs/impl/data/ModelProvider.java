@@ -49,22 +49,22 @@ public class ModelProvider extends FabricModelProvider {
         BlockStateModelUploader uploader = this.blockUploader = BlockStateModelUploader.of(gen);
         this.blockGen = gen;
 
-        uploader.registerWallPlantThin(AZALEA_FLOWERS);
-        this.blockUploader.registerFlowerPot(TintType.NOT_TINTED, POTTED_AZALEA_FLOWERS);
+        uploader.registerWallPlantThin(AZALEA_FLOWERS, PETRIFIED_LICHEN);
+        uploader.registerFlowerPot(TintType.NOT_TINTED, POTTED_AZALEA_FLOWERS);
 
-        this.blockUploader.registerRotatingIntProperty(BambooLeavesBlock.LAYERS,
+        uploader.registerRotatingIntProperty(BambooLeavesBlock.LAYERS,
             BAMBOO_LEAVES
         );
 
-        this.blockUploader.register(TexturedModel.CUBE_COLUMN,
+        uploader.register(TexturedModel.CUBE_COLUMN,
             CHISELED_BRICKS,
             CRIMSON_SHROOMLAMP,
             WARPED_SHROOMLAMP
         );
 
-        this.blockUploader.register(TwigsTexturedModels.TEMPLATE_MAT, STRIPPED_BAMBOO_MAT);
-        this.blockUploader.registerAxisRotated(TwigsTexturedModels.TEMPLATE_QUAD_POLE, STRIPPED_BAMBOO);
-        this.blockUploader.registerGeneratedItemModel(STRIPPED_BAMBOO);
+        uploader.register(TwigsTexturedModels.TEMPLATE_MAT, STRIPPED_BAMBOO_MAT);
+        uploader.registerAxisRotated(TwigsTexturedModels.TEMPLATE_QUAD_POLE, STRIPPED_BAMBOO);
+        uploader.registerGeneratedItemModel(STRIPPED_BAMBOO);
 
         this.registerTable(
             OAK_TABLE,
@@ -84,7 +84,7 @@ public class ModelProvider extends FabricModelProvider {
             SOUL_LAMP
         );
 
-        this.blockUploader.registerAxisRotatedColumn(
+        uploader.registerAxisRotatedColumn(
             RHYOLITE,
             BUNDLED_BAMBOO,
             STRIPPED_BUNDLED_BAMBOO,
@@ -102,11 +102,11 @@ public class ModelProvider extends FabricModelProvider {
         this.registerAxisRotatedColumnParented(OXIDIZED_COPPER_PILLAR, WAXED_OXIDIZED_COPPER_PILLAR);
 
         // varying floor layers
-        this.blockUploader.registerVaryingFloorLayers(2,
+        uploader.registerVaryingFloorLayers(2,
             TWIG,
             PEBBLE
         );
-        this.blockUploader.registerVaryingFloorLayers(6, SEA_SHELL);
+        uploader.registerVaryingFloorLayers(6, SEA_SHELL);
 
         // paper lanterns
         this.registerPaperLanterns(
@@ -150,28 +150,29 @@ public class ModelProvider extends FabricModelProvider {
             POLISHED_BLOODSTONE,
             POLISHED_BLOODSTONE_BRICKS,
             CRACKED_POLISHED_BLOODSTONE_BRICKS,
-            STRIPPED_BAMBOO_PLANKS
+            STRIPPED_BAMBOO_PLANKS,
+            ENDER_MESH
         ).forEach(gen::registerSimpleCubeAll);
 
         // families
         TwigsBlockFamilies.FAMILIES.forEach((base, family) -> {
             if (!family.shouldGenerateModels()) return;
 
-            this.registerIfPresent(family, BlockFamily.Variant.STAIRS, stairs -> this.blockUploader.registerStairs(TwigsTextureMap::sideTopBottomNoSuffix, stairs, base));
-            this.registerIfPresent(family, BlockFamily.Variant.SLAB, slab -> this.blockUploader.registerSlab(TwigsTextureMap::sideTopBottomNoSuffix, slab, base));
-            this.registerIfPresent(family, BlockFamily.Variant.WALL, wall -> this.blockUploader.registerWall(TextureMap::wallSideEnd, wall, base));
-            this.registerIfPresent(family, BlockFamily.Variant.FENCE, fence -> this.blockUploader.registerFence(TextureMap::texture, fence, base));
-            this.registerIfPresent(family, BlockFamily.Variant.FENCE_GATE, fenceGate -> this.blockUploader.registerFenceGate(TextureMap::texture, fenceGate, base));
-            this.registerIfPresent(family, BlockFamily.Variant.BUTTON, button -> this.blockUploader.registerButton(TextureMap::texture, button, base));
-            this.registerIfPresent(family, BlockFamily.Variant.PRESSURE_PLATE, pressurePlate -> this.blockUploader.registerPressurePlate(TextureMap::texture, pressurePlate, base));
+            this.registerIfPresent(family, BlockFamily.Variant.STAIRS, stairs -> uploader.registerStairs(TwigsTextureMap::sideTopBottomNoSuffix, stairs, base));
+            this.registerIfPresent(family, BlockFamily.Variant.SLAB, slab -> uploader.registerSlab(TwigsTextureMap::sideTopBottomNoSuffix, slab, base));
+            this.registerIfPresent(family, BlockFamily.Variant.WALL, wall -> uploader.registerWall(TextureMap::wallSideEnd, wall, base));
+            this.registerIfPresent(family, BlockFamily.Variant.FENCE, fence -> uploader.registerFence(TextureMap::texture, fence, base));
+            this.registerIfPresent(family, BlockFamily.Variant.FENCE_GATE, fenceGate -> uploader.registerFenceGate(TextureMap::texture, fenceGate, base));
+            this.registerIfPresent(family, BlockFamily.Variant.BUTTON, button -> uploader.registerButton(TextureMap::texture, button, base));
+            this.registerIfPresent(family, BlockFamily.Variant.PRESSURE_PLATE, pressurePlate -> uploader.registerPressurePlate(TextureMap::texture, pressurePlate, base));
             this.registerIfPresent(family, BlockFamily.Variant.DOOR, gen::registerDoor);
             this.registerIfPresent(family, BlockFamily.Variant.TRAPDOOR, gen::registerOrientableTrapdoor);
-            this.registerIfPresent(family, BlockFamily.Variant.SIGN, sign -> this.blockUploader.registerSign(TextureMap::particle, sign, family.getVariant(BlockFamily.Variant.WALL_SIGN), base));
+            this.registerIfPresent(family, BlockFamily.Variant.SIGN, sign -> uploader.registerSign(TextureMap::particle, sign, family.getVariant(BlockFamily.Variant.WALL_SIGN), base));
         });
 
         Util.make(RHYOLITE, base -> {
-            this.blockUploader.registerStairs(TwigsTextureMap::stairsColumn, RHYOLITE_STAIRS, base);
-            this.blockUploader.registerSlab(TwigsTextureMap::column, RHYOLITE_SLAB, base);
+            uploader.registerStairs(TwigsTextureMap::stairsColumn, RHYOLITE_STAIRS, base);
+            uploader.registerSlab(TwigsTextureMap::column, RHYOLITE_SLAB, base);
             this.registerWallColumn(TwigsTextureMap::column, RHYOLITE_WALL, base);
         });
     }

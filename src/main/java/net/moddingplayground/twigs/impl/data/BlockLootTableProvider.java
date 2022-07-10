@@ -3,6 +3,7 @@ package net.moddingplayground.twigs.impl.data;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.MultifaceGrowthBlock;
 import net.minecraft.data.server.BlockLootTableGenerator;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
@@ -17,6 +18,7 @@ import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.StatePredicate;
 import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.util.math.Direction;
 import net.moddingplayground.twigs.api.block.TwigsProperties;
 
 import java.util.function.Function;
@@ -149,7 +151,8 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider {
             MANGROVE_TABLE,
             CRIMSON_TABLE,
             WARPED_TABLE,
-            STRIPPED_BAMBOO_TABLE
+            STRIPPED_BAMBOO_TABLE,
+            ENDER_MESH
         );
 
         this.addDrops(BlockLootTableGenerator::slabDrops,
@@ -183,6 +186,7 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider {
         this.addDrop(STRIPPED_BAMBOO_DOOR, BlockLootTableGenerator::addDoorDrop);
 
         this.addDrop(AZALEA_FLOWERS, block -> multifaceGrowthDrops(block, WITH_SHEARS));
+        this.addDrops(BlockLootTableProvider::multifaceGrowthDrops, PETRIFIED_LICHEN);
         this.addDrop(BAMBOO_LEAVES, this::dropsLayer1_4);
 
         this.addPottedPlantDrop(POTTED_AZALEA_FLOWERS);
@@ -209,5 +213,24 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider {
 
     public LootFunction.Builder addPerLayer1_4(Block block, float count, int layer) {
         return SetCountLootFunction.builder(ConstantLootNumberProvider.create(count), true).conditionally(BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(TwigsProperties.LAYERS_1_4, layer)));
+    }
+
+    public static LootTable.Builder multifaceGrowthDrops(Block block) {
+        return LootTable.builder()
+                        .pool(
+                            LootPool.builder()
+                                    .with(
+                                        BlockLootTableGenerator.applyExplosionDecay(block,
+                                            ItemEntry.builder(block)
+                                                     .apply(Direction.values(), direction ->
+                                                         SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f), true)
+                                                                             .conditionally(BlockStatePropertyLootCondition.builder(block).properties(
+                                                                                 StatePredicate.Builder.create()
+                                                                                                       .exactMatch(MultifaceGrowthBlock.getProperty(direction), true)
+                                                                             ))
+                                                     )
+                                                     .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(-1.0f), true)))
+                                    )
+                        );
     }
 }

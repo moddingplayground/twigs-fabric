@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_planks": {
+    "has_bamboo_thatch": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_planks",
+      "has_bamboo_thatch",
       "has_the_recipe"
     ]
   ],

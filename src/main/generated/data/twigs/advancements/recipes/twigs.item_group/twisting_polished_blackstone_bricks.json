@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_one": {
+    "has_polished_blackstone_bricks": {
       "conditions": {
         "items": [
           {
@@ -19,7 +19,7 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_two": {
+    "has_twisting_vines": {
       "conditions": {
         "items": [
           {
@@ -34,8 +34,8 @@
   },
   "requirements": [
     [
-      "has_one",
-      "has_two",
+      "has_polished_blackstone_bricks",
+      "has_twisting_vines",
       "has_the_recipe"
     ]
   ],

@@ -162,5 +162,7 @@
   "block.twigs.waxed_copper_pillar": "Waxed Copper Pillar",
   "block.twigs.waxed_exposed_copper_pillar": "Waxed Exposed Copper Pillar",
   "block.twigs.waxed_weathered_copper_pillar": "Waxed Weathered Copper Pillar",
-  "block.twigs.waxed_oxidized_copper_pillar": "Waxed Oxidized Copper Pillar"
+  "block.twigs.waxed_oxidized_copper_pillar": "Waxed Oxidized Copper Pillar",
+  "block.twigs.ender_mesh": "Ender Mesh",
+  "block.twigs.petrified_lichen": "Petrified Lichen"
 }

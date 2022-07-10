@@ -164,10 +164,10 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
         /* Fire */
 
         Util.make(FlammableBlockRegistry.getDefaultInstance(), registry -> {
-            registry.add(AZALEA_FLOWERS,30, 60);
-            registry.add(TWIG,30, 60);
-            registry.add(BAMBOO_LEAVES,30, 60);
-            registry.add(BAMBOO_THATCH,30, 60);
+            registry.add(AZALEA_FLOWERS, 30, 60);
+            registry.add(TWIG, 30, 60);
+            registry.add(BAMBOO_LEAVES, 30, 60);
+            registry.add(BAMBOO_THATCH, 30, 60);
             registry.add(BAMBOO_THATCH_SLAB, 30, 60);
             registry.add(BAMBOO_THATCH_STAIRS, 30, 60);
             registry.add(STRIPPED_BAMBOO, 5, 20);

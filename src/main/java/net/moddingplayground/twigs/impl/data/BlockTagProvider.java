@@ -34,53 +34,40 @@ public class BlockTagProvider extends FabricTagProvider.BlockTagProvider {
         });
 
         // rocky dirt
-        this.getOrCreateTagBuilder(BlockTags.DIRT)
-            .add(ROCKY_DIRT);
-        this.getOrCreateTagBuilder(BlockTags.FOXES_SPAWNABLE_ON)
-            .add(ROCKY_DIRT);
-        this.getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE)
-            .add(ROCKY_DIRT);
-        this.getOrCreateTagBuilder(BlockTags.BAMBOO_PLANTABLE_ON)
-            .add(ROCKY_DIRT);
+        this.getOrCreateTagBuilder(BlockTags.DIRT).add(ROCKY_DIRT);
+        this.getOrCreateTagBuilder(BlockTags.FOXES_SPAWNABLE_ON).add(ROCKY_DIRT);
+        this.getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE).add(ROCKY_DIRT);
+        this.getOrCreateTagBuilder(BlockTags.BAMBOO_PLANTABLE_ON).add(ROCKY_DIRT);
 
         // piglin repellents
-        this.getOrCreateTagBuilder(BlockTags.PIGLIN_REPELLENTS)
-            .add(SOUL_LAMP);
+        this.getOrCreateTagBuilder(BlockTags.PIGLIN_REPELLENTS).add(SOUL_LAMP);
 
         // base stone overworld
-        this.getOrCreateTagBuilder(BlockTags.BASE_STONE_OVERWORLD)
-            .add(SCHIST,
-                RHYOLITE);
+        this.getOrCreateTagBuilder(BlockTags.BASE_STONE_OVERWORLD).add(
+            SCHIST,
+            RHYOLITE
+        );
 
         // azalea
-        this.getOrCreateTagBuilder(BlockTags.REPLACEABLE_PLANTS)
-            .add(AZALEA_FLOWERS);
-        this.getOrCreateTagBuilder(BlockTags.FLOWER_POTS)
-            .add(POTTED_AZALEA_FLOWERS);
+        this.getOrCreateTagBuilder(BlockTags.REPLACEABLE_PLANTS).add(
+            AZALEA_FLOWERS,
+            PETRIFIED_LICHEN
+        );
+
+        this.getOrCreateTagBuilder(BlockTags.FLOWER_POTS).add(POTTED_AZALEA_FLOWERS);
 
         // wood
-        this.getOrCreateTagBuilder(BlockTags.PLANKS)
-            .add(STRIPPED_BAMBOO_PLANKS);
-        this.getOrCreateTagBuilder(BlockTags.STANDING_SIGNS)
-            .add(STRIPPED_BAMBOO_SIGN);
-        this.getOrCreateTagBuilder(BlockTags.WALL_SIGNS)
-            .add(STRIPPED_BAMBOO_WALL_SIGN);
-        this.getOrCreateTagBuilder(BlockTags.FENCE_GATES)
-            .add(STRIPPED_BAMBOO_FENCE_GATE);
-        this.getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS)
-            .add(STRIPPED_BAMBOO_BUTTON);
-        this.getOrCreateTagBuilder(BlockTags.WOODEN_DOORS)
-            .add(STRIPPED_BAMBOO_DOOR);
-        this.getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
-            .add(STRIPPED_BAMBOO_FENCE);
-        this.getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES)
-            .add(STRIPPED_BAMBOO_PRESSURE_PLATE);
-        this.getOrCreateTagBuilder(BlockTags.WOODEN_SLABS)
-            .add(STRIPPED_BAMBOO_SLAB);
-        this.getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS)
-            .add(STRIPPED_BAMBOO_STAIRS);
-        this.getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS)
-            .add(STRIPPED_BAMBOO_TRAPDOOR);
+        this.getOrCreateTagBuilder(BlockTags.PLANKS).add(STRIPPED_BAMBOO_PLANKS);
+        this.getOrCreateTagBuilder(BlockTags.STANDING_SIGNS).add(STRIPPED_BAMBOO_SIGN);
+        this.getOrCreateTagBuilder(BlockTags.WALL_SIGNS).add(STRIPPED_BAMBOO_WALL_SIGN);
+        this.getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(STRIPPED_BAMBOO_FENCE_GATE);
+        this.getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS).add(STRIPPED_BAMBOO_BUTTON);
+        this.getOrCreateTagBuilder(BlockTags.WOODEN_DOORS).add(STRIPPED_BAMBOO_DOOR);
+        this.getOrCreateTagBuilder(BlockTags.WOODEN_FENCES).add(STRIPPED_BAMBOO_FENCE);
+        this.getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES).add(STRIPPED_BAMBOO_PRESSURE_PLATE);
+        this.getOrCreateTagBuilder(BlockTags.WOODEN_SLABS).add(STRIPPED_BAMBOO_SLAB);
+        this.getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS).add(STRIPPED_BAMBOO_STAIRS);
+        this.getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS).add(STRIPPED_BAMBOO_TRAPDOOR);
 
         // amethyst
         this.getOrCreateTagBuilder(BlockTags.CRYSTAL_SOUND_BLOCKS).add(
@@ -92,7 +79,8 @@ public class BlockTagProvider extends FabricTagProvider.BlockTagProvider {
             POLISHED_AMETHYST_BRICK_STAIRS,
             POLISHED_AMETHYST_BRICK_SLAB,
             POLISHED_AMETHYST_BRICK_WALL,
-            CRACKED_POLISHED_AMETHYST_BRICKS);
+            CRACKED_POLISHED_AMETHYST_BRICKS
+        );
 
         // mineable axe
         this.getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(
@@ -102,7 +90,8 @@ public class BlockTagProvider extends FabricTagProvider.BlockTagProvider {
             BUNDLED_BAMBOO,
             CRIMSON_SHROOMLAMP,
             WARPED_SHROOMLAMP,
-            AZALEA_FLOWERS);
+            AZALEA_FLOWERS
+        );
 
         // mineable hoe
         this.getOrCreateTagBuilder(BlockTags.HOE_MINEABLE).add(
@@ -220,7 +209,9 @@ public class BlockTagProvider extends FabricTagProvider.BlockTagProvider {
             WEATHERED_COPPER_PILLAR,
             WAXED_WEATHERED_COPPER_PILLAR,
             OXIDIZED_COPPER_PILLAR,
-            WAXED_OXIDIZED_COPPER_PILLAR
+            WAXED_OXIDIZED_COPPER_PILLAR,
+            ENDER_MESH,
+            PETRIFIED_LICHEN
         );
     }
 }

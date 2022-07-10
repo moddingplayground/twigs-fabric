@@ -3,15 +3,13 @@
   "group": "wooden_fence",
   "key": {
     "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
       "item": "twigs:stripped_bamboo_planks"
     }
   },
   "pattern": [
-    "W#W",
-    "W#W"
+    "##",
+    "##",
+    "##"
   ],
   "result": {
     "count": 3,

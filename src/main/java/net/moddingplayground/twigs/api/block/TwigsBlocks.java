@@ -8,7 +8,6 @@ import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.block.GlowLichenBlock;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.Material;
 import net.minecraft.block.Oxidizable;
@@ -29,6 +28,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 import net.moddingplayground.twigs.api.Twigs;
+import net.moddingplayground.twigs.api.sound.TwigsBlockSoundGroup;
 
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -39,16 +39,16 @@ import java.util.function.ToIntFunction;
 import static net.minecraft.block.Blocks.*;
 
 public interface TwigsBlocks {
-    Block TWIG = registerFloorLayer("twig", MapColor.OAK_TAN, BlockSoundGroup.WOOD);
-    Block PEBBLE = registerFloorLayer("pebble", MapColor.STONE_GRAY, BlockSoundGroup.STONE);
-    Block SEA_SHELL = registerFloorLayer("sea_shell", MapColor.WHITE_GRAY, BlockSoundGroup.BONE);
+    Block TWIG = registerFloorLayer("twig", MapColor.OAK_TAN, TwigsBlockSoundGroup.TWIG);
+    Block PEBBLE = registerFloorLayer("pebble", MapColor.STONE_GRAY, TwigsBlockSoundGroup.PEBBLE);
+    Block SEA_SHELL = registerFloorLayer("sea_shell", MapColor.WHITE_GRAY, TwigsBlockSoundGroup.SEA_SHELL);
 
-    Block AZALEA_FLOWERS = register("azalea_flowers", new GlowLichenBlock(FabricBlockSettings.of(Material.PLANT).breakInstantly().noCollision().sounds(BlockSoundGroup.AZALEA)));
+    Block AZALEA_FLOWERS = register("azalea_flowers", new LichenBlock(FabricBlockSettings.of(Material.PLANT).breakInstantly().noCollision().sounds(BlockSoundGroup.AZALEA)));
     Block POTTED_AZALEA_FLOWERS = register("potted_azalea_flowers", new FlowerPotBlock(AZALEA_FLOWERS, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));
 
     /* Paper Lanterns */
 
-    Block PAPER_LANTERN = register("paper_lantern", new PaperLanternBlock(AIR, FabricBlockSettings.of(Material.WOOL).breakInstantly().luminance(luminanceNotWaterlogged(10)).nonOpaque().sounds(BlockSoundGroup.BAMBOO)));
+    Block PAPER_LANTERN = register("paper_lantern", new PaperLanternBlock(AIR, FabricBlockSettings.of(Material.WOOL).breakInstantly().luminance(luminanceNotWaterlogged(10)).nonOpaque().sounds(TwigsBlockSoundGroup.PAPER_LANTERN)));
     Block ALLIUM_PAPER_LANTERN = registerPaperLantern("allium_paper_lantern", ALLIUM);
     Block BLUE_ORCHID_PAPER_LANTERN = registerPaperLantern("blue_orchid_paper_lantern", BLUE_ORCHID);
     Block CRIMSON_ROOTS_PAPER_LANTERN = registerPaperLantern("crimson_roots_paper_lantern", CRIMSON_ROOTS);
@@ -56,7 +56,7 @@ public interface TwigsBlocks {
 
     /* Bamboo */
 
-    Block BAMBOO_LEAVES = register("bamboo_leaves", new BambooLeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.2F).nonOpaque().breakInstantly().noCollision().sounds(BlockSoundGroup.AZALEA_LEAVES)));
+    Block BAMBOO_LEAVES = register("bamboo_leaves", new BambooLeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.2F).nonOpaque().breakInstantly().noCollision().sounds(TwigsBlockSoundGroup.BAMBOO_LEAVES)));
 
     Block BAMBOO_THATCH = register("bamboo_thatch", new Block(FabricBlockSettings.of(Material.SOLID_ORGANIC, MapColor.GREEN).strength(0.2F).sounds(BlockSoundGroup.AZALEA_LEAVES)));
     Block BAMBOO_THATCH_STAIRS = registerStairs("bamboo_thatch_stairs", BAMBOO_THATCH);
@@ -67,19 +67,19 @@ public interface TwigsBlocks {
 
     Block STRIPPED_BAMBOO = register("stripped_bamboo", StrippedBambooBlock::new, BAMBOO);
 
-    Block STRIPPED_BAMBOO_PLANKS = register("stripped_bamboo_planks", new Block(FabricBlockSettings.of(Material.WOOD, MapColor.OFF_WHITE).strength(2.0F, 3.0F).sounds(BlockSoundGroup.SCAFFOLDING)));
+    Block STRIPPED_BAMBOO_PLANKS = register("stripped_bamboo_planks", new Block(FabricBlockSettings.of(Material.WOOD, MapColor.OFF_WHITE).strength(2.0F, 3.0F).sounds(TwigsBlockSoundGroup.STRIPPED_BAMBOO)));
     Block STRIPPED_BAMBOO_SLAB = registerSlab("stripped_bamboo_slab", STRIPPED_BAMBOO_PLANKS);
     Block STRIPPED_BAMBOO_FENCE = register("stripped_bamboo_fence", FenceBlock::new, STRIPPED_BAMBOO_PLANKS);
     Block STRIPPED_BAMBOO_FENCE_GATE = register("stripped_bamboo_fence_gate", FenceGateBlock::new, STRIPPED_BAMBOO_PLANKS);
     Block STRIPPED_BAMBOO_STAIRS = registerStairs("stripped_bamboo_stairs", STRIPPED_BAMBOO_PLANKS);
-    Block STRIPPED_BAMBOO_BUTTON = register("stripped_bamboo_button", new WoodenButtonBlock(FabricBlockSettings.of(Material.DECORATION).noCollision().strength(0.5F).sounds(BlockSoundGroup.SCAFFOLDING)));
-    Block STRIPPED_BAMBOO_PRESSURE_PLATE = register("stripped_bamboo_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.of(Material.WOOD, MapColor.OFF_WHITE).noCollision().strength(0.5F).sounds(BlockSoundGroup.SCAFFOLDING)));
-    Block STRIPPED_BAMBOO_DOOR = register("stripped_bamboo_door", new DoorBlock(FabricBlockSettings.of(Material.WOOD, MapColor.OFF_WHITE).nonOpaque().strength(3.0F).sounds(BlockSoundGroup.SCAFFOLDING)));
-    Block STRIPPED_BAMBOO_TRAPDOOR = register("stripped_bamboo_trapdoor", new TrapdoorBlock(FabricBlockSettings.of(Material.WOOD, MapColor.OFF_WHITE).strength(3.0F).nonOpaque().allowsSpawning(TwigsBlocks::never).sounds(BlockSoundGroup.SCAFFOLDING)));
-    Block STRIPPED_BAMBOO_SIGN = register("stripped_bamboo_sign", new SignBlock(FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0F).sounds(BlockSoundGroup.SCAFFOLDING), TwigsSignTypes.STRIPPED_BAMBOO));
+    Block STRIPPED_BAMBOO_BUTTON = register("stripped_bamboo_button", new WoodenButtonBlock(FabricBlockSettings.of(Material.DECORATION).noCollision().strength(0.5F).sounds(TwigsBlockSoundGroup.STRIPPED_BAMBOO)));
+    Block STRIPPED_BAMBOO_PRESSURE_PLATE = register("stripped_bamboo_pressure_plate", new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.of(Material.WOOD, MapColor.OFF_WHITE).noCollision().strength(0.5F).sounds(TwigsBlockSoundGroup.STRIPPED_BAMBOO)));
+    Block STRIPPED_BAMBOO_DOOR = register("stripped_bamboo_door", new DoorBlock(FabricBlockSettings.of(Material.WOOD, MapColor.OFF_WHITE).nonOpaque().strength(3.0F).sounds(TwigsBlockSoundGroup.STRIPPED_BAMBOO)));
+    Block STRIPPED_BAMBOO_TRAPDOOR = register("stripped_bamboo_trapdoor", new TrapdoorBlock(FabricBlockSettings.of(Material.WOOD, MapColor.OFF_WHITE).strength(3.0F).nonOpaque().allowsSpawning(TwigsBlocks::never).sounds(TwigsBlockSoundGroup.STRIPPED_BAMBOO)));
+    Block STRIPPED_BAMBOO_SIGN = register("stripped_bamboo_sign", new SignBlock(FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0F).sounds(TwigsBlockSoundGroup.STRIPPED_BAMBOO), TwigsSignTypes.STRIPPED_BAMBOO));
     Block STRIPPED_BAMBOO_WALL_SIGN = register("stripped_bamboo_wall_sign", new WallSignBlock(FabricBlockSettings.copyOf(STRIPPED_BAMBOO_SIGN).dropsLike(STRIPPED_BAMBOO_SIGN), TwigsSignTypes.STRIPPED_BAMBOO));
 
-    Block STRIPPED_BAMBOO_MAT = register("stripped_bamboo_mat", new BambooMatBlock(FabricBlockSettings.of(Material.WOOD, MapColor.SPRUCE_BROWN).strength(0.1F).sounds(BlockSoundGroup.SCAFFOLDING)));
+    Block STRIPPED_BAMBOO_MAT = register("stripped_bamboo_mat", new BambooMatBlock(FabricBlockSettings.of(Material.WOOD, MapColor.SPRUCE_BROWN).strength(0.1F).sounds(TwigsBlockSoundGroup.STRIPPED_BAMBOO)));
     Block STRIPPED_BAMBOO_TABLE = registerTable("stripped_bamboo_table", STRIPPED_BAMBOO_PLANKS);
 
     /* Tables */
@@ -96,7 +96,7 @@ public interface TwigsBlocks {
 
     /* Lamps */
 
-    Block LAMP = register("lamp", new LampBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(4.5F).luminance(TwigsBlocks::luminanceWhenLit).sounds(BlockSoundGroup.LANTERN)));
+    Block LAMP = register("lamp", new LampBlock(FabricBlockSettings.of(Material.METAL).requiresTool().strength(4.5F).luminance(TwigsBlocks::luminanceWhenLit).sounds(TwigsBlockSoundGroup.LAMP)));
     Block SOUL_LAMP = register("soul_lamp", LampBlock::new, LAMP);
 
     Block CRIMSON_SHROOMLAMP = registerShroomlamp("crimson_shroomlamp");
@@ -133,7 +133,7 @@ public interface TwigsBlocks {
 
     /* Cobblestone Bricks */
 
-    Block ROCKY_DIRT = register("rocky_dirt", new Block(FabricBlockSettings.copyOf(DIRT).strength(2.5F).sounds(BlockSoundGroup.TUFF).requiresTool()));
+    Block ROCKY_DIRT = register("rocky_dirt", new Block(FabricBlockSettings.copyOf(DIRT).strength(2.5F).requiresTool().sounds(TwigsBlockSoundGroup.ROCKY_DIRT)));
 
     Block COBBLESTONE_BRICKS = registerCopy("cobblestone_bricks", COBBLESTONE);
     Block COBBLESTONE_BRICK_STAIRS = registerStairs("cobblestone_brick_stairs", COBBLESTONE_BRICKS);
@@ -242,6 +242,11 @@ public interface TwigsBlocks {
 
     Block CHISELED_POLISHED_AMETHYST = register("chiseled_polished_amethyst", AmethystBlock::new, POLISHED_AMETHYST);
     Block CRACKED_POLISHED_AMETHYST_BRICKS = register("cracked_polished_amethyst_bricks", AmethystBlock::new, POLISHED_AMETHYST);
+
+    /* Other */
+
+    Block ENDER_MESH = register("ender_mesh", new Block(FabricBlockSettings.of(Material.STONE, MapColor.BLACK).strength(0.5F, 3.0F).requiresTool().luminance(4).sounds(TwigsBlockSoundGroup.ENDER_MESH)));
+    Block PETRIFIED_LICHEN = register("petrified_lichen", new LichenBlock(FabricBlockSettings.of(Material.PLANT, MapColor.STONE_GRAY).luminance(LichenBlock.getLuminanceSupplier(7)).breakInstantly().noCollision().requiresTool().sounds(TwigsBlockSoundGroup.PETRIFIED_LICHEN)));
 
     /* Maps */
 

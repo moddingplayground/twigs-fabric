@@ -13,11 +13,12 @@ public final class TwigsBlocksClientImpl implements TwigsBlocks, ClientModInitia
     public void onInitializeClient() {
         BlockRenderLayerMap renderLayers = BlockRenderLayerMap.INSTANCE;
         renderLayers.putBlocks(RenderLayer.getCutout(),
-            AZALEA_FLOWERS,
+            TWIG,
             PEBBLE,
             SEA_SHELL,
-            TWIG,
+            AZALEA_FLOWERS,
             POTTED_AZALEA_FLOWERS,
+            PETRIFIED_LICHEN,
 
             PAPER_LANTERN,
             ALLIUM_PAPER_LANTERN,

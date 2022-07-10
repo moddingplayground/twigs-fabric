@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_one": {
+    "has_clay_ball": {
       "conditions": {
         "items": [
           {
@@ -13,13 +13,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "twigs:schist"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_two": {
+    "has_quartz": {
       "conditions": {
         "items": [
           {
@@ -30,12 +24,18 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "twigs:schist"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_one",
-      "has_two",
+      "has_clay_ball",
+      "has_quartz",
       "has_the_recipe"
     ]
   ],

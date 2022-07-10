@@ -11,7 +11,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_iron": {
+    "has_iron_ingot": {
       "conditions": {
         "items": [
           {
@@ -35,13 +35,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "twigs:soul_lamp"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_torch": {
+    "has_soul_torch": {
       "conditions": {
         "items": [
           {
@@ -52,13 +46,19 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "twigs:soul_lamp"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_iron",
+      "has_iron_ingot",
       "has_iron_nugget",
-      "has_torch",
+      "has_soul_torch",
       "has_coal",
       "has_the_recipe"
     ]

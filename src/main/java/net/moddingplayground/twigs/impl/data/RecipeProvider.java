@@ -19,6 +19,7 @@ import net.moddingplayground.twigs.api.data.TwigsBlockFamilies;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 import static net.minecraft.data.family.BlockFamily.Variant.*;
@@ -93,7 +94,7 @@ public class RecipeProvider extends FabricRecipeProvider {
         exporter.export(planks(STRIPPED_BAMBOO, STRIPPED_BAMBOO_PLANKS));
         exporter.export(generic3x1(STRIPPED_BAMBOO, STRIPPED_BAMBOO_MAT, 2));
 
-        // table
+        // tables
         exporter.export(table(OAK_TABLE, OAK_PLANKS, OAK_SLAB));
         exporter.export(table(SPRUCE_TABLE, SPRUCE_PLANKS, SPRUCE_SLAB));
         exporter.export(table(BIRCH_TABLE, BIRCH_PLANKS, BIRCH_SLAB));
@@ -105,6 +106,9 @@ public class RecipeProvider extends FabricRecipeProvider {
         exporter.export(table(WARPED_TABLE, WARPED_PLANKS, WARPED_SLAB));
         exporter.export(table(STRIPPED_BAMBOO_TABLE, STRIPPED_BAMBOO_PLANKS, STRIPPED_BAMBOO_SLAB));
 
+        // ender mesh
+        exporter.export(eye(ENDER_MESH, ENDER_PEARL, OBSIDIAN, 16));
+
         // families
         TwigsBlockFamilies.FAMILIES.forEach(this::generateFamilyRecipes);
     }
@@ -113,7 +117,7 @@ public class RecipeProvider extends FabricRecipeProvider {
         return ShapelessRecipeJsonBuilder.create(to)
                                          .input(from)
                                          .input(AZALEA_FLOWERS, 3)
-                                         .criterion("has_azalea_flowers", conditionsFromItem(AZALEA_FLOWERS));
+                                         .criterion(hasItem(AZALEA_FLOWERS), conditionsFromItem(AZALEA_FLOWERS));
     }
 
     public static ShapelessRecipeJsonBuilder paperLantern(Item content, Item lantern) {
@@ -121,8 +125,8 @@ public class RecipeProvider extends FabricRecipeProvider {
                                          .group("paper_lantern")
                                          .input(content)
                                          .input(PAPER_LANTERN)
-                                         .criterion("has_content", conditionsFromItem(content))
-                                         .criterion("has_lantern", conditionsFromItem(PAPER_LANTERN));
+                                         .criterion(hasItem(content), conditionsFromItem(content))
+                                         .criterion(hasItem(PAPER_LANTERN), conditionsFromItem(PAPER_LANTERN));
     }
 
     public static ShapedRecipeJsonBuilder lamp(Item torch, Item lamp) {
@@ -135,9 +139,9 @@ public class RecipeProvider extends FabricRecipeProvider {
                                       .input('N', IRON_NUGGET)
                                       .input('T', torch)
                                       .input('C', ItemTags.COALS)
-                                      .criterion("has_iron", conditionsFromItem(IRON_INGOT))
-                                      .criterion("has_iron_nugget", conditionsFromItem(IRON_NUGGET))
-                                      .criterion("has_torch", conditionsFromItem(torch))
+                                      .criterion(hasItem(IRON_INGOT), conditionsFromItem(IRON_INGOT))
+                                      .criterion(hasItem(IRON_NUGGET), conditionsFromItem(IRON_NUGGET))
+                                      .criterion(hasItem(torch), conditionsFromItem(torch))
                                       .criterion("has_coal", conditionsFromTag(ItemTags.COALS));
     }
 
@@ -149,13 +153,24 @@ public class RecipeProvider extends FabricRecipeProvider {
                                       .pattern("P P")
                                       .input('S', slab)
                                       .input('P', planks)
-                                      .criterion("has_planks", conditionsFromItem(planks))
-                                      .criterion("has_slab", conditionsFromItem(slab));
+                                      .criterion(hasItem(planks), conditionsFromItem(planks))
+                                      .criterion(hasItem(slab), conditionsFromItem(slab));
+    }
+
+    public static ShapedRecipeJsonBuilder eye(Item output, Item inside, Item outside, int count) {
+        return ShapedRecipeJsonBuilder.create(output, count)
+                                      .pattern(" # ")
+                                      .pattern("#X#")
+                                      .pattern(" # ")
+                                      .input('X', inside)
+                                      .input('#', outside)
+                                      .criterion(hasItem(inside), conditionsFromItem(inside))
+                                      .criterion(hasItem(outside), conditionsFromItem(outside));
     }
 
     public FamilyRecipes createFamilyRecipes(Block base, BlockFamily family) {
-        Set<BlockFamily> not = Set.of(TwigsBlockFamilies.STRIPPED_BAMBOO, TwigsBlockFamilies.BAMBOO_THATCH);
-        return new FamilyRecipes(base, family, !not.contains(family));
+        Set<BlockFamily> wooden = Set.of(TwigsBlockFamilies.STRIPPED_BAMBOO, TwigsBlockFamilies.BAMBOO_THATCH);
+        return new FamilyRecipes(base, family, wooden.contains(family));
     }
 
     public void generateFamilyRecipes(Block base, BlockFamily family) {
@@ -165,13 +180,13 @@ public class RecipeProvider extends FabricRecipeProvider {
     public class FamilyRecipes {
         private final Block base;
         private final BlockFamily family;
-        private final boolean stone;
+        private final boolean wooden;
         private final RecipeExporter exporter = RecipeProvider.this.exporter;
 
-        public FamilyRecipes(Block base, BlockFamily family, boolean stone) {
+        public FamilyRecipes(Block base, BlockFamily family, boolean wooden) {
             this.base = base;
             this.family = family;
-            this.stone = stone;
+            this.wooden = wooden;
         }
 
         public void generate() {
@@ -203,7 +218,7 @@ public class RecipeProvider extends FabricRecipeProvider {
         }
 
         public void button(Block block) {
-            this.exporter.export(processWooden(woodenButton(this.base, block)));
+            this.exporter.export(processWooden(block, RecipeJsonBuilders::button, RecipeJsonBuilders::woodenButton));
         }
 
         public void chiseled(Block block) {
@@ -219,15 +234,15 @@ public class RecipeProvider extends FabricRecipeProvider {
         }
 
         public void door(Block block) {
-            this.exporter.export(processWooden(woodenDoor(this.base, block)));
+            this.exporter.export(processWooden(block, RecipeJsonBuilders::door, RecipeJsonBuilders::woodenDoor));
         }
 
         public void fence(Block block) {
-            this.exporter.export(processWooden(woodenFence(this.base, block)));
+            this.exporter.export(processWooden(block, RecipeJsonBuilders::fence, RecipeJsonBuilders::woodenFence));
         }
 
         public void fenceGate(Block block) {
-            this.exporter.export(processWooden(woodenFenceGate(this.base, block)));
+            this.exporter.export(processWooden(block, RecipeJsonBuilders::fenceGate, RecipeJsonBuilders::woodenFenceGate));
         }
 
         public void sign(Block block) {
@@ -235,23 +250,23 @@ public class RecipeProvider extends FabricRecipeProvider {
         }
 
         public void slab(Block block) {
-            this.exporter.export(processWooden(woodenSlab(this.base, block)));
-            if (stone) this.exporter.export(stonecutting(this.base, block, 2));
+            this.exporter.export(processWooden(block, RecipeJsonBuilders::slab, RecipeJsonBuilders::woodenSlab));
+            if (!wooden) this.exporter.export(stonecutting(this.base, block, 2));
         }
 
         public void stairs(Block block) {
-            this.exporter.export(processWooden(woodenStairs(this.base, block)));
-            if (stone) this.exporter.export(stonecutting(this.base, block));
+            this.exporter.export(processWooden(block, RecipeJsonBuilders::stairs, RecipeJsonBuilders::woodenStairs));
+            if (!wooden) this.exporter.export(stonecutting(this.base, block));
         }
 
         public void pressurePlate(Block block) {
-            this.exporter.export(processWooden(woodenPressurePlate(this.base, block)));
+            this.exporter.export(processWooden(block, RecipeJsonBuilders::pressurePlate, RecipeJsonBuilders::woodenPressurePlate));
         }
 
         public void polished(Block block) {
             this.exporter.export(condensing(this.base, block));
 
-            if (stone) {
+            if (!wooden) {
                 this.exporter.export(stonecutting(this.base, block));
                 this.loopPolished(block);
             }
@@ -267,17 +282,16 @@ public class RecipeProvider extends FabricRecipeProvider {
         }
 
         public void trapdoor(Block block) {
-            this.exporter.export(processWooden(woodenTrapdoor(this.base, block)));
+            this.exporter.export(processWooden(block, RecipeJsonBuilders::trapdoor, RecipeJsonBuilders::woodenTrapdoor));
         }
 
-        private CraftingRecipeJsonBuilder processWooden(CraftingRecipeJsonBuilder recipe) {
-            if (this.stone) recipe.group(null);
-            return recipe;
+        private CraftingRecipeJsonBuilder processWooden(Block block, BiFunction<Block, Block, CraftingRecipeJsonBuilder> normal, BiFunction<Block, Block, CraftingRecipeJsonBuilder> wooden) {
+            return (this.wooden ? wooden : normal).apply(this.base, block);
         }
 
         public void wall(Block block) {
             this.exporter.export(wallCrafting(this.base, block));
-            if (stone) this.exporter.export(stonecutting(this.base, block));
+            if (!wooden) this.exporter.export(stonecutting(this.base, block));
         }
     }
 }

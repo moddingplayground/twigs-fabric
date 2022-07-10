@@ -1,7 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ingredient": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "twigs:stick_from_twig"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_twig": {
       "conditions": {
         "items": [
           {
@@ -12,17 +18,11 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "twigs:stick_from_twig"
-      },
-      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_ingredient",
+      "has_twig",
       "has_the_recipe"
     ]
   ],

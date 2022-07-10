@@ -68,6 +68,9 @@ public interface TwigsItems {
     Item CRIMSON_SHROOMLAMP = register(TwigsBlocks.CRIMSON_SHROOMLAMP);
     Item WARPED_SHROOMLAMP = register(TwigsBlocks.WARPED_SHROOMLAMP);
 
+    Item ENDER_MESH = register(TwigsBlocks.ENDER_MESH);
+    Item PETRIFIED_LICHEN = register(TwigsBlocks.PETRIFIED_LICHEN);
+
     Item CALCITE_STAIRS = register(TwigsBlocks.CALCITE_STAIRS);
     Item CALCITE_SLAB = register(TwigsBlocks.CALCITE_SLAB);
     Item CALCITE_WALL = register(TwigsBlocks.CALCITE_WALL);
