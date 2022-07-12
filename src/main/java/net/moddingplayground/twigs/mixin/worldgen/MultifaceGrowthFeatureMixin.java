@@ -10,6 +10,7 @@ import net.minecraft.world.gen.feature.MultifaceGrowthFeature;
 import net.minecraft.world.gen.feature.MultifaceGrowthFeatureConfig;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import net.moddingplayground.twigs.api.block.TwigsBlocks;
+import net.moddingplayground.twigs.api.config.TwigsWorldGenReplacementsConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -38,6 +39,8 @@ public class MultifaceGrowthFeatureMixin {
     @SuppressWarnings("unchecked")
     @ModifyVariable(method = "generate(Lnet/minecraft/world/gen/feature/util/FeatureContext;)Z", at = @At(value = "HEAD", ordinal = 0), argsOnly = true)
     private FeatureContext<MultifaceGrowthFeatureConfig> onGenerate(FeatureContext<MultifaceGrowthFeatureConfig> context) {
+        if (!TwigsWorldGenReplacementsConfig.INSTANCE.petrifiedLichenAtDeepslate.getValue()) return context;
+
         BlockPos origin = context.getOrigin();
 
         // replace glow lichen below y0
