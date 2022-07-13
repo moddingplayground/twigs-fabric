@@ -155,6 +155,7 @@ if (ENV.MODRINTH_TOKEN) modrinth {
   changelog = CHANGELOG
   uploadFile = remapJar
   gameVersions = [ project.ver_minecraft ]
+  loaders = [ "fabric", "quilt" ]
   dependencies = [
           new ModDependency("fabric-api", DependencyType.REQUIRED),
           new ModDependency("frame-api", DependencyType.REQUIRED),
@@ -170,6 +171,7 @@ if (ENV.CURSEFORGE_API_KEY) curseforge {
     id = project.curseforge_id
     addGameVersion project.curseforge_version
     addGameVersion 'Fabric'
+    addGameVersion 'Quilt'
 
     changelog = CHANGELOG
     releaseType = project.release_type
