@@ -1,5 +1,6 @@
 package net.moddingplayground.twigs.impl.block;
 
+import com.google.common.base.Suppliers;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
@@ -54,6 +55,9 @@ import net.moddingplayground.twigs.mixin.ItemEntryAccessor;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import static net.minecraft.block.Blocks.*;
 
@@ -108,6 +112,13 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
 
         /* Loot Tables */
 
+        Supplier<Set<Identifier>> leafTablesSupplier = Suppliers.memoize(() -> {
+            return Registry.BLOCK.stream()
+                                 .filter(LeavesBlock.class::isInstance)
+                                 .map(Block::getLootTableId)
+                                 .collect(Collectors.toSet());
+        });
+
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
             if (this.equals(id, BAMBOO)) { // bamboo leaves with bamboo
                 tableBuilder.pool(
@@ -138,11 +149,8 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
                 );
             } else {
                 // twigs replace sticks in leaves
-                List<Identifier> leafTables = Registry.BLOCK.stream()
-                                                            .filter(LeavesBlock.class::isInstance)
-                                                            .map(Block::getLootTableId)
-                                                            .toList();
-                if (leafTables.contains(id)) {
+
+                if (leafTablesSupplier.get().contains(id)) {
                     tableBuilder.modifyPools(original -> {
                         LootPool pool = original.build();
                         LootPool.Builder builder = LootPool.builder();
