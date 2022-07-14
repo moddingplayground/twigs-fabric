@@ -14,6 +14,7 @@ public class TwigsBlockSoundGroup extends BlockSoundGroup {
     public static final BlockSoundGroup LAMP = copy(LANTERN);
     public static final BlockSoundGroup ROCKY_DIRT = copy(TUFF);
     public static final BlockSoundGroup PETRIFIED_LICHEN = copy(DEEPSLATE);
+    public static final BlockSoundGroup SCULK_PASSENGER = copy(SCULK);
     public static final BlockSoundGroup ENDER_MESH = builder(SCULK_VEIN).stepSound(SoundEvents.BLOCK_STONE_STEP)
                                                                         .fallSound(SoundEvents.BLOCK_STONE_FALL)
                                                                         .build();

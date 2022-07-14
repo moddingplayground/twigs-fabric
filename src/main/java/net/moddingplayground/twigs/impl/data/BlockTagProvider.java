@@ -13,6 +13,7 @@ import net.moddingplayground.twigs.api.block.PaperLanternBlock;
 import net.moddingplayground.twigs.api.block.TableBlock;
 import net.moddingplayground.twigs.api.tag.TwigsBlockTags;
 
+import static net.minecraft.block.Blocks.*;
 import static net.moddingplayground.twigs.api.block.TwigsBlocks.*;
 
 public class BlockTagProvider extends FabricTagProvider.BlockTagProvider {
@@ -32,6 +33,8 @@ public class BlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 if (block instanceof PaperLanternBlock) this.getOrCreateTagBuilder(TwigsBlockTags.PAPER_LANTERNS).add(block);
             }
         });
+
+        this.getOrCreateTagBuilder(TwigsBlockTags.SCULK_PASSENGER_MOVES_TO).add(SCULK, SCULK_PASSENGER);
 
         // rocky dirt
         this.getOrCreateTagBuilder(BlockTags.DIRT).add(ROCKY_DIRT);
@@ -99,7 +102,8 @@ public class BlockTagProvider extends FabricTagProvider.BlockTagProvider {
             WARPED_SHROOMLAMP,
             BAMBOO_THATCH,
             BAMBOO_THATCH_STAIRS,
-            BAMBOO_THATCH_SLAB
+            BAMBOO_THATCH_SLAB,
+            SCULK_PASSENGER
         );
 
         // mineable pickaxe

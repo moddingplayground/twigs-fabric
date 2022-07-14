@@ -246,6 +246,8 @@ public interface TwigsBlocks {
     /* Other */
 
     Block ENDER_MESH = register("ender_mesh", new Block(FabricBlockSettings.of(Material.STONE, MapColor.BLACK).strength(0.5F, 3.0F).requiresTool().luminance(4).sounds(TwigsBlockSoundGroup.ENDER_MESH)));
+    Block SCULK_PASSENGER = register("sculk_passenger", new SculkPassengerBlock(FabricBlockSettings.of(Material.SCULK).strength(0.2F).luminance(3).ticksRandomly().sounds(TwigsBlockSoundGroup.SCULK_PASSENGER)));
+
     Block PETRIFIED_LICHEN = register("petrified_lichen", new LichenBlock(FabricBlockSettings.of(Material.PLANT, MapColor.STONE_GRAY).luminance(LichenBlock.getLuminanceSupplier(7)).breakInstantly().noCollision().requiresTool().sounds(TwigsBlockSoundGroup.PETRIFIED_LICHEN)));
 
     /* Maps */

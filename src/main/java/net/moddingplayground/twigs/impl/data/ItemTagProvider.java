@@ -24,6 +24,7 @@ public class ItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         this.copy(TwigsBlockTags.TABLES, TwigsItemTags.TABLES);
         this.copy(TwigsBlockTags.PAPER_LANTERNS, TwigsItemTags.PAPER_LANTERNS);
+        this.copy(TwigsBlockTags.SCULK_PASSENGER_MOVES_TO, TwigsItemTags.SCULK_PASSENGER_MOVES_TO);
 
         this.getOrCreateTagBuilder(ItemTags.PIGLIN_REPELLENTS).add(SOUL_LAMP);
         this.getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(SCHIST, RHYOLITE);

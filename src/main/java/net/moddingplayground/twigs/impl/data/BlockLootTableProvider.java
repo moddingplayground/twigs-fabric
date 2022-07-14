@@ -190,6 +190,8 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider {
         this.addDrop(BAMBOO_LEAVES, this::dropsLayer1_4);
 
         this.addPottedPlantDrop(POTTED_AZALEA_FLOWERS);
+
+        this.addDropWithSilkTouch(SCULK_PASSENGER);
     }
 
     public void addDrops(Block... blocks) {

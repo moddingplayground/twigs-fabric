@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "twigs:block/sculk_passenger",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "twigs:block/sculk_passenger",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "twigs:block/sculk_passenger",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "twigs:block/sculk_passenger",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "twigs:block/sculk_passenger"
+    },
+    "facing=west": {
+      "model": "twigs:block/sculk_passenger",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

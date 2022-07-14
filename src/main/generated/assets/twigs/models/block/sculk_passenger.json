@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "twigs:block/sculk_passenger_top",
+    "side": "twigs:block/sculk_passenger_side"
+  }
+}

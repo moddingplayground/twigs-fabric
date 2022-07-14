@@ -11,6 +11,7 @@
 
   "subtitles.block.twigs.lamp.light": "Lamp lit",
   "subtitles.block.twigs.lamp.extinguish": "Lamp extinguished",
+  "subtitles.block.twigs.sculk_passenger.move": "Sculk Passenger travels",
   "subtitles.entity.twigs.pebble.throw": "Pebble flies",
 
   "entity.twigs.pebble": "Pebble",
@@ -164,5 +165,6 @@
   "block.twigs.waxed_weathered_copper_pillar": "Waxed Weathered Copper Pillar",
   "block.twigs.waxed_oxidized_copper_pillar": "Waxed Oxidized Copper Pillar",
   "block.twigs.ender_mesh": "Ender Mesh",
-  "block.twigs.petrified_lichen": "Petrified Lichen"
+  "block.twigs.petrified_lichen": "Petrified Lichen",
+  "block.twigs.sculk_passenger": "Sculk Passenger"
 }

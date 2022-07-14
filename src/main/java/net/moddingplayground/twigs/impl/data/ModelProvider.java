@@ -32,6 +32,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 import static net.minecraft.data.client.BlockStateModelGenerator.*;
+import static net.moddingplayground.frame.api.toymaker.v0.model.ModelHelpers.*;
 import static net.moddingplayground.twigs.api.block.TwigsBlocks.*;
 
 public class ModelProvider extends FabricModelProvider {
@@ -83,6 +84,8 @@ public class ModelProvider extends FabricModelProvider {
             LAMP,
             SOUL_LAMP
         );
+
+        this.registerSculkPassenger(SCULK_PASSENGER);
 
         uploader.registerAxisRotatedColumn(
             RHYOLITE,
@@ -230,6 +233,11 @@ public class ModelProvider extends FabricModelProvider {
         this.blockUploader.accept(BlockStateModelGenerator.createWallBlockState(block, post, side, sideTall));
         Identifier inventory = this.blockUploader.upload(TwigsModels.TEMPLATE_WALL_COLUMN_INVENTORY, block, textureMap);
         this.blockGen.registerParentedItemModel(block, inventory);
+    }
+
+    public void registerSculkPassenger(Block block) {
+        Identifier model = this.blockUploader.upload(TexturedModel.CUBE_COLUMN, block);
+        this.blockUploader.accept(VariantsBlockStateSupplier.create(block, createVariant(model)).coordinate(this.blockGen.createUpDefaultFacingVariantMap()));
     }
 
     /* Items */

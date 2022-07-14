@@ -69,6 +69,7 @@ public interface TwigsItems {
     Item WARPED_SHROOMLAMP = register(TwigsBlocks.WARPED_SHROOMLAMP);
 
     Item ENDER_MESH = register(TwigsBlocks.ENDER_MESH);
+    Item SCULK_PASSENGER = register(TwigsBlocks.SCULK_PASSENGER);
     Item PETRIFIED_LICHEN = register(TwigsBlocks.PETRIFIED_LICHEN);
 
     Item CALCITE_STAIRS = register(TwigsBlocks.CALCITE_STAIRS);

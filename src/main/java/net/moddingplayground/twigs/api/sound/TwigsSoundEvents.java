@@ -12,6 +12,8 @@ public interface TwigsSoundEvents {
         return block("lamp", id);
     }
 
+    SoundEvent BLOCK_SCULK_PASSENGER_MOVE = block("sculk_passenger", "move");
+
     SoundEvent BLOCK_AZALEA_FLOWERS_SHEAR = block("azalea_flowers", "shear");
     SoundEvent BLOCK_BAMBOO_STRIP_SHEAR = block("bamboo", "strip_shear");
 
