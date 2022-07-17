@@ -17,9 +17,6 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
 
-      - name: Make Gradle wrapper executable
-        run: chmod +x ./gradlew
-
       - name: Publish to Maven local
         run: ./gradlew check build publishToMavenLocal --stacktrace --parallel --warning-mode=fail
 
