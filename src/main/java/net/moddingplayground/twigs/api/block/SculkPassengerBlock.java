@@ -29,14 +29,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 @SuppressWarnings("deprecation")
 public class SculkPassengerBlock extends OreBlock {
     public static final DirectionProperty FACING = Properties.FACING;
     public static final BooleanProperty ADHERES = TwigsProperties.ADHERES;
 
-    public static final Function<Direction, List<Direction>> BIASED_DIRECTIONS = Util.memoize(direction -> {
+    public static final BiFunction<Direction, Long, List<Direction>> BIASED_DIRECTIONS = Util.memoize((direction, seed) -> {
+        if (direction == null) {
+            // get a list of random directions, based on the world seed
+            Random random = Random.create(seed);
+            return Util.copyShuffled(Direction.values(), random);
+        }
+
+        // create a list of directions, with the given direction
+        // and its opposite at the start of the list
         List<Direction> directions = new ArrayList<>(Arrays.stream(Direction.values()).toList());
         directions.add(0, direction.getOpposite());
         directions.add(0, direction);
@@ -65,9 +73,7 @@ public class SculkPassengerBlock extends OreBlock {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (state.get(ADHERES)) {
-            this.findSculkDirection(state.get(FACING), world, pos).ifPresent(direction -> this.moveSculkPassenger(world, pos, state, direction));
-        } else this.moveSculkPassenger(world, pos, state, getRandomDirection(random));
+        this.findSculkDirection(state.get(ADHERES) ? state.get(FACING) : null, world, pos).ifPresent(direction -> this.moveSculkPassenger(world, pos, state, direction));
         this.scheduleMovement(world, pos, world.random);
     }
 
@@ -75,43 +81,50 @@ public class SculkPassengerBlock extends OreBlock {
         world.createAndScheduleBlockTick(pos, this, MathHelper.nextInt(random, 20, 40));
     }
 
-    public void moveSculkPassenger(ServerWorld world, BlockPos pos, BlockState state, Direction direction) {
-        BlockPos movePos = pos.offset(direction);
-        BlockState moveState = world.getBlockState(movePos);
-        if (this.isStateAvailableToMove(moveState)) {
-            world.setBlockState(pos, moveState, Block.NOTIFY_ALL);
-            world.setBlockState(movePos, state.with(FACING, direction), Block.NOTIFY_ALL);
+    public void moveSculkPassenger(ServerWorld world, BlockPos rootPos, BlockState rootState, Direction direction) {
+        BlockPos pos = rootPos.offset(direction);
+        BlockState state = world.getBlockState(pos);
 
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, movePos, GameEvent.Emitter.of(state));
+        world.setBlockState(rootPos, state, Block.NOTIFY_ALL);
+        world.setBlockState(pos, rootState.with(FACING, direction), Block.NOTIFY_ALL);
 
-            int x = movePos.getX();
-            int y = movePos.getY();
-            int z = movePos.getZ();
-            world.spawnParticles(ParticleTypes.SCULK_CHARGE_POP, x + 0.5, y + 1.15, z + 0.5, 2, 0.2, 0.0, 0.2, 0.0);
-            world.playSound(null, x, y, z, TwigsSoundEvents.BLOCK_SCULK_PASSENGER_MOVE, SoundCategory.BLOCKS, 1.0f, 1.0f);
-        }
+        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(rootState));
+
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+        world.spawnParticles(ParticleTypes.SCULK_CHARGE_POP, x + 0.5, y + 1.15, z + 0.5, 2, 0.2, 0.0, 0.2, 0.0);
+        world.playSound(null, x, y, z, TwigsSoundEvents.BLOCK_SCULK_PASSENGER_MOVE, SoundCategory.BLOCKS, 1.0f, 1.0f);
     }
 
-    public static Direction getRandomDirection(Random random) {
-        Direction[] directions = Direction.values();
-        return directions[random.nextInt(directions.length)];
+    public Optional<Direction> findSculkDirection(@Nullable Direction facing, ServerWorld world, BlockPos pos) {
+        List<Direction> list = BIASED_DIRECTIONS.apply(facing, world.getSeed())
+                                                .stream()
+                                                .filter(direction -> {
+                                                    BlockState state = world.getBlockState(pos.offset(direction));
+                                                    return this.isStateAvailableToMove(state);
+                                                })
+                                                .sorted((d1, d2) -> Boolean.compare(this.isDirectionThis(d1, world, pos), this.isDirectionThis(d2, world, pos)))
+                                                .toList();
+
+        if (list.isEmpty()) return Optional.empty(); // return immediately if empty
+        if (facing != null) return Optional.of(list.get(0)); // return immediately if adheres
+
+        Random random = world.random;
+        int bound = random.nextInt(list.size()) + 1;
+        return Optional.of(list.get(random.nextInt(bound)));
     }
 
     public boolean isStateAvailableToMove(BlockState state) {
         return state.isIn(TwigsBlockTags.SCULK_PASSENGER_MOVES_TO);
     }
 
-    public Optional<Direction> findSculkDirection(Direction facing, ServerWorld world, BlockPos pos) {
-        for (Direction direction : BIASED_DIRECTIONS.apply(facing)) {
-            BlockState state = world.getBlockState(pos.offset(direction));
-            if (this.isStateAvailableToMove(state)) return Optional.of(direction);
-        }
-
-        return Optional.empty();
+    public boolean isDirectionThis(Direction direction, ServerWorld world, BlockPos pos) {
+        return world.getBlockState(pos.offset(direction)).isOf(this);
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder.add(FACING, ADHERES));
+        builder.add(FACING, ADHERES);
     }
 }

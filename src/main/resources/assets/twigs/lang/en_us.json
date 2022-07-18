@@ -14,6 +14,9 @@
   "subtitles.block.twigs.sculk_passenger.move": "Sculk Passenger travels",
   "subtitles.entity.twigs.pebble.throw": "Pebble flies",
 
+  "command.twigs:calculatesculkpassengerbias.directions_result": "Seed %s has directions %s",
+  "command.twigs:calculatesculkpassengerbias.invalid_seed": "'%s' is not a valid seed!",
+
   "entity.twigs.pebble": "Pebble",
 
   "block.twigs.azalea_flowers": "Azalea Flowers",
