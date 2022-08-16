@@ -1,4 +1,4 @@
-package net.moddingplayground.twigs.mixin;
+package net.moddingplayground.twigs.mixin.block;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;

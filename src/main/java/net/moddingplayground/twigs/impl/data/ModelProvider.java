@@ -237,7 +237,7 @@ public class ModelProvider extends FabricModelProvider {
 
     public void registerSculkPassenger(Block block) {
         Identifier model = this.blockUploader.upload(TexturedModel.CUBE_COLUMN, block);
-        this.blockUploader.accept(VariantsBlockStateSupplier.create(block, createVariant(model)).coordinate(this.blockGen.createUpDefaultFacingVariantMap()));
+        this.blockUploader.accept(VariantsBlockStateSupplier.create(block, createVariant(model)).coordinate(this.blockGen.createNorthDefaultRotationStates()));
     }
 
     /* Items */

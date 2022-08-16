@@ -30,9 +30,19 @@ public final class TwigsImpl implements Twigs, ModInitializer {
         this.initializer.start();
 
         Reflection.initialize(
-            TwigsSoundEvents.class, TwigsItemGroups.class, TwigsSignTypes.class,
-            TwigsBlocks.class, TwigsItems.class, TwigsEntityType.class,
-            TwigsConfiguredFeatures.class, TwigsPlacedFeatures.class, TwigsParticleTypes.class,
+            TwigsSoundEvents.class,
+            TwigsParticleTypes.class,
+
+            TwigsSignTypes.class,
+            TwigsBlocks.class,
+
+            TwigsItemGroups.class,
+            TwigsItems.class,
+            TwigsEntityType.class,
+
+            TwigsConfiguredFeatures.class,
+            TwigsPlacedFeatures.class,
+
             TwigsWorldGenReplacementsConfig.class
         );
 

@@ -19,6 +19,7 @@ public final class TwigsBlocksClientImpl implements TwigsBlocks, ClientModInitia
             AZALEA_FLOWERS,
             POTTED_AZALEA_FLOWERS,
             PETRIFIED_LICHEN,
+            SCULK_PASSENGER,
 
             PAPER_LANTERN,
             ALLIUM_PAPER_LANTERN,
