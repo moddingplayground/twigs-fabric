@@ -28,21 +28,16 @@ group = project.maven_group
 /* Dependencies */
 
 repositories {
+  /* Frame */
+
   maven {
     name = 'Modding Playground'
     url  = 'https://raw.githubusercontent.com/moddingplayground/maven/main/'
   }
 
-  /* Frame */
-
   maven {
     name = 'Shedaniel'
     url  = 'https://maven.shedaniel.me/'
-  }
-
-  maven {
-    name = 'Jitpack'
-    url  = 'https://jitpack.io/'
   }
 
   /* Mod Menu */
@@ -60,7 +55,9 @@ dependencies {
 
   // api
   modImplementation "net.fabricmc.fabric-api:fabric-api:${project.ver_fabric}"
-  modImplementation ("net.moddingplayground.frame:frame-fabric:${project.ver_frame}-fabric")
+  modImplementation ("net.moddingplayground.frame:frame-fabric:${project.ver_frame}-fabric") {
+    exclude module: 'frame-enchantments-v0'
+  }
 
   // integration
   modImplementation "com.terraformersmc:modmenu:${project.ver_mod_menu}"
