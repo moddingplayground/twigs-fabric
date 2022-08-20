@@ -183,7 +183,7 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider {
             STRIPPED_BAMBOO_SLAB
         );
 
-        this.addDrop(STRIPPED_BAMBOO_DOOR, BlockLootTableGenerator::addDoorDrop);
+        this.addDrop(STRIPPED_BAMBOO_DOOR, BlockLootTableGenerator::doorDrops);
 
         this.addDrop(AZALEA_FLOWERS, block -> multifaceGrowthDrops(block, WITH_SHEARS));
         this.addDrops(BlockLootTableProvider::multifaceGrowthDrops, PETRIFIED_LICHEN);

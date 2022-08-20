@@ -1,11 +1,11 @@
-buildscript { dependencies { classpath 'org.kohsuke:github-api:1.301' } }
+buildscript { dependencies { classpath 'org.kohsuke:github-api:1.307' } }
 
 plugins {
   id 'java-library'
   id 'idea'
   id 'eclipse'
 
-  id 'fabric-loom' version '0.12-SNAPSHOT'
+  id 'fabric-loom' version '0.13-SNAPSHOT'
   id 'maven-publish'
 
   id 'com.modrinth.minotaur' version '2.+'
@@ -32,10 +32,19 @@ repositories {
     url  = 'https://raw.githubusercontent.com/moddingplayground/maven/main/'
   }
 
+  /* Frame */
+
   maven {
     name = 'Shedaniel'
     url  = 'https://maven.shedaniel.me/'
   }
+
+  maven {
+    name = 'Jitpack'
+    url  = 'https://jitpack.io/'
+  }
+
+  /* Mod Menu */
 
   maven {
     name = 'Terraformers'
@@ -50,7 +59,7 @@ dependencies {
 
   // api
   modImplementation "net.fabricmc.fabric-api:fabric-api:${project.ver_fabric}"
-  modImplementation "net.moddingplayground.frame:frame-fabric:${project.ver_frame}"
+  modImplementation ("net.moddingplayground.frame:frame-fabric:${project.ver_frame}-fabric")
 
   // integration
   modImplementation "com.terraformersmc:modmenu:${project.ver_mod_menu}"
@@ -128,6 +137,7 @@ loom { disableDeprecatedPomGeneration(publishing.publications.mavenJava) }
 
 def VER_NAME = "[$project.major_version] $project.mod_name $project.version_id"
 def CHANGELOG = new File("./gradle", "CHANGELOG.md").text
+def SUPPORTED_VERSIONS = Arrays.asList(project.supported_versions.split(','))
 
 import org.kohsuke.github.*
 task github(dependsOn: build) {
@@ -154,8 +164,7 @@ if (ENV.MODRINTH_TOKEN) modrinth {
   versionType = project.release_type
   changelog = CHANGELOG
   uploadFile = remapJar
-  gameVersions = [ project.ver_minecraft ]
-  loaders = [ "fabric", "quilt" ]
+  gameVersions = SUPPORTED_VERSIONS
   dependencies = [
           new ModDependency("fabric-api", DependencyType.REQUIRED),
           new ModDependency("frame-api", DependencyType.REQUIRED),
@@ -169,9 +178,8 @@ if (ENV.CURSEFORGE_API_KEY) curseforge {
 
   project {
     id = project.curseforge_id
-    addGameVersion project.curseforge_version
     addGameVersion 'Fabric'
-    addGameVersion 'Quilt'
+    for (final def cf_ver in SUPPORTED_VERSIONS) addGameVersion cf_ver
 
     changelog = CHANGELOG
     releaseType = project.release_type
