@@ -22,7 +22,8 @@ public final class TwigsClientImpl implements Twigs, ClientModInitializer {
         this.initializer.start();
 
         List.of(
-            "Why no chairs?"
+            "Why no chairs?",
+            "___ __ ____"
         ).forEach(SplashesRegistry.INSTANCE::register);
 
         this.initializer.finish();
