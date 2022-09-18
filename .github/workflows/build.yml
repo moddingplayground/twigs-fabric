@@ -1,6 +1,5 @@
 name: build
-on: 
-  workflow_dispatch: # Put here!!
+on:  [ push, pull_request ]
 jobs:
   build:
     strategy:
