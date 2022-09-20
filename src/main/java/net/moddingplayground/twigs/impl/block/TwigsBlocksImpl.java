@@ -87,6 +87,10 @@ public final class TwigsBlocksImpl implements TwigsBlocks, ModInitializer {
         fuels.add(STRIPPED_BAMBOO, 50);
         fuels.add(BUNDLED_BAMBOO, 450);
         fuels.add(STRIPPED_BUNDLED_BAMBOO, 450);
+        fuels.add(BAMBOO_LEAVES, 50);
+        fuels.add(BAMBOO_THATCH, 200);
+        fuels.add(BAMBOO_THATCH_SLAB, 100);
+        fuels.add(BAMBOO_THATCH_STAIRS, 150);
 
         CompostingChanceRegistry composting = CompostingChanceRegistry.INSTANCE;
         composting.add(BAMBOO_LEAVES, 0.5F);
