@@ -5,7 +5,7 @@ plugins {
   id 'idea'
   id 'eclipse'
 
-  id 'fabric-loom' version '0.13-SNAPSHOT'
+  id 'fabric-loom' version '1.0-SNAPSHOT'
   id 'maven-publish'
 
   id 'com.modrinth.minotaur' version '2.+'
