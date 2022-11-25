@@ -1,13 +1,16 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "planks",
-  "ingredients": [
-    {
-      "item": "twigs:stripped_bamboo"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "##",
+        "##"
+    ],
+    "key": {
+        "#": {
+            "item": "twigs:stripped_bamboo"
+        }
+    },
+    "result": {
+        "item": "twigs:stripped_bamboo_planks",
+        "count": 1
     }
-  ],
-  "result": {
-    "count": 4,
-    "item": "twigs:stripped_bamboo_planks"
-  }
 }
